@@ -7,58 +7,59 @@ A practical reference to the concepts, protocols, models, frameworks, and tools 
 - **[Foundations](foundations/models-agents-and-workflows.md)**
   - [Models, agents, and workflows](foundations/models-agents-and-workflows.md)
   - [Context and prompting](foundations/context-and-prompting.md)
-- **Models**
-  - [Models and providers](models/introduction.md)
+- **Infrastructure**
+  - **Models**
+  - [Models and providers](infrastructure/models/introduction.md)
   - Selection
-    - [Model selection](models/selection/model-selection.md)
-    - [Benchmarks and evaluations](models/selection/benchmarks.md)
+    - [Model selection](infrastructure/models/selection/model-selection.md)
+    - [Benchmarks and evaluations](infrastructure/models/selection/benchmarks.md)
   - Providers
-    - [OpenAI](models/providers/openai.md)
-    - [Anthropic](models/providers/anthropic.md)
-    - [Google Gemini](models/providers/google.md)
-    - [xAI](models/providers/xai.md)
+    - [OpenAI](infrastructure/models/providers/openai.md)
+    - [Anthropic](infrastructure/models/providers/anthropic.md)
+    - [Google Gemini](infrastructure/models/providers/google.md)
+    - [xAI](infrastructure/models/providers/xai.md)
   - Open-weight models
-    - [Introduction](models/open-models/introduction.md)
-    - [Kimi](models/open-models/kimi.md)
-    - [Qwen](models/open-models/qwen.md)
-    - [DeepSeek](models/open-models/deepseek.md)
-- **Agent systems**
+    - [Introduction](infrastructure/models/open-models/introduction.md)
+    - [Kimi](infrastructure/models/open-models/kimi.md)
+    - [Qwen](infrastructure/models/open-models/qwen.md)
+    - [DeepSeek](infrastructure/models/open-models/deepseek.md)
+  - **Agent runtime**
   - Calling
-    - [Requests and responses](agent-systems/calling/request-response.md)
-    - [Tool calling](agent-systems/calling/tool-calling.md)
-    - [Streaming and state](agent-systems/calling/streaming-and-state.md)
-    - [Managed runtime APIs](agent-systems/calling/runtime-api.md)
+    - [Requests and responses](infrastructure/calling/request-response.md)
+    - [Tool calling](infrastructure/calling/tool-calling.md)
+    - [Streaming and state](infrastructure/calling/streaming-and-state.md)
+    - [Managed runtime APIs](infrastructure/calling/runtime-api.md)
   - Tools and protocols
-    - [MCP](agent-systems/tools/mcp.md)
-    - [Legacy MCP initialization](agent-systems/tools/mcp-legacy.md)
-    - [Discovery and authentication](agent-systems/tools/discovery-and-authentication.md)
-    - [Agent and UI communication](agent-systems/tools/agent-communication.md)
+    - [MCP](infrastructure/tools/mcp.md)
+    - [Legacy MCP initialization](infrastructure/tools/mcp-legacy.md)
+    - [Discovery and authentication](infrastructure/tools/discovery-and-authentication.md)
+    - [Agent and UI communication](infrastructure/tools/agent-communication.md)
   - Orchestration
-    - [Introduction](agent-systems/orchestration/introduction.md)
+    - [Introduction](infrastructure/orchestration/introduction.md)
     - Execution
-      - [Agent loops](agent-systems/orchestration/execution/agent-loops.md)
-      - [State and recovery](agent-systems/orchestration/execution/state-and-recovery.md)
-      - [Delegation and handoffs](agent-systems/orchestration/execution/delegation.md)
+      - [Agent loops](infrastructure/orchestration/execution/agent-loops.md)
+      - [State and recovery](infrastructure/orchestration/execution/state-and-recovery.md)
+      - [Delegation and handoffs](infrastructure/orchestration/execution/delegation.md)
     - Frameworks
-      - [LangChain](agent-systems/orchestration/frameworks/langchain.md)
-      - [LangGraph](agent-systems/orchestration/frameworks/langgraph.md)
-      - [LangSmith](agent-systems/orchestration/frameworks/langsmith.md)
-      - [OpenAI Agents SDK](agent-systems/orchestration/frameworks/openai-agents-sdk.md)
-      - [OpenAI Agents API](agent-systems/orchestration/frameworks/openai-agents-api.md)
-      - [Vercel AI SDK](agent-systems/orchestration/frameworks/vercel-ai-sdk.md)
-      - [Claude Managed Agents](agent-systems/orchestration/frameworks/claude-managed-agents.md)
-- **Knowledge**
-  - [RAG](knowledge/rag.md)
-  - [Graphs, GraphRAG, and Cognee](knowledge/graphs-and-cognee.md)
-  - [Memory and indexing](knowledge/memory-and-indexing.md)
+      - [LangChain](infrastructure/orchestration/frameworks/langchain.md)
+      - [LangGraph](infrastructure/orchestration/frameworks/langgraph.md)
+      - [LangSmith](infrastructure/orchestration/frameworks/langsmith.md)
+      - [OpenAI Agents SDK](infrastructure/orchestration/frameworks/openai-agents-sdk.md)
+      - [OpenAI Agents API](infrastructure/orchestration/frameworks/openai-agents-api.md)
+      - [Vercel AI SDK](infrastructure/orchestration/frameworks/vercel-ai-sdk.md)
+      - [Claude Managed Agents](infrastructure/orchestration/frameworks/claude-managed-agents.md)
+  - **Knowledge**
+  - [RAG](infrastructure/knowledge/rag.md)
+  - [Graphs, GraphRAG, and Cognee](infrastructure/knowledge/graphs-and-cognee.md)
+  - [Memory and indexing](infrastructure/knowledge/memory-and-indexing.md)
 - **Interfaces**
   - [Chat rendering](interfaces/chat-rendering.md)
   - [Generative UI](interfaces/generative-ui.md)
   - [Realtime and voice](interfaces/realtime-and-voice.md)
-- **Hosting**
-  - [Providers and gateways](hosting/providers-and-gateways.md)
-  - [Managed agents and sandboxes](hosting/managed-agents.md)
-  - [Deployment](hosting/deployment.md)
+  - **Hosting**
+  - [Providers and gateways](infrastructure/hosting/providers-and-gateways.md)
+  - [Managed agents and sandboxes](infrastructure/hosting/managed-agents.md)
+  - [Deployment](infrastructure/hosting/deployment.md)
 - **Operations**
   - [Tracing](operations/tracing.md)
   - [Evaluations](operations/evaluations.md)
