@@ -2,15 +2,23 @@
 
 [Handbook](../../README.md)
 
-Orchestration is the code or managed runtime that decides what runs next, preserves progress, and handles interruptions. A model can propose a tool call; the surrounding system decides whether it is allowed, executes it, and delivers the result back.
+Orchestration is the code or managed runtime that decides what runs next, preserves progress, and handles interruptions.
 
-Keep three questions separate: **who chooses the next step, where execution happens, and what survives a crash?** A graph answers a control-flow question. A worker answers an execution question. A checkpoint answers a persistence question. One product may provide all three, but the responsibilities still exist.
+## Contents
 
-| Read | What you will understand |
-| --- | --- |
-| [Execution and state](execution-and-state.md) | Direct loops, workflows, graphs, durable workers, delegation, and recovery |
-| [Frameworks and managed runtimes](frameworks.md) | How LangChain, LangGraph, LangSmith, OpenAI Agents SDK/API, and Vercel AI SDK fit |
+- [Introduction](introduction.md) — control flow, execution, persistence, and when orchestration is useful.
+- Execution
+  - [Agent loops](execution/agent-loops.md) — bounded direct execution.
+  - [State and recovery](execution/state-and-recovery.md) — checkpoints, durable work, and side effects.
+  - [Delegation and handoffs](execution/delegation.md) — specialist agents and ownership transfer.
+- Frameworks and runtimes
+  - [Framework overview](frameworks/README.md)
+  - [LangChain](frameworks/langchain.md)
+  - [LangGraph](frameworks/langgraph.md)
+  - [LangSmith](frameworks/langsmith.md)
+  - [OpenAI Agents SDK](frameworks/openai-agents-sdk.md)
+  - [OpenAI Agents API](frameworks/openai-agents-api.md)
+  - [Vercel AI SDK](frameworks/vercel-ai-sdk.md)
+  - [Claude Managed Agents](frameworks/claude-managed-agents.md)
 
-Start with one bounded loop and real application tools. Add explicit workflow stages when the task requires them; add delegation when independent work or distinct tool permissions justify it. Compare designs using [evaluations](../09-evaluation-and-operations/evaluations.md) and [traces](../09-evaluation-and-operations/tracing.md), including failure cases. [Hosting and delivery](../08-hosting-and-delivery/README.md) explains where those components run.
-
-**Source review:** 2026-09-19. The linked pages distinguish documented capabilities from the handbook's implementation advice. No vendor integration was executed for this chapter.
+Start with one bounded loop and real application tools. Add framework machinery when a concrete requirement justifies it.

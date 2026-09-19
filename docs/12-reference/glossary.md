@@ -12,11 +12,11 @@ These definitions describe how the handbook uses each term. Follow the linked ex
 | A2UI | A declarative format describing interfaces that a client renders using its component catalog. | [Generative UI](../07-interfaces-and-rendering/generative-ui.md) |
 | Agent | A system in which a model chooses actions toward a goal within runtime constraints. | [Models, agents, and workflows](../01-foundations/models-agents-and-workflows.md) |
 | Agentic | Describes action selection and execution toward a goal; it can use generative models. | [Generative and agentic](../01-foundations/models-agents-and-workflows.md#generative-and-agentic-describe-different-things) |
-| Agent loop | Repeated model decisions, permitted tool execution, and feedback until a stopping condition. | [Execution and state](../05-orchestration/execution-and-state.md) |
+| Agent loop | Repeated model decisions, permitted tool execution, and feedback until a stopping condition. | [Execution and state](../05-orchestration/execution/agent-loops.md) |
 | Agent runtime / harness | Software supplying the loop, state, tools, execution controls, and lifecycle around a model. | [What turns a model into an agent?](../01-foundations/models-agents-and-workflows.md#what-turns-a-model-into-an-agent) |
 | AG-UI | An event protocol connecting agent execution to a user-facing application. | [Interface protocol boundaries](../07-interfaces-and-rendering/generative-ui.md#representative-approaches-and-protocol-boundaries) |
-| Benchmark | A defined task set and measurement procedure; its results depend on the complete setup. | [Selection and benchmarks](../02-models-and-providers/selection-and-benchmarks.md) |
-| Checkpoint | Saved execution state from which a workflow can resume. | [Execution and state](../05-orchestration/execution-and-state.md) |
+| Benchmark | A defined task set and measurement procedure; its results depend on the complete setup. | [Selection and benchmarks](../02-models-and-providers/selection/model-selection.md) |
+| Checkpoint | Saved execution state from which a workflow can resume. | [Execution and state](../05-orchestration/execution/agent-loops.md) |
 | Chunk | A retrievable portion of a source document, ideally retaining meaningful structure and metadata. | [RAG pipeline](../06-knowledge-and-memory/rag.md#the-pipeline) |
 | Compaction | Reducing context, often by summarizing older material; the result can lose information. | [Conversation memory](../06-knowledge-and-memory/memory-and-indexing.md#conversation-memory-needs-evidence) |
 | Context engineering | Selecting and organizing the instructions, evidence, history, and tools provided at each model step. | [Context and prompting](../01-foundations/context-and-prompting.md) |
@@ -28,7 +28,7 @@ These definitions describe how the handbook uses each term. Follow the linked ex
 | Term | Meaning | Read more |
 | --- | --- | --- |
 | Dense embedding | A numerical vector used to compare content by learned similarity. | [Search terms](../06-knowledge-and-memory/rag.md#what-the-search-terms-mean) |
-| Durable execution | Work whose recoverable state survives interruptions and process restarts. | [Execution and state](../05-orchestration/execution-and-state.md) |
+| Durable execution | Work whose recoverable state survives interruptions and process restarts. | [Execution and state](../05-orchestration/execution/agent-loops.md) |
 | Evaluation / eval | A repeatable check of behavior against explicit criteria, including answers, actions, or recovery. | [Evaluations](../09-evaluation-and-operations/evaluations.md) |
 | Gateway | An intermediary endpoint that can route model requests and apply shared access or operational policies. | [Providers and gateways](../08-hosting-and-delivery/providers-and-gateways.md) |
 | Generative AI | Models and systems that produce content such as text, code, images, or structured output. | [Generative and agentic](../01-foundations/models-agents-and-workflows.md#generative-and-agentic-describe-different-things) |
@@ -36,9 +36,9 @@ These definitions describe how the handbook uses each term. Follow the linked ex
 | Graph database | Storage and query software for entities and relationships; it is not itself a RAG pipeline. | [Graphs and Cognee](../06-knowledge-and-memory/graphs-and-cognee.md) |
 | GraphRAG | Graph-assisted retrieval and generation; also the name of Microsoft's specific implementation. | [GraphRAG](../06-knowledge-and-memory/graphs-and-cognee.md#microsofts-graphrag) |
 | Grounding | Connecting an answer's claims to relevant supporting evidence. | [Grounded answers](../06-knowledge-and-memory/rag.md) |
-| Handoff | Transfer of responsibility for continuing work or an interaction to another agent. | [Delegation and handoffs](../05-orchestration/execution-and-state.md#delegation-and-handoffs) |
+| Handoff | Transfer of responsibility for continuing work or an interaction to another agent. | [Delegation and handoffs](../05-orchestration/execution/agent-loops.md#delegation-and-handoffs) |
 | Hybrid search | Retrieval combining different approaches, commonly keyword and vector search. | [Search terms](../06-knowledge-and-memory/rag.md#what-the-search-terms-mean) |
-| Idempotency | Repeating the same identified operation without producing additional unintended effects. | [Recovery and side effects](../05-orchestration/execution-and-state.md#recovery-includes-side-effects) |
+| Idempotency | Repeating the same identified operation without producing additional unintended effects. | [Recovery and side effects](../05-orchestration/execution/agent-loops.md#recovery-includes-side-effects) |
 | Inference | Running a trained model on new input to obtain output. | [What is a model?](../01-foundations/models-agents-and-workflows.md#what-is-a-model) |
 
 ## M–Q
@@ -50,17 +50,17 @@ These definitions describe how the handbook uses each term. Follow the linked ex
 | Memory | Retained information for later use; specify whether this means history, working state, durable facts, or an index. | [Memory distinctions](../06-knowledge-and-memory/memory-and-indexing.md) |
 | Model | Learned parameters and their computation that map input to output. | [What is a model?](../01-foundations/models-agents-and-workflows.md#what-is-a-model) |
 | Model call | One inference request, potentially returning several output items rather than only text. | [Request and response](../03-calling-models/request-response.md) |
-| Model card | Publisher documentation for a model's intended use, limitations, evaluation, and related artifact details. | [Open weights](../02-models-and-providers/open-weights.md) |
+| Model card | Publisher documentation for a model's intended use, limitations, evaluation, and related artifact details. | [Open weights](../02-models-and-providers/open-models/README.md) |
 | Model provider | An organization or service supplying model access; distinguish the publisher from a serving intermediary. | [Models and providers](../02-models-and-providers/README.md) |
-| Open source AI | A claim about a system's permissions and available components, beyond simply downloadable weights. | [Availability and licensing](../02-models-and-providers/open-weights.md#separate-availability-licensing-and-deployment) |
-| Open weights | Trained parameters are available to obtain; other components and usage terms may remain restricted. | [Availability and licensing](../02-models-and-providers/open-weights.md#separate-availability-licensing-and-deployment) |
-| Orchestration | Control of execution order, branching, state, delegation, and recovery across steps. | [Execution and state](../05-orchestration/execution-and-state.md) |
+| Open source AI | A claim about a system's permissions and available components, beyond simply downloadable weights. | [Availability and licensing](../02-models-and-providers/open-models/README.md#separate-availability-licensing-and-deployment) |
+| Open weights | Trained parameters are available to obtain; other components and usage terms may remain restricted. | [Availability and licensing](../02-models-and-providers/open-models/README.md#separate-availability-licensing-and-deployment) |
+| Orchestration | Control of execution order, branching, state, delegation, and recovery across steps. | [Execution and state](../05-orchestration/execution/agent-loops.md) |
 | Plugin | A host-specific extension package that may bundle instructions, tools, services, or interfaces. | [Skills and plugins](../10-development-workflows/skills-and-plugins.md) |
 | Prompt caching | Reuse of compatible prompt-prefix computation; it is distinct from returning a previously generated answer. | [Caching distinctions](../09-evaluation-and-operations/cost-and-latency.md#distinguish-two-kinds-of-caching) |
 | Prompt injection | Untrusted content attempting to redirect a model or agent's behavior. | [Security and permissions](../09-evaluation-and-operations/security.md) |
 | Provenance | The source identity, location, revision, and derivation behind a piece of information. | [Memory and indexing](../06-knowledge-and-memory/memory-and-indexing.md) |
 | Proxy | Software forwarding or adapting requests between a client and upstream service. | [Discovery and proxies](../10-development-workflows/discovery-and-proxies.md) |
-| Quantization | Reducing numerical precision in model representations to change memory and computation requirements. | [Local feasibility](../02-models-and-providers/open-weights.md#what-determines-local-feasibility) |
+| Quantization | Reducing numerical precision in model representations to change memory and computation requirements. | [Local feasibility](../02-models-and-providers/open-models/README.md#what-determines-local-feasibility) |
 
 ## R–W
 

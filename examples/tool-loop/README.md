@@ -43,7 +43,7 @@ After execution, the loop appends a success or error result under the original c
 - Cancellation is checked before the next action. A signal is also passed to adapters, but this example cannot forcibly terminate an adapter that ignores it. Already completed work remains completed.
 - Call IDs must be unique within the run. This catches malformed/repeated calls; it is **not durable idempotency** across runs or restarts.
 - Everything lives in memory. There are no request deadlines, retries, persistent checkpoints, distributed locks, streaming, token accounting, or authentication server. The caller must derive identity from an authenticated application context.
-- The service only reads records. Real writes need current authorization, appropriate approval policy, stable operation keys, and recovery for uncertain outcomes. See [execution and state](../../docs/05-orchestration/execution-and-state.md).
+- The service only reads records. Real writes need current authorization, appropriate approval policy, stable operation keys, and recovery for uncertain outcomes. See [execution and state](../../docs/05-orchestration/execution/agent-loops.md).
 - Tool validators are explicit JavaScript predicates alongside descriptive schemas. A production application should prevent those two representations from drifting. A live provider adapter must validate and translate its actual response format before using this loop.
 
 ## Verification record

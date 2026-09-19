@@ -39,4 +39,4 @@ For a document research task, compare: creating the session, loading sources, in
 
 At this review date, the [OpenAI Agents API overview](https://developers.openai.com/api/docs/guides/agents-api/overview) states US-only data residency and no Zero Data Retention support, including when using a self-hosted sandbox. Review the selected service's current retention, region, access, and sandbox limits before deployment. Self-hosted execution does not by itself mean that model inputs and session data stay local.
 
-See [execution and state](../05-orchestration/execution-and-state.md), [framework choices](../05-orchestration/frameworks.md), and the [background work recipe](../11-recipes/background-work.md).
+See [execution and state](../05-orchestration/execution/agent-loops.md), [framework choices](../05-orchestration/frameworks/README.md), and the [background work recipe](../11-recipes/background-work.md).

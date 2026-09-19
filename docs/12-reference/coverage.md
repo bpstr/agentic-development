@@ -18,10 +18,10 @@ Evidence labels:
 | Model definition | [Models, agents, and workflows](../01-foundations/models-agents-and-workflows.md) | SR; conceptual explanation. |
 | Agentic versus generative; models versus agents | [Models, agents, and workflows](../01-foundations/models-agents-and-workflows.md) | SR + I; separates content generation from runtime action selection. |
 | Model providers | [Models and providers](../02-models-and-providers/README.md) | SR; representative provider categories. |
-| OpenAI; Astra; Sol; descriptions | [OpenAI](../02-models-and-providers/openai.md) | SR + I; exact documented IDs and API distinctions. |
-| Benchmarks and pricing links | [OpenAI](../02-models-and-providers/openai.md) · [Selection and benchmarks](../02-models-and-providers/selection-and-benchmarks.md) | SR; links and methodology, no original model ranking or benchmark run. |
-| Anthropic | [Anthropic, Google, and xAI](../02-models-and-providers/anthropic-google-xai.md) | SR; models, platform, and coding product are distinguished. |
-| Open source; Kimi | [Open weights](../02-models-and-providers/open-weights.md) | SR + I; licensing and serving distinctions; no local inference test. |
+| OpenAI; Astra; Sol; descriptions | [OpenAI](../02-models-and-providers/providers/openai.md) | SR + I; exact documented IDs and API distinctions. |
+| Benchmarks and pricing links | [OpenAI](../02-models-and-providers/providers/openai.md) · [Selection and benchmarks](../02-models-and-providers/selection/model-selection.md) | SR; links and methodology, no original model ranking or benchmark run. |
+| Anthropic | [Anthropic, Google, and xAI](../02-models-and-providers/providers/anthropic.md) | SR; models, platform, and coding product are distinguished. |
+| Open source; Kimi | [Open weights](../02-models-and-providers/open-models/README.md) | SR + I; licensing and serving distinctions; no local inference test. |
 | Agent protocol calls; example request and response | [Request/response](../03-calling-models/request-response.md) · [Managed runtime call](../03-calling-models/runtime-api.md) · [Protocol boundaries](../04-tools-and-protocols/agent-communication.md) | SR + I; separate provider inference, managed sessions, and inter-agent exchange. |
 | Tool calls | [Tool calling](../03-calling-models/tool-calling.md) | SR + I; call/result correlation and executor responsibilities. |
 | MCP: definition, example, official resources | [MCP](../04-tools-and-protocols/mcp.md) · [Legacy initialization](../04-tools-and-protocols/mcp-legacy.md) | SR + I; versioned exchanges, no client/server interoperability run. |
@@ -31,10 +31,10 @@ Evidence labels:
 | Requested subject | Explanation | Evidence and boundary |
 | --- | --- | --- |
 | Tracing | [Tracing](../09-evaluation-and-operations/tracing.md) | SR + I; example durations are teaching data. |
-| LangChain ecosystem | [Frameworks](../05-orchestration/frameworks.md) | SR; responsibility comparison. |
-| LangSmith | [Frameworks](../05-orchestration/frameworks.md) · [Tracing](../09-evaluation-and-operations/tracing.md) | SR; observability and evaluation role, no hosted trace experiment. |
-| LangGraph | [Frameworks](../05-orchestration/frameworks.md) · [Execution and state](../05-orchestration/execution-and-state.md) | SR + I; state, recovery, and control flow. |
-| Vercel AI SDK | [Frameworks](../05-orchestration/frameworks.md) · [Chat rendering](../07-interfaces-and-rendering/chat-rendering.md) | SR + I; server and UI responsibilities. |
+| LangChain ecosystem | [Frameworks](../05-orchestration/frameworks/README.md) | SR; responsibility comparison. |
+| LangSmith | [Frameworks](../05-orchestration/frameworks/README.md) · [Tracing](../09-evaluation-and-operations/tracing.md) | SR; observability and evaluation role, no hosted trace experiment. |
+| LangGraph | [Frameworks](../05-orchestration/frameworks/README.md) · [Execution and state](../05-orchestration/execution/agent-loops.md) | SR + I; state, recovery, and control flow. |
+| Vercel AI SDK | [Frameworks](../05-orchestration/frameworks/README.md) · [Chat rendering](../07-interfaces-and-rendering/chat-rendering.md) | SR + I; server and UI responsibilities. |
 | RAG | [RAG](../06-knowledge-and-memory/rag.md) | SR + I; pipeline, retrieval choices, citations, and evaluation. |
 | GraphRAG | [Graphs and Cognee](../06-knowledge-and-memory/graphs-and-cognee.md) | SR + I; local/global retrieval and extracted relationship limits. |
 | Cognee | [Graphs and Cognee](../06-knowledge-and-memory/graphs-and-cognee.md#cognees-role) | SR + I; documented API shape; no ingestion or retrieval execution. |
@@ -54,7 +54,7 @@ Evidence labels:
 | Hugging Face | [Providers and gateways](../08-hosting-and-delivery/providers-and-gateways.md) | SR; Inference Providers, Endpoints, and Spaces have separate roles. |
 | OpenRouter | [Providers and gateways](../08-hosting-and-delivery/providers-and-gateways.md) | SR; model access/routing and runtime ownership distinguished. |
 | Codex | [Coding agents](../10-development-workflows/coding-agents.md) | SR + I; documented local and non-interactive workflows. |
-| Claude; Claude Code | [Coding agents](../10-development-workflows/coding-agents.md) · [Claude models](../02-models-and-providers/anthropic-google-xai.md) | SR; coding environment and model family distinguished. |
+| Claude; Claude Code | [Coding agents](../10-development-workflows/coding-agents.md) · [Claude models](../02-models-and-providers/providers/anthropic.md) | SR; coding environment and model family distinguished. |
 | Plugins | [Skills and plugins](../10-development-workflows/skills-and-plugins.md) | SR + I; extension types and host compatibility. |
 | Skills | [Skills and plugins](../10-development-workflows/skills-and-plugins.md) | SR + I; format and instruction-loading role. |
 | Proxies; Codex Proxy | [Discovery and proxies](../10-development-workflows/discovery-and-proxies.md) | SR + I; intended project matched to `icebear0828/codex-proxy`; endpoint translation explained, no gateway integration tested. |

@@ -13,6 +13,6 @@ An agent that produces a convincing answer can still select the wrong resource, 
 
 Use one loop of improvement: capture a failure, turn it into a reproducible case, change the smallest relevant part, and compare the outcome. Track the model, prompt, tool schema, retrieval configuration, and application revision together so the comparison is meaningful.
 
-For a first implementation, collect a run ID, actual tool outcomes, total latency, usage, and a small set of representative task cases. Expand measurement when it answers a concrete reliability question. [Execution and state](../05-orchestration/execution-and-state.md) explains the recovery mechanisms these checks should exercise.
+For a first implementation, collect a run ID, actual tool outcomes, total latency, usage, and a small set of representative task cases. Expand measurement when it answers a concrete reliability question. [Execution and state](../05-orchestration/execution/agent-loops.md) explains the recovery mechanisms these checks should exercise.
 
 **Source review:** 2026-09-19. Product references describe published capabilities; this chapter contains no measured vendor rankings.

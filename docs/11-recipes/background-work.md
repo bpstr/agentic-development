@@ -62,4 +62,4 @@ This event shape is illustrative and not an AG-UI or provider schema. Translate 
 
 Give workers a lease or another mechanism for claiming work. A retry must check persisted progress and action receipts before repeating side effects. Bound attempts and end in an explicit failure state when recovery is exhausted. Tie approvals and later user input to the exact pending action so a stale browser tab cannot approve a changed operation.
 
-Use [execution-state guidance](../05-orchestration/execution-and-state.md), [tracing](../09-evaluation-and-operations/tracing.md), and [interface lifecycle guidance](../07-interfaces-and-rendering/chat-rendering.md) to implement and inspect the boundaries.
+Use [execution-state guidance](../05-orchestration/execution/agent-loops.md), [tracing](../09-evaluation-and-operations/tracing.md), and [interface lifecycle guidance](../07-interfaces-and-rendering/chat-rendering.md) to implement and inspect the boundaries.

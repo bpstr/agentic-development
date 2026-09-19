@@ -17,7 +17,7 @@ By the end, explain what your application owns, what the provider owns, and what
 ## I am building an assistant into a product
 
 1. [Context and prompting](../01-foundations/context-and-prompting.md).
-2. [Execution and state](../05-orchestration/execution-and-state.md).
+2. [Execution and state](../05-orchestration/execution/agent-loops.md).
 3. [Chat rendering](../07-interfaces-and-rendering/chat-rendering.md).
 4. [Security](../09-evaluation-and-operations/security.md).
 5. [Evaluations](../09-evaluation-and-operations/evaluations.md).
@@ -38,8 +38,8 @@ Finish with a retrieval evaluation containing answerable questions, missing answ
 
 1. [Tracing](../09-evaluation-and-operations/tracing.md).
 2. [Cost and latency](../09-evaluation-and-operations/cost-and-latency.md).
-3. [Selection and benchmarks](../02-models-and-providers/selection-and-benchmarks.md).
-4. [Framework choices](../05-orchestration/frameworks.md).
+3. [Selection and benchmarks](../02-models-and-providers/selection/model-selection.md).
+4. [Framework choices](../05-orchestration/frameworks/README.md).
 
 Measure the complete successful task. Faster token generation may not fix queueing, tool latency, or repeated model turns.
 

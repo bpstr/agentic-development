@@ -10,14 +10,14 @@ Find a name here, then read its explanation in the relevant layer. Tools appear 
 | --- | --- | --- |
 | Models; generative AI; agentic systems; workflows | Foundational concepts | [Models, agents, and workflows](../01-foundations/models-agents-and-workflows.md) |
 | Prompts; context; tokens; compaction | Information supplied to inference | [Context and prompting](../01-foundations/context-and-prompting.md) |
-| OpenAI; Astra / GPT-6 Astra; Sol / GPT-5.6 Sol | Model family and API choices | [OpenAI](../02-models-and-providers/openai.md) |
-| Terra; Luna | Additional model comparison candidates | [OpenAI](../02-models-and-providers/openai.md) |
-| Anthropic; Claude models and platform | Model provider | [Anthropic, Google, and xAI](../02-models-and-providers/anthropic-google-xai.md) |
-| Google; Gemini | Model provider | [Anthropic, Google, and xAI](../02-models-and-providers/anthropic-google-xai.md) |
-| xAI; Grok models | Model provider | [Anthropic, Google, and xAI](../02-models-and-providers/anthropic-google-xai.md) |
-| Open source AI; open weights | Availability, licensing, and deployment distinctions | [Open weights](../02-models-and-providers/open-weights.md) |
-| Kimi; Qwen; DeepSeek | Representative open-weight releases | [Open weights](../02-models-and-providers/open-weights.md) |
-| Model benchmarks; SWE-bench; BFCL; pricing | Comparison methods and current source links | [Selection and benchmarks](../02-models-and-providers/selection-and-benchmarks.md) |
+| OpenAI; Astra / GPT-6 Astra; Sol / GPT-5.6 Sol | Model family and API choices | [OpenAI](../02-models-and-providers/providers/openai.md) |
+| Terra; Luna | Additional model comparison candidates | [OpenAI](../02-models-and-providers/providers/openai.md) |
+| Anthropic; Claude models and platform | Model provider | [Anthropic, Google, and xAI](../02-models-and-providers/providers/anthropic.md) |
+| Google; Gemini | Model provider | [Anthropic, Google, and xAI](../02-models-and-providers/providers/anthropic.md) |
+| xAI; Grok models | Model provider | [Anthropic, Google, and xAI](../02-models-and-providers/providers/anthropic.md) |
+| Open source AI; open weights | Availability, licensing, and deployment distinctions | [Open weights](../02-models-and-providers/open-models/README.md) |
+| Kimi; Qwen; DeepSeek | Representative open-weight releases | [Open weights](../02-models-and-providers/open-models/README.md) |
+| Model benchmarks; SWE-bench; BFCL; pricing | Comparison methods and current source links | [Selection and benchmarks](../02-models-and-providers/selection/model-selection.md) |
 
 ## Calls, tools, and protocols
 
@@ -37,11 +37,11 @@ Find a name here, then read its explanation in the relevant layer. Tools appear 
 
 | Name or topic | Category | Handbook explanation |
 | --- | --- | --- |
-| LangChain | Integrations and agent abstractions | [Frameworks](../05-orchestration/frameworks.md) |
-| LangGraph | Stateful orchestration | [Frameworks](../05-orchestration/frameworks.md) · [Execution and state](../05-orchestration/execution-and-state.md) |
-| LangSmith | Tracing and evaluation within the broader ecosystem | [Frameworks](../05-orchestration/frameworks.md) · [Tracing](../09-evaluation-and-operations/tracing.md) |
-| OpenAI Agents SDK | Application-owned agent execution | [Frameworks](../05-orchestration/frameworks.md) |
-| Vercel AI SDK | Model access, tools, and application/UI integration | [Frameworks](../05-orchestration/frameworks.md) · [Chat rendering](../07-interfaces-and-rendering/chat-rendering.md) |
+| LangChain | Integrations and agent abstractions | [Frameworks](../05-orchestration/frameworks/README.md) |
+| LangGraph | Stateful orchestration | [Frameworks](../05-orchestration/frameworks/README.md) · [Execution and state](../05-orchestration/execution/agent-loops.md) |
+| LangSmith | Tracing and evaluation within the broader ecosystem | [Frameworks](../05-orchestration/frameworks/README.md) · [Tracing](../09-evaluation-and-operations/tracing.md) |
+| OpenAI Agents SDK | Application-owned agent execution | [Frameworks](../05-orchestration/frameworks/README.md) |
+| Vercel AI SDK | Model access, tools, and application/UI integration | [Frameworks](../05-orchestration/frameworks/README.md) · [Chat rendering](../07-interfaces-and-rendering/chat-rendering.md) |
 | RAG | Retrieval and grounded generation | [RAG](../06-knowledge-and-memory/rag.md) |
 | GraphRAG; graph-based retrieval | Entity relationships and collection-wide context | [Graphs and Cognee](../06-knowledge-and-memory/graphs-and-cognee.md) |
 | Cognee | Knowledge and memory pipeline | [Graphs and Cognee](../06-knowledge-and-memory/graphs-and-cognee.md#cognees-role) |
