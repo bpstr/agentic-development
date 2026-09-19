@@ -82,8 +82,8 @@ Find a name here, then read its explanation in the relevant layer. Tools appear 
 | Skills.sh; skills CLI | Skill discovery and distribution | [Skills and plugins](../10-development-workflows/skills-and-plugins.md) |
 | Plugin development; Agent Plugins | Packaging and host compatibility | [Plugin development](../10-development-workflows/plugin-development.md) |
 | Proxies; MCP proxies | Forwarding, mediation, and compatibility boundaries | [Discovery and proxies](../10-development-workflows/discovery-and-proxies.md) |
-| codex-proxy | Ambiguous name; the page identifies one reviewed community implementation | [codex-proxy identity](../10-development-workflows/discovery-and-proxies.md#the-name-codex-proxy) |
-| Graphify | Project relationship retrieval; specific maintainer identified | [Code intelligence](../10-development-workflows/code-intelligence.md) |
+| Codex Proxy; icebear0828/codex-proxy | Local gateway translating client API formats to Codex Responses | [Codex Proxy](../10-development-workflows/discovery-and-proxies.md#codex-proxy-a-local-compatibility-gateway) |
+| Graphify; graphify.net | Project graph tooling and its separate hosted service | [Code intelligence](../10-development-workflows/code-intelligence.md) |
 | Codanna | Indexed symbol, semantic, and relationship retrieval | [Code intelligence](../10-development-workflows/code-intelligence.md) |
 | ripgrep; Tree-sitter; language servers | Baseline search and program structure | [Code intelligence](../10-development-workflows/code-intelligence.md) |
 

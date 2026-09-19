@@ -35,7 +35,7 @@ The offline example's **13 behavior tests pass**. They cover tool-call/result id
 
 Independent chapter review checked category boundaries, API examples, product identities, and claims of evidence. It led to a clearer distinction between suspended and terminal runs, use of released MCP security guidance, and an explicit note that the illustrative Cognee Python workflow can call configured paid model services.
 
-The handbook documents MCP 2026-07-28 separately from its legacy 2025-11-25 handshake. It distinguishes assistant-ui Elements from Vercel AI Elements; identifies both OpenUI projects; qualifies the selected community codex-proxy example; and separates managed inference, agent harnesses, and execution environments.
+The handbook documents MCP 2026-07-28 separately from its legacy 2025-11-25 handshake. It distinguishes assistant-ui Elements from Vercel AI Elements; identifies both OpenUI projects; identifies the requested Codex Proxy as `icebear0828/codex-proxy`; and separates managed inference, agent harnesses, and execution environments. Follow-up source review incorporates the supplied Graphify website and Grok Bot announcement while preserving the distinction between documented capabilities and tested integrations.
 
 ## Continuous checks
 

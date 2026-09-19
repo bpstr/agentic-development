@@ -44,9 +44,19 @@ An MCP proxy has a different boundary: it mediates MCP connections or tool acces
 
 For any compatibility bridge, verify streaming events, tool-call identifiers, structured output, error propagation, cancellation, and usage accounting. A request that produces text is insufficient evidence that a multi-step agent workflow preserves its behavior.
 
-### The name `codex-proxy`
+### Codex Proxy: a local compatibility gateway
 
-Names alone are ambiguous. One reviewed community project, [`icebear0828/codex-proxy`](https://github.com/icebear0828/codex-proxy), describes a local bridge that exposes Codex Responses through several API-compatible endpoints. It is included as a concrete protocol-adapter example, without assuming it is the reader's intended repository or an OpenAI-supported integration.
+**Codex Proxy** is the community project [`icebear0828/codex-proxy`](https://github.com/icebear0828/codex-proxy). Its [English README](https://github.com/icebear0828/codex-proxy/blob/dev/README_EN.md) describes a local gateway for connecting clients such as Cursor, Claude Code, Continue, and Pi to Codex-oriented Responses traffic.
+
+| Client-facing format | Documented endpoint or bridge |
+| --- | --- |
+| OpenAI Chat Completions | `/v1/chat/completions` |
+| Anthropic Messages | `/v1/messages` |
+| Gemini | Generate-content and streaming routes |
+| Codex Responses | `/v1/responses` passthrough |
+| Ollama-compatible chat | Optional `/api/chat` bridge |
+
+The endpoint format and the actual upstream model are separate choices. For example, a client can speak the Anthropic Messages format while the gateway translates its request for a Codex model. The gateway runs locally; inference can still run remotely. The client's tools and execution loop also remain separate from this translation layer. This is a source-reviewed community integration, with no OpenAI support or runtime compatibility implied by inclusion here.
 
 Evaluate the exact release, upstream authentication contract, and API semantics before making such a bridge a dependency. Keep proxy credentials and upstream identity distinct. Compare against a direct supported integration using the same workload; an extra layer can change behavior and adds its own operational surface.
 

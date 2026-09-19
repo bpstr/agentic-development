@@ -34,9 +34,9 @@ codex exec --sandbox read-only --json \
 
 ## Where Grok Bot fits
 
-**Grok Bot** is a persistent work-agent product: named bots use a cloud computer with a browser, terminal, and filesystem, and retain context across tasks. The documentation also describes coordination between bots and saved workflows. This is a different workflow category from opening a coding session for one repository change. [Grok Bot overview](https://docs.x.ai/grok-bot/overview)
+**Grok Bot** is the persistent work-agent product introduced in xAI's [August 11, 2026 announcement](https://x.ai/news/introducing-grok-bot). It launched in beta with bots that retain context, coordinate with one another, and perform work across applications on a cloud computer. Demonstrated workflows can become reusable routines. This belongs to the persistent-work category alongside, but distinct from, a repository coding session.
 
-The same source says bots belonging to an account share a computer, including files and browser sessions. Consequently, multiple bot names should not be treated as independent isolation boundaries. When comparing persistent agents, examine what is retained, which identity owns connected accounts, and how work is stopped or handed over.
+The [Grok Bot documentation](https://docs.x.ai/grok-bot/overview) describes its browser, terminal, and filesystem, and says bots belonging to an account share the computer, files, and browser sessions. Consequently, multiple bot names should not be treated as independent isolation boundaries. For a developer, an illustrative handoff is to reproduce a UI bug, collect evidence, and pass a focused task to a coding agent. The announcement's examples are vendor-reported; this handbook has not tested that workflow.
 
 ## Give the agent a verifiable task
 

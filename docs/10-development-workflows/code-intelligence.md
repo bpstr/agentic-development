@@ -33,7 +33,9 @@ Inspect the returned symbols and source locations before accepting an impact cla
 
 ## Graphify: traversable project relationships
 
-The reviewed project is [`Graphify-Labs/graphify`](https://github.com/Graphify-Labs/graphify); the earlier `safishamsi/graphify` URL redirects there. Its current README describes local deterministic parsing for code, a traversable graph without a vector store, and an optional model-assisted semantic pass over documents and media. Its official Python package is named `graphifyy`, while the executable is `graphify`.
+[Graphify.net](https://graphify.net/) combines project guides, repository graph galleries, and a hosted MCP entry point. Its [Graphify skill guide](https://graphify.net/skills/graphify/) explicitly identifies [`Graphify-Labs/graphify`](https://github.com/Graphify-Labs/graphify) as the canonical repository; the site's GitHub and PyPI links lead to that project and the `graphifyy` package. The local executable is `graphify`.
+
+The upstream README describes local deterministic code parsing, graph traversal without a vector store, and an optional model-assisted pass over documents and media. The example below follows that CLI. The site's separate Graphify AI installation block names `private-context-mcp` and `private-context`, while [its hosted workspace](https://app.graphify.net/) requires sign-in. Keep those setup paths distinct; this review does not establish equivalence between the hosted service and the open-source CLI. [Site and installation details](https://graphify.net/), [upstream usage](https://github.com/Graphify-Labs/graphify)
 
 The project distinguishes relationships extracted directly from source from relationships inferred through resolution. That distinction is useful when reviewing a path: ask which edges are explicit and which need validation. The documented CLI includes scoped queries, explanations, and paths. An illustrative query after graph construction is:
 

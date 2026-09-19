@@ -57,12 +57,12 @@ Evidence labels:
 | Claude; Claude Code | [Coding agents](../10-development-workflows/coding-agents.md) · [Claude models](../02-models-and-providers/anthropic-google-xai.md) | SR; coding environment and model family distinguished. |
 | Plugins | [Skills and plugins](../10-development-workflows/skills-and-plugins.md) | SR + I; extension types and host compatibility. |
 | Skills | [Skills and plugins](../10-development-workflows/skills-and-plugins.md) | SR + I; format and instruction-loading role. |
-| Proxies; codex-proxy | [Discovery and proxies](../10-development-workflows/discovery-and-proxies.md) | SR + I; one identified community example; the original name remains ambiguous. |
+| Proxies; Codex Proxy | [Discovery and proxies](../10-development-workflows/discovery-and-proxies.md) | SR + I; intended project matched to `icebear0828/codex-proxy`; endpoint translation explained, no gateway integration tested. |
 | MCP discovery tools | [Discovery and authentication](../04-tools-and-protocols/discovery-and-authentication.md) · [Discovery and proxies](../10-development-workflows/discovery-and-proxies.md) | SR + I; registry, protocol discovery, Inspector, and deferred tools. |
 | Skills.sh | [Skills and plugins](../10-development-workflows/skills-and-plugins.md) | SR + I; discovery/distribution, no skill installation tested. |
 | Plugin development | [Plugin development](../10-development-workflows/plugin-development.md) | SR + I; portable and host-specific manifests; no package installed. |
-| Grok bots | [Coding agents](../10-development-workflows/coding-agents.md) | SR; official Grok Bot identified separately from Grok models and Grok Build. |
-| Graphify | [Code intelligence](../10-development-workflows/code-intelligence.md) | SR + I; maintainer identity established; no indexing or performance run. |
+| Grok bots | [Coding agents](../10-development-workflows/coding-agents.md) | SR; supplied official Grok Bot announcement and documentation; distinct from Grok models and Grok Build. |
+| Graphify; graphify.net | [Code intelligence](../10-development-workflows/code-intelligence.md) | SR + I; supplied website links to the canonical project; CLI and hosted setup paths distinguished; no indexing or performance run. |
 | Codanna | [Code intelligence](../10-development-workflows/code-intelligence.md) | SR + I; capability overview; no indexing or performance run. |
 
 ## Example and expansion boundaries
