@@ -1,7 +1,5 @@
 # Tracing an agent request
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
 A **trace** connects operations involved in one request or job. A **span** records one operation's start, end, attributes, and relationship to other operations. An **event** marks an instant, such as the first visible answer token. OpenTelemetry defines these concepts independently of any agent framework. [Trace concepts](https://opentelemetry.io/docs/concepts/signals/traces/).
 
 ## Follow the whole user action

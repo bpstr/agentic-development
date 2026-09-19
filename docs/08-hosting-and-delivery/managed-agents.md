@@ -1,7 +1,5 @@
 # Managed agents and execution environments
 
-[Handbook](../../README.md) · [Hosting](README.md)
-
 Source-reviewed: 2026-09-19. Hosted services were not provisioned or runtime-tested.
 
 A **managed agent runtime** owns more of the execution loop than a model completion endpoint. It can keep sessions, coordinate model and tool turns, expose progress events, and resume work. A **sandbox** is the environment in which code or commands execute. The runtime and the sandbox are separate responsibilities, even when one provider supplies both.

@@ -1,7 +1,5 @@
 # Security and permissions
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
 An agent reads data that may contain hostile instructions and can propose actions with real consequences. The application's security boundary must continue to hold even when the model follows an unwanted instruction.
 
 **Prompt injection** occurs when input steers a model away from the application's intended instructions. It can arrive directly in a message or indirectly through a webpage, repository file, retrieved document, or tool result. Instruction wording alone cannot establish a reliable authorization boundary. [OWASP prompt injection guidance](https://genai.owasp.org/llmrisk/llm01-prompt-injection/).

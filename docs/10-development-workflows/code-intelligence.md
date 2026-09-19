@@ -1,9 +1,5 @@
 # Code intelligence
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
-**Source review: 2026-09-19. Evidence: source-reviewed; examples are illustrative. No indexing, retrieval, or performance benchmark was run for this handbook.**
-
 Code intelligence helps an agent retrieve relevant program structure and evidence. Instead of repeatedly guessing filenames, it can locate a symbol, inspect relationships, or find code by its purpose. The index helps choose what to inspect; the current source remains the evidence for a change.
 
 ## Retrieval mechanisms

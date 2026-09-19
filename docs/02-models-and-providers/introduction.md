@@ -1,7 +1,5 @@
 # Models and providers: introduction
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
 A **model** performs inference. A **provider** exposes a service that runs a model. A **gateway** can route requests to one or more providers. An **agent runtime** can add state, tools, retries, sandboxes, or durable execution around inference.
 
 These layers are often sold together, but keep them separate in architecture diagrams. “We use model X” does not tell you which API serves it, who stores conversation state, where tools execute, or which service owns retries.

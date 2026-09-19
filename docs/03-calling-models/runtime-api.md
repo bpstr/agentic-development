@@ -1,7 +1,5 @@
 # Calling a managed agent runtime
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
 **A managed runtime call starts or continues work performed by an agent harness.** It operates above an individual inference request. OpenAI's Agents API manages orchestration, session state, context compaction, and recovery; the application configures tools and execution environments. [Agents API overview](https://developers.openai.com/api/docs/guides/agents-api/overview).
 
 This page uses OpenAI to make the distinction concrete. The wire format is provider-specific, and the documented API uses a beta header. The example is **synthetic and unexecuted**, reviewed **2026-09-19**.

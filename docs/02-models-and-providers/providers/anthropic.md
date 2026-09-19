@@ -1,7 +1,5 @@
 # Anthropic
 
-[Handbook](../../../README.md) · [Chapter](../README.md)
-
 **Sources reviewed:** 2026-09-19 · **Evidence:** official Anthropic documentation; no comparative benchmark run.
 
 Anthropic develops the Claude model family and also provides API and agent products. Claude models, Claude Code, and Claude Managed Agents are different layers.

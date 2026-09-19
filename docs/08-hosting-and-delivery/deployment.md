@@ -1,7 +1,5 @@
 # Deploying an agentic application
 
-[Handbook](../../README.md) · [Hosting](README.md)
-
 Source-reviewed: 2026-09-19 for named serving tools. The architecture below is an illustrative application design, not a deployment tested against a hosting provider.
 
 Begin by assigning an owner to inference, the agent loop, tools, persistence, and delivery of results. They can run in one application or several services. Split them when isolation, independent scaling, or a concrete runtime requirement makes the separation useful.

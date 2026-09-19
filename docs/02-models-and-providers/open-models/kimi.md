@@ -1,7 +1,5 @@
 # Kimi
 
-[Handbook](../../../README.md) · [Open-weight models](README.md)
-
 **Sources reviewed:** 2026-09-19 · **Evidence:** publisher model card; no local inference test.
 
 Moonshot AI's [Kimi K2.5 model card](https://huggingface.co/moonshotai/Kimi-K2.5) documents multimodal input, thinking and instant modes, tool use, deployment guidance, and published evaluations.

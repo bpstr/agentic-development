@@ -1,7 +1,5 @@
 # Recipe: build the system in small increments
 
-[Handbook](../../README.md) · [Recipes](README.md)
-
 A system does not need every category in this handbook on day one. Use this editorial implementation sequence to establish evidence for the next layer. Each increment should leave a useful, testable application.
 
 | Increment | Build | Evidence to collect before expanding |

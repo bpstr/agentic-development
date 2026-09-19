@@ -1,7 +1,5 @@
 # Models, agents, and workflows
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
 **Sources reviewed:** 2026-09-19 · **Evidence:** conceptual guidance and official documentation; no runtime testing.
 
 ## What is a model?

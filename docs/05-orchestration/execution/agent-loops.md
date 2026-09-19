@@ -1,7 +1,5 @@
 # Agent loops
 
-[Handbook](../../../README.md) · [Chapter](../README.md)
-
 An agent loop repeatedly asks a model for an answer or action, executes permitted actions, and supplies results back to the model. A workflow fixes more of the order in code; a graph makes steps and transitions explicit.
 
 A bounded loop should load authorized state, enforce step/time/spend budgets, persist model responses and tool-call IDs, validate and authorize every action, execute with stable operation IDs, and persist terminal or suspended outcomes.

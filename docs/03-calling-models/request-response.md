@@ -1,7 +1,5 @@
 # Requests, responses, and structured output
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
 **A model API exchanges structured items, even when the interface looks like a chat box.** Text is one possible item; tools, images, refusals, and reasoning-related items can occupy the same response. Write consumers around item types rather than assuming the first array element contains the answer. OpenAI's [Responses migration guide](https://developers.openai.com/api/docs/guides/migrate-to-responses) explains its item-based representation.
 
 ## A minimal inference exchange

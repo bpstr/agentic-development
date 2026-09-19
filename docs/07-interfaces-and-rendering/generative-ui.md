@@ -1,7 +1,5 @@
 # Generative UI: choosing components and composing interfaces
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
 Generative UI lets model output influence the interface presented to a user. The term covers several mechanisms with different amounts of freedom. A model selecting a weather card, composing a form from a catalog, and generating JavaScript are three different engineering decisions.
 
 ## Choose how much freedom is useful

@@ -1,7 +1,5 @@
 # Benchmarks and evaluations
 
-[Handbook](../../../README.md) · [Chapter](../README.md)
-
 A benchmark measures a defined task under a defined harness. It does not automatically predict performance in your application.
 
 Useful public sources include [SWE-bench](https://www.swebench.com/) for software-engineering tasks and the [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html) for tool-calling evaluations. Read the harness, model version, tool configuration, and scoring method before comparing numbers.

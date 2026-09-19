@@ -1,7 +1,5 @@
 # Inference providers and gateways
 
-[Handbook](../../README.md) · [Hosting](README.md)
-
 Source-reviewed: 2026-09-19. The comparisons describe documented product surfaces; no provider integration was executed for this chapter.
 
 An **inference service** runs a model and returns its output. A **gateway** sits between an application and one or more inference services, often translating requests or applying routing policy. A service can offer additional products; identify the endpoint you are using rather than assigning one capability to an entire company.

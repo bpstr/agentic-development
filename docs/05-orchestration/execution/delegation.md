@@ -1,7 +1,5 @@
 # Delegation and handoffs
 
-[Handbook](../../../README.md) · [Chapter](../README.md)
-
 **Delegation** gives another agent a bounded subtask and returns its result to the coordinator. A **handoff** transfers responsibility for continuing the interaction.
 
 Pass a concrete objective, necessary context, tool permissions, budget, and expected result. Bound delegation depth. Parallelize independent reads; coordinate writes to shared resources.

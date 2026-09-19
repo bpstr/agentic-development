@@ -1,7 +1,5 @@
 # Chat rendering: messages, state, and controls
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
 A chat renderer turns conversation state into an interface. A useful agent conversation contains more than a string per message: text, files, sources, tool requests, tool results, and pending decisions can coexist. Preserve these parts so that a reconnecting client can reconstruct what happened without guessing from prose.
 
 ## The main implementation layers

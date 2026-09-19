@@ -1,7 +1,5 @@
 # Legacy MCP initialization
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
 **This page documents revision 2025-11-25, not the current 2026-07-28 request model.** It exists because integrations and tutorials using the initialization handshake remain relevant when connecting older clients. See the [current MCP chapter](mcp.md) before copying a wire example.
 
 Under the legacy lifecycle, the client first sends `initialize` with its preferred supported protocol version, capabilities, and implementation identity. The server answers with a selected version and its capabilities. The client verifies compatibility and sends `notifications/initialized` before normal operations. [Official 2025-11-25 lifecycle](https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle).

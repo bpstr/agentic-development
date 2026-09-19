@@ -1,7 +1,5 @@
 # Memory, freshness, and incremental indexing
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
 “Memory” can refer to several different mechanisms. Specify which one you need before selecting a product:
 
 | Mechanism | Purpose | Example |
@@ -60,5 +58,3 @@ Derive access filters from authenticated server-side identity. Apply authorizati
 Track derived artifacts by source so deletion can cover chunks, vectors, graph claims, summaries, and cached answers. Retention for original conversations, traces, and backups is a separate policy. Keep deletion tombstones long enough to prevent a delayed ingestion job from resurrecting content.
 
 A cache does not establish freshness or authorization. Include tenant, permission scope, source revision, and relevant processing versions in keys. Semantic similarity alone is insufficient for reusing an answer: “who owns APP-42?” may have a different answer an hour later. Keep exact current-state reads cheap rather than caching an inferred answer indefinitely.
-
-*Sources reviewed: 2026-09-19. Schema and synchronization flow are original design examples; external integrations were not runtime-tested.*

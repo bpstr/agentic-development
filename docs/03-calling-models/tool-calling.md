@@ -1,7 +1,5 @@
 # Tool calling: from a proposed operation to a result
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
 **A custom function call is a request to execute code.** Registering a schema does not move your implementation into the model. Your application or chosen runtime must dispatch it. Provider-hosted tools are a different execution arrangement: Anthropic explicitly distinguishes [client and server tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview).
 
 ## Follow one read operation

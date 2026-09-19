@@ -1,9 +1,5 @@
 # Coding agents and persistent bots
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
-**Source review: 2026-09-19. Evidence: source-reviewed; example prompts and commands are illustrative, not runtime-tested.**
-
 A coding agent combines a model with a working environment and an execution loop. It can inspect files, propose or apply edits, invoke development tools, and use the resulting output to decide what to do next. Choosing a capable model is one decision; choosing the environment, permissions, context, and review process is another.
 
 ## Choose the working environment

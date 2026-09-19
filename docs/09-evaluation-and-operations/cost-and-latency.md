@@ -1,7 +1,5 @@
 # Cost and latency
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
 Measure the **cost of a successfully completed task**, alongside its completion time. A cheaper model may need extra calls or produce more failures; a stronger model may finish in fewer steps. Neither relationship is guaranteed. Compare the same representative tasks and quality requirements.
 
 ## Account for the entire run

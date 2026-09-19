@@ -1,7 +1,5 @@
 # Context and prompting
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
 **Sources reviewed:** 2026-09-19 · **Evidence:** official guidance; examples are illustrative, not live-tested.
 
 ## The input is more than the user's message

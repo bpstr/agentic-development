@@ -1,7 +1,5 @@
 # State and recovery
 
-[Handbook](../../../README.md) · [Chapter](../README.md)
-
 A queue does not itself make an agent durable. Durable work needs persisted job state, checkpoints, outstanding calls, cancellation state, and results. Acknowledge work only after the next recoverable state is recorded.
 
 Recovery must account for side effects. If a worker creates a task and crashes before recording the result, a retry can create a duplicate. Use stable operation keys, atomic application transactions where possible, downstream idempotency support, and reconciliation when a remote outcome is unknown.

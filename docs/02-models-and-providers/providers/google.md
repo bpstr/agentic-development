@@ -1,7 +1,5 @@
 # Google Gemini
 
-[Handbook](../../../README.md) · [Chapter](../README.md)
-
 **Sources reviewed:** 2026-09-19 · **Evidence:** official Google AI documentation; no comparative benchmark run.
 
 Gemini is a family of models and modality-specific services rather than one interchangeable endpoint. General reasoning, Flash tiers, live audio, and media generation can have different interfaces and operational characteristics.

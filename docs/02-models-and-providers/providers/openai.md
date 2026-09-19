@@ -1,7 +1,5 @@
 # OpenAI
 
-[Handbook](../../../README.md) · [Chapter](../README.md)
-
 **Sources reviewed:** 2026-09-19 · **Evidence:** official model and API documentation; no live calls or original benchmark runs.
 
 OpenAI exposes model inference, SDK-level agent tooling, and managed agent execution. These are separate integration layers.

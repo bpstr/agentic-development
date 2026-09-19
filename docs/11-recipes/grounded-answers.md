@@ -1,7 +1,5 @@
 # Recipe: answers grounded in workspace documents
 
-[Handbook](../../README.md) · [Recipes](README.md)
-
 **Goal:** answer “What must we verify before the next release?” using documents the current user can access, while linking each material claim to its source. This is an illustrative implementation design; no retrieval backend is provisioned by this recipe.
 
 ## Start with the question's data needs

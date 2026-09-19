@@ -1,54 +1,99 @@
 # Agentic Development
 
-A practical handbook for understanding, building, operating, and extending systems that use AI models to do work.
+A practical reference to the concepts, protocols, models, frameworks, and tools used to build agentic software.
 
-Start with the concepts, follow a request through a real system, then explore representative tools in the layer where they belong. Pages stay intentionally focused: provider, framework, protocol, and product details get their own files rather than growing into aggregate pages.
+The repository is arranged like a technical book. The README is the table of contents; individual pages are self-contained reference chapters and should make sense when opened directly.
 
-**Start here:** [System map](docs/00-orientation/system-map.md) · [Learning paths](docs/00-orientation/learning-paths.md) · [Glossary](docs/12-reference/glossary.md) · [Tool and topic index](docs/12-reference/topic-index.md)
+## Contents
 
-## Chapters
+- **Foundations**
+  - [Models, agents, and workflows](docs/01-foundations/models-agents-and-workflows.md)
+  - [Context and prompting](docs/01-foundations/context-and-prompting.md)
+- **Models and providers**
+  - [Introduction](docs/02-models-and-providers/introduction.md)
+  - Selection
+    - [Model selection](docs/02-models-and-providers/selection/model-selection.md)
+    - [Benchmarks and evaluations](docs/02-models-and-providers/selection/benchmarks.md)
+  - Providers
+    - [OpenAI](docs/02-models-and-providers/providers/openai.md)
+    - [Anthropic](docs/02-models-and-providers/providers/anthropic.md)
+    - [Google Gemini](docs/02-models-and-providers/providers/google.md)
+    - [xAI](docs/02-models-and-providers/providers/xai.md)
+  - Open-weight models
+    - [Introduction](docs/02-models-and-providers/open-models/README.md)
+    - [Kimi](docs/02-models-and-providers/open-models/kimi.md)
+    - [Qwen](docs/02-models-and-providers/open-models/qwen.md)
+    - [DeepSeek](docs/02-models-and-providers/open-models/deepseek.md)
+- **Calling models**
+  - [Requests, responses, and structured output](docs/03-calling-models/request-response.md)
+  - [Tool calling](docs/03-calling-models/tool-calling.md)
+  - [Streaming and conversation state](docs/03-calling-models/streaming-and-state.md)
+  - [Managed agent runtime calls](docs/03-calling-models/runtime-api.md)
+- **Tools and protocols**
+  - [MCP](docs/04-tools-and-protocols/mcp.md)
+  - [Legacy MCP initialization](docs/04-tools-and-protocols/mcp-legacy.md)
+  - [Discovery and authentication](docs/04-tools-and-protocols/discovery-and-authentication.md)
+  - [Agent and UI communication](docs/04-tools-and-protocols/agent-communication.md)
+- **Orchestration**
+  - [Introduction](docs/05-orchestration/introduction.md)
+  - Execution
+    - [Agent loops](docs/05-orchestration/execution/agent-loops.md)
+    - [State and recovery](docs/05-orchestration/execution/state-and-recovery.md)
+    - [Delegation and handoffs](docs/05-orchestration/execution/delegation.md)
+  - Frameworks
+    - [LangChain](docs/05-orchestration/frameworks/langchain.md)
+    - [LangGraph](docs/05-orchestration/frameworks/langgraph.md)
+    - [LangSmith](docs/05-orchestration/frameworks/langsmith.md)
+    - [OpenAI Agents SDK](docs/05-orchestration/frameworks/openai-agents-sdk.md)
+    - [OpenAI Agents API](docs/05-orchestration/frameworks/openai-agents-api.md)
+    - [Vercel AI SDK](docs/05-orchestration/frameworks/vercel-ai-sdk.md)
+    - [Claude Managed Agents](docs/05-orchestration/frameworks/claude-managed-agents.md)
+- **Knowledge and memory**
+  - [RAG](docs/06-knowledge-and-memory/rag.md)
+  - [Graphs, GraphRAG, and Cognee](docs/06-knowledge-and-memory/graphs-and-cognee.md)
+  - [Memory and indexing](docs/06-knowledge-and-memory/memory-and-indexing.md)
+- **Interfaces and rendering**
+  - [Chat rendering](docs/07-interfaces-and-rendering/chat-rendering.md)
+  - [Generative UI](docs/07-interfaces-and-rendering/generative-ui.md)
+  - [Realtime and voice](docs/07-interfaces-and-rendering/realtime-and-voice.md)
+- **Hosting and delivery**
+  - [Providers and gateways](docs/08-hosting-and-delivery/providers-and-gateways.md)
+  - [Managed agents and sandboxes](docs/08-hosting-and-delivery/managed-agents.md)
+  - [Deployment](docs/08-hosting-and-delivery/deployment.md)
+- **Evaluation and operations**
+  - [Tracing](docs/09-evaluation-and-operations/tracing.md)
+  - [Evaluations](docs/09-evaluation-and-operations/evaluations.md)
+  - [Security and permissions](docs/09-evaluation-and-operations/security.md)
+  - [Cost and latency](docs/09-evaluation-and-operations/cost-and-latency.md)
+- **Development workflows**
+  - [Coding agents and persistent bots](docs/10-development-workflows/coding-agents.md)
+  - [Skills, plugins, and instructions](docs/10-development-workflows/skills-and-plugins.md)
+  - [Plugin development](docs/10-development-workflows/plugin-development.md)
+  - [Discovery and proxies](docs/10-development-workflows/discovery-and-proxies.md)
+  - [Code intelligence](docs/10-development-workflows/code-intelligence.md)
+- **Practical patterns**
+  - [A bounded tool loop](docs/11-recipes/tool-loop.md)
+  - [Grounded answers](docs/11-recipes/grounded-answers.md)
+  - [Background work](docs/11-recipes/background-work.md)
+  - [Incremental architecture](docs/11-recipes/incremental-build.md)
 
-- [00 · Orientation](docs/00-orientation/README.md) — system map, reading paths, evidence, and maintenance.
-- [01 · Foundations](docs/01-foundations/README.md) — models, agents, generative AI, workflows, context, and prompting.
-- [02 · Models and providers](docs/02-models-and-providers/README.md) — model selection, individual providers, open-weight families, benchmarks, and pricing sources.
-- [03 · Calling models](docs/03-calling-models/README.md) — requests, responses, structured output, streaming, state, and tool calls.
-- [04 · Tools and protocols](docs/04-tools-and-protocols/README.md) — MCP, authentication, discovery, A2A, and protocol boundaries.
-- [05 · Orchestration](docs/05-orchestration/README.md) — agent loops, durable execution, delegation, and individual orchestration frameworks.
-- [06 · Knowledge and memory](docs/06-knowledge-and-memory/README.md) — RAG, GraphRAG, Cognee, indexing, retrieval, provenance, and memory.
-- [07 · Interfaces and rendering](docs/07-interfaces-and-rendering/README.md) — assistant-ui, AI Elements, generative UI, OpenUI, A2UI, AG-UI, and voice.
-- [08 · Hosting and delivery](docs/08-hosting-and-delivery/README.md) — inference, managed agents, gateways, local serving, and deployment.
-- [09 · Evaluation and operations](docs/09-evaluation-and-operations/README.md) — tracing, evaluations, security, reliability, cost, and latency.
-- [10 · Development workflows](docs/10-development-workflows/README.md) — Codex, Claude Code, Grok Bot, skills, plugins, proxies, Graphify, and Codanna.
-- [11 · Practical recipes](docs/11-recipes/README.md) — tool execution, grounded answers, background work, and incremental architecture.
-- [12 · Reference](docs/12-reference/README.md) — glossary, topic index, primary sources, and coverage.
+## Glossary
 
-## Enter through a question
+- **Agent** — a system in which a model can choose actions within a software-controlled execution loop.
+- **Agent loop** — repeated inference, action, result, and continuation until a terminal or suspended state.
+- **Context** — the information made available to a model for an inference step.
+- **Embedding** — a vector representation used for similarity retrieval.
+- **Generative UI** — interfaces whose structure or component selection is influenced by model output.
+- **GraphRAG** — retrieval that uses entities and relationships in addition to or instead of passage similarity.
+- **MCP** — Model Context Protocol, a protocol for connecting hosts with tools, resources, and prompts.
+- **RAG** — retrieval-augmented generation: retrieving external evidence and supplying it to generation.
+- **Tool call** — structured model output requesting an operation exposed by the surrounding system.
+- **Workflow** — an execution structure whose stages are substantially determined by application code.
 
-- **I know web development, but the AI terminology is overwhelming.** Follow [the first reading path](docs/00-orientation/learning-paths.md).
-- **A model requested a tool. What runs next?** Read [tool calling](docs/03-calling-models/tool-calling.md), then run the [offline example](examples/tool-loop/README.md).
-- **Should I use a framework or call a provider directly?** Start with [orchestration](docs/05-orchestration/introduction.md), then inspect the [framework directory](docs/05-orchestration/frameworks/README.md).
-- **Do I need a vector database or a graph?** Start with [RAG](docs/06-knowledge-and-memory/rag.md) and [graphs and Cognee](docs/06-knowledge-and-memory/graphs-and-cognee.md).
-- **Why is my agent slow?** Learn [tracing](docs/09-evaluation-and-operations/tracing.md) and [cost and latency](docs/09-evaluation-and-operations/cost-and-latency.md).
-- **What is the difference between skills, plugins, and MCP?** Start with [extensions](docs/10-development-workflows/skills-and-plugins.md).
+The longer [glossary](docs/12-reference/glossary.md) remains available for less common terms.
 
-## How to read the evidence
+## Sources and verification
 
-The first edition's source review is dated **2026-09-19**. Product details and protocols can change; individual pages identify their reviewed sources and version boundaries.
-
-**Source-reviewed** means a description was checked against primary material. **Locally tested** means a repository example was actually run, with scope recorded. **Illustrative** means a teaching example rather than an executed integration. Inclusion is not a claim that this repository has independently tested or certified a product. See the [editorial policy](docs/00-orientation/editorial-policy.md).
-
-## Run the small example
-
-No package installation, API key, or paid call is required. With Node.js 20+ and Python 3.10+:
-
-```sh
-node examples/tool-loop/demo.mjs
-node --test examples/tool-loop/agent-loop.test.mjs
-python3 scripts/check_docs.py
-```
-
-## Maintain and expand
-
-Read the [implementation plan](PLAN.md), [contribution guide](CONTRIBUTING.md), and [verification record](VERIFICATION.md). Prefer a focused new page or nested directory over adding unrelated material to an existing page.
+Pages link directly to primary specifications, vendor documentation, model cards, papers, and maintainer repositories where they are relevant. Product facts are dated where freshness matters. Examples are illustrative unless the repository explicitly records a test in [VERIFICATION.md](VERIFICATION.md).
 
 [MIT license](LICENSE).

@@ -1,7 +1,5 @@
 # Orchestration: introduction
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
 A model can propose an action; orchestration determines what happens around that proposal. Keep three questions separate:
 
 - **Who chooses the next step?** A direct loop, deterministic workflow, graph, or managed harness.

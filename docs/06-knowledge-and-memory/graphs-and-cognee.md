@@ -1,7 +1,5 @@
 # Graphs, GraphRAG, and Cognee
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
 A **graph** represents entities as nodes and relationships as edges. A **graph database** stores and queries that structure. **Graph-based RAG** uses relationships to select evidence for generation. Storing documents in a graph database does not by itself implement a RAG pipeline or make an answer reliable.
 
 Distinguish explicit application relationships from model-extracted ones. A database foreign key can establish which project contains a task. A relationship extracted from a meeting note is a claim derived from that note and may be incomplete, outdated, or wrong. Preserve this distinction in your schema and answer wording.
@@ -57,5 +55,3 @@ Pin the package version and use matching documentation: older integrations may e
 Cognee organizes documents and processed graphs into **datasets**, with permissions at dataset scope in its [permissions system](https://docs.cognee.ai/core-concepts/multi-user-mode/permissions-system/overview). Choose dataset boundaries to match intended sharing. A workspace with private projects may need finer boundaries than one dataset for everything. Verify authenticated identities, selected backend handlers, and effective access control using the [permissions setup](https://docs.cognee.ai/setup-configuration/permissions) and [security documentation](https://docs.cognee.ai/setup-configuration/security); a dataset name alone is not proof of isolation.
 
 Adopt a graph pipeline when relationship or collection-wide questions justify its ingestion, maintenance, and evaluation costs. Retain source passages and extraction versions so a generated connection can be inspected and corrected. For syntax-aware repository graphs, see [code intelligence](../10-development-workflows/code-intelligence.md).
-
-*Sources reviewed: 2026-09-19. External integrations were not runtime-tested; no comparative performance claim is made.*

@@ -1,7 +1,5 @@
 # DeepSeek
 
-[Handbook](../../../README.md) · [Open-weight models](README.md)
-
 **Sources reviewed:** 2026-09-19 · **Evidence:** publisher repository; no local inference test.
 
 The [DeepSeek-R1 repository](https://github.com/deepseek-ai/DeepSeek-R1) documents the reasoning model family and distilled variants.

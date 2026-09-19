@@ -1,9 +1,5 @@
 # Discovery and proxies
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
-**Source review: 2026-09-19. Evidence: source-reviewed; commands are illustrative and external utilities have not been runtime-tested.**
-
 “Discover a tool” can describe several operations. Finding a project online, connecting to a server, loading its function definitions, and selecting the right function for a task happen at different layers. Keep them separate when debugging an agent that cannot reach a capability.
 
 ## Four discovery questions

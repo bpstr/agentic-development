@@ -1,7 +1,5 @@
 # Realtime and voice: conversation alongside execution
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
 A voice interface adds audio input, playback, and conversational timing to an application. It still needs the same tools, authorization, durable work records, and history as a text interface. Choose the speech architecture separately from the transport that carries its audio and events.
 
 ## Three useful architectures

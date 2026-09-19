@@ -1,7 +1,5 @@
 # LangGraph
 
-[Handbook](../../../README.md) · [Frameworks](README.md)
-
 LangGraph is a stateful orchestration framework for explicit graph control flow, persistence, interruptions, and resumable execution. Nodes can contain deterministic work or model calls; edges express transitions and branches.
 
 A graph is a control-flow representation, not evidence of greater intelligence. Use it when branching, joins, resumability, or explicit workflow state are clearer than a direct loop.

@@ -1,7 +1,5 @@
 # Recipe: a bounded tool loop
 
-[Handbook](../../README.md) · [Recipes](README.md)
-
 **Goal:** answer a question about a task by querying an authorized tool, then return an answer based on its result. The executable [offline example](../../examples/tool-loop/README.md) uses a scripted model so the sequence and failures can be inspected without network access or model charges.
 
 ## The mechanism

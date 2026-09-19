@@ -1,7 +1,5 @@
 # xAI
 
-[Handbook](../../../README.md) · [Chapter](../README.md)
-
 **Sources reviewed:** 2026-09-19 · **Evidence:** official xAI documentation; no comparative benchmark run.
 
 xAI's Grok model APIs, Grok Build, and Grok Bot belong to different layers.

@@ -1,7 +1,5 @@
 # MCP: tools and context over a shared protocol
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
 **Model Context Protocol (MCP) standardizes how a host application communicates with servers that expose tools and context.** The host contains MCP clients; each client talks to a server. The model can propose a tool use, while software performs the protocol exchange and the server executes the operation. [MCP architecture](https://modelcontextprotocol.io/specification/2026-07-28/architecture).
 
 **Version matters:** the official current revision checked on **2026-09-19** is **2026-07-28**. This revision carries version and capabilities on each request instead of requiring an `initialize` handshake. See [versioning](https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning); the older handshake has its own [legacy example](mcp-legacy.md).

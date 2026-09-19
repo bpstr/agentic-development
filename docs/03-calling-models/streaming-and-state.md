@@ -1,7 +1,5 @@
 # Streaming and conversation state
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
 **Streaming changes when you can observe output. State management determines what the next step remembers.** Treat them as separate design problems.
 
 ## Streaming is a sequence of typed events

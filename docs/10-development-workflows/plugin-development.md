@@ -1,9 +1,5 @@
 # Plugin development
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
-**Source review: 2026-09-19. Evidence: source-reviewed; JSON is illustrative and has not been installed in a host.**
-
 A plugin is a distribution package for a useful agent capability. Start with the workflow and its dependencies: instructions, executable helpers, external service access, and any optional UI. The manifest gives the package an identity and tells a host how to discover supported components.
 
 ## Formats and compatibility

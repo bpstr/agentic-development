@@ -1,9 +1,5 @@
 # Skills, plugins, and instructions
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
-**Source review: 2026-09-19. Evidence: source-reviewed; the skill below is an illustrative document excerpt, not an installed or tested skill.**
-
 Agent extensions work best when their responsibilities are clear. A procedure that explains how to review a migration, a function that queries a database, and a callback that reacts to a completed edit need different mechanisms.
 
 | Mechanism | Responsibility | Migration-review example |

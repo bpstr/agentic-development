@@ -1,7 +1,5 @@
 # RAG: from documents to grounded answers
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
 **Retrieval-augmented generation (RAG)** supplies external evidence to a model when it answers. The original [RAG paper](https://arxiv.org/abs/2005.11401) combined a learned retriever with a generator. In application development, the term also covers simpler pipelines that search existing data and put relevant results into the model's context.
 
 Use RAG for questions requiring documents or knowledge outside the supplied context. For an exact task ID or current subscription status, call the authorized source API directly. For rewriting supplied text, additional retrieval may contribute nothing. These choices avoid unnecessary indexing and model calls; the [retrieval guide](https://docs.langchain.com/oss/python/deepagents/retrieval) explicitly supports using existing knowledge systems.
@@ -51,5 +49,3 @@ The answer can cite this passage for pausing jobs. It cannot infer that a usable
 Start with representative questions and expected supporting passages. Measure retrieval recall, answer correctness, citation support, latency, and cost separately. Include missing answers, conflicting revisions, and inaccessible documents. A fluent answer is not a retrieval test.
 
 [pgvector](https://github.com/pgvector/pgvector) supports exact and approximate vector search inside PostgreSQL and can work with PostgreSQL full-text search. Its approximate indexes trade recall for speed; filtering behavior also affects returned candidates. An existing search system may be sufficient before adding another database.
-
-*Sources reviewed: 2026-09-19. JSON is illustrative; external integrations were not runtime-tested.*

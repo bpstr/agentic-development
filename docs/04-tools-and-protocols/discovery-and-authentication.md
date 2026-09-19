@@ -1,7 +1,5 @@
 # Discovery and authentication
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
 **Finding a capability and being allowed to use it are different operations.** An agent can know that a task-management server exists while lacking a token, a required scope, or access to a particular workspace.
 
 ## Four things called “discovery”

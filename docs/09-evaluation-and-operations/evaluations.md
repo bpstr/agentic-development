@@ -1,7 +1,5 @@
 # Evaluations: answers, actions, and recovery
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
 An **evaluation** applies explicit success criteria to representative tasks. It asks whether the system achieved the intended outcome under specified conditions. A benchmark score for a model cannot establish whether your application resolves tenant permissions, chooses the right record, and saves the correct change. Define task-specific criteria before comparing models or prompts. [Anthropic's evaluation guide](https://platform.claude.com/docs/en/test-and-evaluate/develop-tests).
 
 ## Grade the complete outcome

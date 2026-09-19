@@ -1,7 +1,5 @@
 # Model selection
 
-[Handbook](../../../README.md) · [Chapter](../README.md)
-
 Start from the workload rather than a leaderboard. Define representative tasks, expected outcomes, tool permissions, latency limits, and cost constraints before choosing candidates.
 
 1. Eliminate models that cannot support the required modality, context, tools, region, or deployment mode.

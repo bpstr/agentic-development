@@ -1,7 +1,5 @@
 # Agent, tool, and UI communication
 
-[Handbook](../../README.md) · [Chapter](README.md)
-
 **Choose a protocol by the boundary it serves.** A system can use a provider inference API, MCP, A2A, and a UI event interface without asking them to solve the same problem.
 
 | Interface | Primary boundary | Representative exchange |

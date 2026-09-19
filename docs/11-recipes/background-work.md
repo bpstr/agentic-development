@@ -1,7 +1,5 @@
 # Recipe: background work with a durable result
 
-[Handbook](../../README.md) · [Recipes](README.md)
-
 **Goal:** let a user request a research report, continue using the application, and return to the result later. This is an illustrative application contract, independent of any provider API.
 
 ## Persist before acknowledging work
