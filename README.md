@@ -23,6 +23,17 @@ A practical reference to the concepts, protocols, models, frameworks, and tools 
     - [Kimi](infrastructure/models/open-source/kimi.md)
     - [Qwen](infrastructure/models/open-source/qwen.md)
     - [DeepSeek](infrastructure/models/open-source/deepseek.md)
+  - Media models
+    - [Media model taxonomy](infrastructure/models/media/media-models.md)
+    - [Text-to-image](infrastructure/models/media/text-to-image.md)
+    - [Image-to-image](infrastructure/models/media/image-to-image.md)
+    - [Text-to-video](infrastructure/models/media/text-to-video.md)
+    - [Image-to-video](infrastructure/models/media/image-to-video.md)
+    - Image generators
+      - [OpenAI GPT Image](infrastructure/models/media/image-generators/openai-gpt-image.md)
+    - Video generators
+      - [Google Veo](infrastructure/models/media/video-generators/veo.md)
+      - [Seedance](infrastructure/models/media/video-generators/seedance.md)
   - **Agent runtime**
   - Calling
     - [Requests and responses](infrastructure/inference/model-requests-and-responses.md)
@@ -34,6 +45,7 @@ A practical reference to the concepts, protocols, models, frameworks, and tools 
     - [Legacy MCP initialization](infrastructure/protocols/mcp/mcp-legacy.md)
     - [Discovery and authentication](infrastructure/protocols/discovery-and-authentication.md)
     - [Agent and UI communication](infrastructure/protocols/agent-communication.md)
+    - [WebMCP](infrastructure/protocols/webmcp/webmcp-definition.md)
   - Orchestration
     - [Introduction](infrastructure/orchestration/orchestration-definition.md)
     - Execution
@@ -49,6 +61,11 @@ A practical reference to the concepts, protocols, models, frameworks, and tools 
       - [OpenAI Agents API](infrastructure/orchestration/frameworks/openai-agents-api.md)
       - [Vercel AI SDK](infrastructure/orchestration/frameworks/vercel-ai-sdk.md)
       - [Claude Managed Agents](infrastructure/orchestration/frameworks/claude-managed-agents.md)
+  - Commerce
+    - [Agentic commerce](infrastructure/commerce/agentic-commerce.md)
+    - [Agentic checkout](infrastructure/commerce/checkout/agentic-checkout.md)
+    - [Agentic Commerce Protocol](infrastructure/commerce/protocols/agentic-commerce-protocol.md)
+    - [Schema.org Actions](infrastructure/commerce/structured-actions/schema-org-actions.md)
   - **Knowledge**
   - [RAG](infrastructure/knowledge/rag/rag-definition.md)
   - [Graphs, GraphRAG, and Cognee](infrastructure/knowledge/graphrag/graphrag-and-knowledge-graphs.md)
@@ -68,10 +85,22 @@ A practical reference to the concepts, protocols, models, frameworks, and tools 
   - [Cost and latency](operations/performance/cost-and-latency.md)
 - **Development**
   - [Coding agents and persistent bots](development/coding-agents/coding-agent-definition.md)
-  - [Skills, plugins, and instructions](development/skills/skill-definition.md)
-  - [Plugin development](development/plugins/plugin-development.md)
+  - Skills
+    - [Skill definition](development/skills/skill-definition.md)
+    - [Skill marketplaces](development/skills/skill-marketplaces.md)
+    - [Skills.sh](development/skills/tools/skills-sh.md)
+    - [Humanizer](development/skills/examples/humanizer.md)
+    - [OpenAI official skills](development/skills/platforms/openai-official-skills.md)
+    - [Anthropic official skills](development/skills/platforms/anthropic-official-skills.md)
+    - [Claude commerce skills](development/skills/platforms/claude-commerce-skills.md)
+  - Plugins
+    - [Plugin definition](development/plugins/plugin-definition.md)
+    - [Plugin development](development/plugins/plugin-development.md)
+    - [Agent Plugins specification](development/plugins/common-agent-plugin-format.md)
   - [Discovery and proxies](development/proxies/proxy-definition.md)
   - [Code intelligence](development/code-intelligence/code-intelligence.md)
+  - Knowledge frameworks
+    - [Cognee](infrastructure/knowledge/graphrag/frameworks/cognee.md)
 - **Patterns**
   - [A bounded tool loop](patterns/tool-loop.md)
   - [Grounded answers](patterns/grounded-answers.md)
@@ -89,6 +118,8 @@ A practical reference to the concepts, protocols, models, frameworks, and tools 
 - **MCP** — Model Context Protocol, a protocol for connecting hosts with tools, resources, and prompts.
 - **RAG** — retrieval-augmented generation: retrieving external evidence and supplying it to generation.
 - **Tool call** — structured model output requesting an operation exposed by the surrounding system.
+- **WebMCP** — a browser-side API for exposing structured web-application tools to agents.
+- **Agentic commerce** — commerce workflows in which agents participate in discovery, checkout, payments, orders, or merchant operations.
 - **Workflow** — an execution structure whose stages are substantially determined by application code.
 
 Pages link directly to primary specifications, vendor documentation, papers, model cards, and maintainer repositories where useful.
