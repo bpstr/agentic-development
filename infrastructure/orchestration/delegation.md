@@ -1,9 +1,11 @@
-# Delegation and handoffs
+# Agent delegation
 
-**Delegation** gives another agent a bounded subtask and returns its result to the coordinator. A **handoff** transfers responsibility for continuing the interaction.
+Delegation gives another agent a bounded subtask while the delegating agent retains responsibility for the larger objective. The child returns findings or artifacts that the parent can inspect and integrate.
 
-Pass a concrete objective, necessary context, tool permissions, budget, and expected result. Bound delegation depth. Parallelize independent reads; coordinate writes to shared resources.
+A useful delegation contract includes the objective, relevant context, permitted tools, writable resources, time and token budget, and expected result. For a repository audit, a child might inspect authentication modules and return evidence with file references. It does not need unrelated product discussions or permission to modify billing code.
 
-More agents add calls, context transfer, and coordination work. Require measured benefit rather than assuming a multi-agent design is more capable.
+Parallelize independent work. Shared writes require explicit ownership, transactions, or conflict handling. Giving two agents the same objective does not guarantee independent reasoning, and it can multiply cost without improving coverage.
 
-OpenAI's SDK documents both agents-as-tools and handoffs in its [SDK documentation](https://openai.github.io/openai-agents-python/handoffs/).
+The parent must distinguish a child claiming completion from evidence of completion. Validate required artifacts and unresolved limitations. Propagate cancellation, bound delegation depth, and include child usage in the parent budget.
+
+Delegation can be implemented as an agent exposed as a tool, a background job, or a protocol request to a remote agent. It differs from a handoff, which transfers control of the ongoing interaction. [OpenAI's orchestration guide](https://developers.openai.com/api/docs/guides/agents/orchestration) describes agent-as-tool and handoff patterns within an SDK.

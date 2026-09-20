@@ -1,11 +1,15 @@
-# Orchestration: introduction
+# Agent orchestration
 
-A model can propose an action; orchestration determines what happens around that proposal. Keep three questions separate:
+Orchestration coordinates model calls, tool execution, state transitions, and delivery of results. A model proposes useful work; an orchestrator decides how that proposal becomes an authorized, observable operation.
 
-- **Who chooses the next step?** A direct loop, deterministic workflow, graph, or managed harness.
-- **Where does execution happen?** Application process, worker, sandbox, remote tool, or managed environment.
-- **What survives interruption?** Conversation state, checkpoints, pending approvals, operation IDs, and domain records.
+Three independent questions describe an orchestration design:
 
-A graph answers a control-flow question. A worker answers an execution question. A checkpoint answers a persistence question. One framework may provide several of these, but the responsibilities remain distinct.
+- **Control flow:** who chooses the next step—application code, a model, or a combination?
+- **Execution:** where do model requests, business functions, and generated code run?
+- **Persistence:** which decisions, results, and pending operations survive interruption?
 
-Read [agent loops](execution/agent-loops.md) before choosing a framework. Then use the [framework directory](frameworks/README.md) to inspect one implementation at a time.
+An agent loop answers a control-flow question. A background worker answers an execution question. A checkpoint answers a persistence question. A framework may supply all three, but installing the framework does not settle deployment or data ownership.
+
+For example, a support application can classify a request deterministically, let an agent investigate with read tools, then require an application approval before issuing a refund. One workflow contains both fixed and model-directed steps. Its business database remains the authority for the refund.
+
+Choose the smallest coordination mechanism that represents the real work. A direct loop is often sufficient for short tool-assisted requests. Explicit workflows help when ordering and branching are known. Durable execution becomes important when work spans process failures, human input, or long waits. The [LangGraph overview](https://docs.langchain.com/oss/python/langgraph/overview) illustrates several of these responsibilities in one implementation.

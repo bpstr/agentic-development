@@ -45,10 +45,8 @@ For remote MCP, validate credentials for their intended audience and scope; do n
 
 ## Recovery and privacy are part of the boundary
 
-Bind approvals to a specific operation, actor, destination, and relevant content revision. Re-check permissions after long pauses. A changed payload should not silently inherit an old approval. Record stable operation keys so retries do not repeat effects; see [execution and state](../agent-systems/orchestration/execution/agent-loops.md).
+Bind approvals to a specific operation, actor, destination, and relevant content revision. Re-check permissions after long pauses. A changed payload should not silently inherit an old approval. Record stable operation keys so retries do not repeat effects; see [execution and state](../../infrastructure/orchestration/agent-loop.md).
 
 Keep credentials out of prompts and trace payloads. Set retention, redaction, and access rules for conversations and tool outputs, including external observability services. A sandbox can restrict code execution while the surrounding API still retains conversation data; evaluate these as separate properties.
 
 Test malicious retrieved content, cross-tenant identifiers, revoked access, altered approvals, duplicate writes, and secret-bearing error messages. A refusal in the final answer is useful evidence only if the forbidden action also failed to occur.
-
-**Source review:** 2026-09-19. Examples describe defensive application design, not a completed security audit of the named tools.

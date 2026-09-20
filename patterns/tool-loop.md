@@ -1,33 +1,38 @@
-# Recipe: a bounded tool loop
+# A bounded tool loop
 
-**Goal:** answer a question about a task by querying an authorized tool, then return an answer based on its result. The executable [offline example](tool-loop.md) uses a scripted model so the sequence and failures can be inspected without network access or model charges.
+A bounded tool loop lets a model request an operation, receive its result, and continue until it answers or reaches a stopping condition. The application supplies identity, validates arguments, executes tools, and controls the budget.
 
-## The mechanism
+For “What is T-42's status?”, expose a task-reading tool scoped to the authenticated caller. The model requests the task, the executor returns its current status, and the next model call uses that result to answer. A tool declaration alone does not perform the read.
 
-1. The application provides a user request and available tool definitions to the model adapter.
-2. The adapter returns a final response or one or more requested tool calls.
-3. The runtime checks the tool name, call identity, argument shape, and remaining budget.
-4. The tool executes with trusted application identity. The model cannot grant itself another user's permissions by changing an argument.
-5. The runtime appends a result associated with the call ID and asks for the next response.
-6. The loop finishes, fails, is cancelled, or reaches its limit.
+Illustrative application pseudocode:
 
-Model providers encode these items differently. The example uses an application-owned contract; it is not an MCP server, an OpenAI adapter, or an Anthropic client. Use [provider request/response examples](../agent-systems/calling/request-response.md) and [tool calling](../agent-systems/calling/tool-calling.md) to implement those adapters.
+```text
+state = initial_request_and_instructions()
+deadline = configured_run_deadline()
 
-## Run it
+for step in bounded_model_steps:
+    require_not_cancelled()
+    require_before(deadline)
+    output = model.generate(state)
+    preserve_required_continuation_items(output, state)
 
-From the repository root with Node.js 20+:
+    if output.is_final:
+        persist_final_output(output)
+        finish_run()
+        stop
 
-```sh
-node examples/tool-loop/demo.mjs
-node --test examples/tool-loop/agent-loop.test.mjs
+    for call in output.tool_calls:
+        tool = resolve_allowed_tool(call.name)
+        arguments = validate(call.arguments, tool.schema)
+        result = tool.execute(authenticated_actor, arguments, deadline)
+        state.append(tool_result(call.id, result))
+
+otherwise:
+    finish_run_with_budget_exhausted()
 ```
 
-Read the [example README](tool-loop.md) for the output and tested failure cases. The useful observation is the causal sequence: the tool result must exist before the model can use it in an answer. A final sentence claiming success is not itself an action receipt.
+The pseudocode omits provider syntax deliberately. Use the chosen API's exact output items and continuation contract; some require retaining reasoning or signature-bearing items alongside tool results. Match each result to its call identity and distinguish a final answer from empty or incomplete output.
 
-## Extend one boundary at a time
+Run independent reads concurrently only when their dependencies and consistency requirements allow it. Keep mutations tied to stable operation keys and receipts so interruption cannot cause duplicate effects. Validation of JSON shape is separate from authorization of the operation.
 
-Replace the scripted model with one verified provider adapter. Preserve the provider's required continuation items and tool-call/result relationship. Then replace the in-memory task service with a real authorized application service. Add per-request deadlines and result-size limits before allowing unpredictable external work.
-
-The first example is read-only. For a write, put authorization, validation, and idempotency in the business service. Store a stable action key and receipt so a retry can recover the previous result. Checking that the model produced valid JSON does not establish that the user authorized the operation.
-
-To run longer work, persist the run and its events rather than extending this in-memory demonstration indefinitely. See [background work](background-work.md), [security](../operations/security.md), and [evaluations](../operations/evaluations.md).
+Bound tool count, result size, time, attempts, and delegated work in addition to model steps. Record errors and cancellation explicitly. For long-lived execution, persist state and events independently of the client connection, as described in [background work](background-work.md).

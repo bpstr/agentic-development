@@ -1,21 +1,21 @@
 # Agentic commerce
 
-Agentic commerce is commerce in which software agents participate in discovery, product selection, configuration, checkout, payment delegation, order management, or merchant operations on behalf of users or businesses.
+Agentic commerce is commerce in which software agents participate in discovery, product selection, configuration, purchasing, order management, or merchant operations on behalf of people or businesses. The category includes shopping assistance and operational work such as catalog maintenance.
 
-The important architectural shift is from **web pages intended only for human navigation** toward **structured capabilities and state that agents can discover and invoke**.
+It spans several distinct capabilities: finding products, understanding offers, maintaining a cart, obtaining an authoritative quote, completing checkout, delegating payment credentials, tracking fulfillment, and handling support. An implementation may support only some of them.
 
-Agentic commerce can involve several independent layers:
+## Keep merchant state authoritative
 
-- product and offer discovery;
-- structured catalog data;
-- agent-addressable actions;
-- cart and checkout state;
-- identity and authentication;
-- payment credential delegation;
-- merchant authorization and fraud controls;
-- order lifecycle and fulfillment;
-- post-purchase support.
+An agent can translate “a large blue shirt under my budget” into structured catalog constraints. The merchant service determines which variants exist, whether stock remains available, and the current total. The agent should not invent a discount, infer payment success from conversational text, or substitute a stale offer for a fresh checkout response.
 
-Browser automation can participate, but deterministic commerce protocols reduce the need for an agent to infer checkout semantics from visual interfaces.
+A useful application separates recommendation from execution:
 
-Agentic commerce does not change the need for authoritative merchant state. Price, availability, taxes, payment acceptance, fulfillment, refunds, and order records should remain controlled by the responsible commerce systems.
+1. Retrieve candidate products with stable identifiers.
+2. Ask the merchant to calculate purchase state.
+3. Resolve missing information or required user decisions.
+4. Complete the authorized purchase through a defined contract.
+5. Reconcile the order and fulfillment state.
+
+[Agentic checkout](checkout/agentic-checkout.md) describes the purchase capability. The [Agentic Commerce Protocol](protocols/agentic-commerce-protocol.md) specifies one concrete interaction model. [Schema.org Actions](structured-actions/schema-org-actions.md) describe web semantics, while [Claude commerce skills](../../development/skills/platforms/claude-commerce-skills.md) package reusable agent behavior.
+
+These layers can cooperate, but none removes the need for explicit identity, business authorization, reliable state transitions, and auditable outcomes.

@@ -1,22 +1,16 @@
 # OpenAI
 
-**Sources reviewed:** 2026-09-19 · **Evidence:** official model and API documentation; no live calls or original benchmark runs.
+[Official model catalog](https://developers.openai.com/api/docs/models) · [Pricing](https://developers.openai.com/api/docs/pricing) · [Model selection](https://developers.openai.com/api/docs/guides/model-selection)
 
-OpenAI exposes model inference, SDK-level agent tooling, and managed agent execution. These are separate integration layers.
+OpenAI develops general-purpose language models and specialized models for capabilities such as embeddings, images, and audio. As a model provider it supplies inference access, model identifiers, capability documentation, and usage-based pricing. These responsibilities are separate from its coding products and managed agent runtimes.
 
-Current model candidates include [GPT-6 Astra](https://developers.openai.com/api/docs/models/gpt-6-astra), [GPT-5.6 Sol](https://developers.openai.com/api/docs/models/gpt-5.6-sol), Terra, and Luna. Use the [model catalog](https://developers.openai.com/api/docs/models) for exact IDs, modalities, context limits, tools, and access requirements.
+The general-purpose model profiles are deliberately separate:
 
-- **Astra** — positioned for demanding reasoning, coding, research, computer-use, and document work.
-- **Sol** — flagship GPT-5.6 tier for complex professional work.
-- **Terra** — capability/cost balance.
-- **Luna** — high-volume and cost-sensitive workloads.
+- [GPT-6 Astra](openai-models/gpt-6-astra.md) covers demanding reasoning and complex work.
+- [GPT-5.6 Sol](openai-models/gpt-5.6-sol.md) covers the flagship GPT-5.6 tier.
+- [GPT-5.6 Terra](openai-models/gpt-5.6-terra.md) covers the balance between capability and cost.
+- [GPT-5.6 Luna](openai-models/gpt-5.6-luna.md) covers cost-sensitive, high-volume workloads.
 
-Treat these as vendor positioning and shortlist guidance. Evaluate exact models on your workload.
+For an integration, first identify the task and required input/output modalities, then choose the exact model and supported endpoint. Keep the selected model in application configuration so an evaluation can compare alternatives without altering business logic. A document assistant, for example, might use one model for extraction and a stronger configuration for resolving contradictory evidence.
 
-## API and agent surfaces
-
-- **Responses API** — direct inference; your application owns surrounding domain behavior and custom tool execution.
-- **Agents SDK** — agent-loop utilities that run with your application. See [Agents SDK](https://openai.github.io/openai-agents-python/).
-- **Agents API** — managed agent harness. See the [Agents API overview](https://developers.openai.com/api/docs/guides/agents-api/overview).
-
-Get current rates from [OpenAI pricing](https://developers.openai.com/api/docs/pricing). ChatGPT and coding-product subscriptions are not API token pricing.
+Model selection does not decide where custom tools execute, who owns conversation history, or how a background job resumes. Those are application and runtime decisions. Likewise, a text model calling an image-generation tool is not the image generator itself. Consult the specific model's capability table and bill all components of a request, including tools and generated media where applicable.

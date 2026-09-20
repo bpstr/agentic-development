@@ -1,9 +1,18 @@
 # Agent loops
 
-An agent loop repeatedly asks a model for an answer or action, executes permitted actions, and supplies results back to the model. A workflow fixes more of the order in code; a graph makes steps and transitions explicit.
+An agent loop repeatedly supplies context to a model, receives an answer or proposed action, executes allowed actions, and returns observations for the next decision. The loop ends when it reaches a defined outcome or a limit.
 
-A bounded loop should load authorized state, enforce step/time/spend budgets, persist model responses and tool-call IDs, validate and authorize every action, execute with stable operation IDs, and persist terminal or suspended outcomes.
+A practical iteration has distinct responsibilities:
 
-Do not treat every non-error model response as successful work. A run can succeed, fail, be cancelled, exhaust a budget, or suspend while waiting for approval or user input.
+1. Load the authenticated principal, current task state, and relevant context.
+2. Call the model with the tools it may request.
+3. Persist the response and correlate each tool call with its identifier.
+4. Validate arguments and authorize the specific resource and action.
+5. Execute permitted tools, recording results and write receipts.
+6. Feed results back or persist a terminal or suspended state.
 
-Run the [offline tool-loop example](../../../patterns/tool-loop.md) to inspect validated calls, denied access, limits, and cancellation.
+A request to execute a tool is data. It does not grant permission and does not prove that the action happened. A successful model response also does not necessarily mean the user's task succeeded: work can fail, be cancelled, exhaust its budget, or wait for input.
+
+Bound iterations, elapsed time, parallel calls, and spending independently. Check cancellation before scheduling new actions. Preserve unresolved call results after a disconnect so the next worker does not blindly repeat a mutation.
+
+The [tool-loop pattern](../../patterns/tool-loop.md) shows application responsibilities. [OpenAI's agent runner documentation](https://developers.openai.com/api/docs/guides/agents/running-agents) describes a framework implementation of the same loop.

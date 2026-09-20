@@ -1,17 +1,41 @@
 # WebMCP
 
-Official specification: https://webmachinelearning.github.io/webmcp/
-Chrome documentation: https://developer.chrome.com/docs/ai/agents
+[Official WebMCP draft](https://webmachinelearning.github.io/webmcp/) · [Canonical repository](https://github.com/webmachinelearning/webmcp) · [Chrome preview announcement](https://developer.chrome.com/blog/webmcp-epp)
 
-WebMCP is a browser-side API that lets web applications expose structured JavaScript tools to AI agents. A page can describe operations with natural-language descriptions and structured input schemas so an agent can invoke application functionality without inferring every action from pixels and DOM interaction.
+WebMCP exposes web-application operations to agents through the browser's live document context. A website can provide a named JavaScript operation and input schema instead of requiring an agent to infer every action from screenshots or DOM controls.
 
-WebMCP is complementary to server-side MCP. The WebMCP specification describes web pages as conceptually similar to MCP servers whose tools execute in client-side application code and share the user's live web context.
+It is a browser API, not a remote MCP server or a JSON-RPC transport binding. A website can independently provide a remote MCP service when clients also need access outside an open page.
 
-Two authoring styles are important:
+## Imperative registration
 
-- **Imperative tools** register JavaScript-backed operations.
-- **Declarative tools** annotate ordinary HTML forms so existing interfaces can become agent-addressable.
+The **17 September 2026 Community Group draft** places the API on `document.modelContext`. This module-script example registers a read-only tool:
 
-As of September 2026, WebMCP is a Web Machine Learning Community Group draft rather than a W3C Recommendation. Chrome exposes it through an origin trial and local development flag. Treat browser support and API details as evolving.
+```javascript
+if (document.modelContext) {
+  await document.modelContext.registerTool({
+    name: "get_page_title",
+    description: "Read the current page title.",
+    inputSchema: {
+      type: "object",
+      properties: {},
+      additionalProperties: false
+    },
+    annotations: { readOnlyHint: true },
+    execute: async () => ({ title: document.title })
+  });
+}
+```
 
-Security matters because page content and agent instructions can interact. Tools should expose narrow operations, validate arguments, preserve user control, and distinguish read-like actions from sensitive side effects.
+This example uses draft syntax. Earlier preview material may use `navigator.modelContext`; check the browser implementation and draft together rather than treating those APIs as identical.
+
+## Declarative exposure
+
+Declarative WebMCP describes exposing form-based operations through HTML. The draft's declarative section remains incomplete and points to a separate explainer. Treat it as an evolving authoring approach, not a universally implemented browser feature.
+
+## Preserve application guarantees
+
+Use the same server-side authorization and validation that the corresponding UI operation requires. A browser session does not grant unrestricted authority over every backend object. Keep tool names precise about effects, and represent consequential operations accurately.
+
+Tool descriptions and returned page content can contain untrusted material. They must not become privileged instructions merely because a browser exposes them through a structured API.
+
+WebMCP is a Community Group draft, not a W3C Standard. Feature detection and a working ordinary interface are necessary when supporting browsers with different implementations.

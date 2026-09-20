@@ -1,16 +1,25 @@
 # OpenAI official skills
 
-Official repository: https://github.com/openai/skills
+Official repository: [openai/skills](https://github.com/openai/skills). Authoring guidance: [Build skills](https://learn.chatgpt.com/docs/build-skills).
 
-OpenAI maintains a public skills repository containing system, curated, and experimental skills used with Codex-style skill workflows. It is useful both as an install source and as reference material for production skill structure.
+OpenAI's skills repository publishes reusable procedures for Codex workflows. Its system, curated, and experimental collections provide both installation sources and examples of how to organize instructions and supporting resources.
 
-Notable examples include:
+## Install a focused capability
 
-- **skill-creator** — guidance and utilities for authoring effective skills.
-- **openai-docs** — current OpenAI developer-documentation workflow.
-- **security-best-practices** — framework-aware secure-development guidance.
-- **skill-installer** — installation workflow for skills from GitHub sources.
+The repository documents installation through the built-in skill installer. A named curated example is:
 
-OpenAI's skill guidance demonstrates progressive disclosure: lightweight metadata determines when a skill is relevant, the main `SKILL.md` supplies the core procedure, and scripts/references/assets are loaded or executed only when needed.
+```text
+$skill-installer gh-address-comments
+```
 
-Treat the repository as a living implementation source. Inspect the exact skill revision before relying on behavior.
+An explicit repository directory can identify a skill outside the default curated collection. Follow the catalog's current installation and session-refresh instructions so the target host discovers the added skill.
+
+The collection is useful for studying responsibilities: a skill creator teaches authoring, an installer handles distribution, and a documentation skill retrieves current primary sources. Inspect the selected skill's actual files rather than inferring its behavior from the catalog name.
+
+## Reuse the structure thoughtfully
+
+Good candidates for reuse separate core instructions from larger references and executable helpers. That allows a host to load a procedure without immediately loading every supporting example.
+
+Before adopting or adapting a skill, inspect its dependencies, license, host assumptions, and the revision being used. A procedure written for one execution environment may refer to tools or resource paths absent from another.
+
+Try a representative task and review the resulting artifact or action. An official source provides provenance, while usefulness still depends on the task, available tools, and whether the procedure's assumptions match the environment.

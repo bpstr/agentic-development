@@ -11,6 +11,7 @@ Organize content by **concept or capability**, never by vendor. The filesystem i
 - Use descriptive, search-friendly filenames such as `model-definition.md`, `text-to-video.md`, `plugin-development.md`, and `durable-execution.md`.
 - Do not create generic `knowledge.md` or `introduction.md` files when a lexical filename can describe the subject.
 - Subdirectories may repeat a parent term when that produces a precise taxonomy; filenames should still be unique and descriptive enough to search globally.
+- Require globally unique Markdown basenames. Qualify a repeated product by capability: `langchain.md` versus `langchain-retrieval.md`, `openai.md` versus `openai-inference.md`, and `langsmith.md` versus `langsmith-evaluation.md`.
 - Concrete implementations belong beneath the concept they implement.
 - Prefer semantic implementation directories such as `providers/`, `frameworks/`, `platforms/`, `tools/`, `libraries/`, `runtimes/`, `image-generators/`, or `video-generators/` instead of generic `references/`.
 - A product may appear under multiple concepts when it genuinely implements multiple capabilities. Each page must discuss only its relationship to the parent concept.
@@ -93,5 +94,15 @@ Write as a technical reference book, not an online course.
 - Examples should clarify the concept rather than advertise a product.
 - Prefer concise technical prose over marketing terminology.
 - Keep the root `README.md` as the primary table of contents and compact glossary.
+- Use nested bullet lists for the complete table of contents, with every knowledge page linked once under its actual filesystem parent. Use tables only for substantive comparisons.
+- Keep the root limited to `README.md`, `LICENSE`, `AGENTS.md`, and content directories. Do not add documentation generators, a `docs/` wrapper, scripts, example projects, CI workflows, or course administration files unless explicitly requested.
+
+## Completeness and validation
+
+Create actual explanatory articles when implementing a taxonomy; a filename, link collection, placeholder, or proposed tree is not a completed guide. Each page should define its subject and provide a useful mechanism, example, decision, or limitation. Split implementation setup into descriptive companion pages when it becomes too large.
+
+Before publishing, check global filename uniqueness, README coverage, relative links including anchors, fenced JSON and code syntax, and obsolete references after moves. Perform temporary checks outside the repository rather than adding repository machinery. Use offline execution where it meaningfully validates an example. Do not call paid APIs or claim live integration testing merely because a snippet parses.
+
+Remove outdated source-review banners and course navigation from retained pages. Keep relevant API revision and preview limitations in the knowledge itself. Preserve the MIT license and useful existing explanations while relocating content.
 
 When restructuring content, preserve useful existing knowledge and update internal links.

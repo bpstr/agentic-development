@@ -1,6 +1,6 @@
-# Recipe: build the system in small increments
+# Incremental agent architecture
 
-A system does not need every category in this handbook on day one. Use this editorial implementation sequence to establish evidence for the next layer. Each increment should leave a useful, testable application.
+A system does not need every category in this handbook on day one. Use this implementation sequence to establish evidence for the next layer. Each increment should leave a useful, testable application.
 
 | Increment | Build | Evidence to collect before expanding |
 | --- | --- | --- |
@@ -16,6 +16,6 @@ For a task-management assistant, the first useful action might be “Show my blo
 
 Keep the business operation reusable outside the agent. A `create_task` service should validate and authorize the operation whether it is called from a form, CLI, integration, or model-requested tool. The agent adds a way to request the operation; it does not replace the application's invariants.
 
-Compare framework choices when your implementation needs their actual features: durable checkpoints, streaming adapters, tracing integration, or complex control flow. A [framework](../05-orchestration/frameworks/README.md) can save work, and a [direct loop](tool-loop.md) can make a small workflow easy to inspect. Measure the behavior that matters to the product rather than optimizing for the fewest dependencies or the longest feature list.
+Compare framework choices when your implementation needs their actual features: durable checkpoints, streaming adapters, tracing integration, or complex control flow. A [framework](../infrastructure/orchestration/frameworks/framework-definition.md) can save work, and a [direct loop](tool-loop.md) can make a small workflow easy to inspect. Measure the behavior that matters to the product rather than optimizing for the fewest dependencies or the longest feature list.
 
-Treat changes to prompts, tool schemas, retrieval, models, and routing as behavior changes. Run the relevant [evaluation cases](../operations/evaluations.md) for the layer you changed, and use [traces](../operations/tracing.md) to explain regressions before replacing the architecture.
+Treat changes to prompts, tool schemas, retrieval, models, and routing as behavior changes. Run the relevant [evaluation cases](../operations/evaluation/agent-evaluation.md) for the layer you changed, and use [traces](../operations/observability/tracing.md) to explain regressions before replacing the architecture.

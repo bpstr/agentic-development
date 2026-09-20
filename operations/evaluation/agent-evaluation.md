@@ -63,7 +63,3 @@ Injecting the forbidden call deliberately tests the boundary even if the current
 Save dataset revision, model identifier, generation settings, prompt revision, tool schemas, application commit, and retrieval snapshot or freshness policy. Use a held-out set so repeated prompt tuning does not become memorization of examples. Repeat representative live cases when nondeterminism matters, report counts alongside percentages, and examine failures individually.
 
 A change is ready when it meets task-quality requirements without violating security, cost, or latency constraints. Keep these dimensions visible rather than hiding a serious regression inside an averaged score.
-
-The [offline example's behavioral tests](../../examples/tool-loop/agent-loop.test.mjs) exercise several of these boundaries without calling a model provider.
-
-**Source review:** 2026-09-19. The fixture is an original design example. This handbook has not run it against any provider.

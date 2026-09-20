@@ -1,60 +1,18 @@
-# Chat rendering: messages, state, and controls
+# Chat interfaces
 
-A chat renderer turns conversation state into an interface. A useful agent conversation contains more than a string per message: text, files, sources, tool requests, tool results, and pending decisions can coexist. Preserve these parts so that a reconnecting client can reconstruct what happened without guessing from prose.
+A chat interface presents a conversation as ordered contributions while supporting the operations that conversation initiates. Agent chat commonly combines text, attachments, sources, tool activity, and pending decisions. Treating every contribution as a Markdown string loses information needed for reliable controls and history.
 
-## The main implementation layers
+A useful interface has a composer, a message timeline, clear run status, and contextual actions. The composer owns the draft; the timeline displays persisted messages and current streaming parts. A separate run record distinguishes “request accepted” from “answer complete.”
 
-**assistant-ui** provides unstyled primitives such as Thread, Message, and Composer. These compose through runtime context and handle interaction behavior while leaving visual choices to the application. Its own **Elements** are styled, installable components built from those primitives. See [Primitives and Elements](https://www.assistant-ui.com/docs/primitives).
+Consider “Move the release deadline to Friday.” The interface first shows the user's request. If clarification is needed, it asks for the affected release. If policy requires confirmation, it displays the exact proposed date and release. After execution, it shows the saved value and a link to the release. These states must come from application events, not from interpreting phrases in generated text.
 
-Its **runtime** owns or adapts conversation state and connects components to a backend. A custom store, a framework adapter, and hosted persistence are separate choices; using the UI does not require moving business execution into that UI. See [Architecture](https://www.assistant-ui.com/docs/architecture).
+Keep conversational controls distinct:
 
-**Vercel AI Elements** is a separate component collection built on shadcn/ui, with conversation, message, source, tool, and confirmation components. It integrates with the **Vercel AI SDK**, which supplies generation and chat integration mechanisms. Distinguish Vercel's AI Elements from assistant-ui's similarly named Elements. See [AI Elements](https://elements.ai-sdk.dev/).
+- Editing a message changes or branches conversation history.
+- Regenerating an answer creates another response attempt.
+- Stopping generation interrupts output production.
+- Cancelling an operation asks the worker to stop work that may already have effects.
 
-These choices can overlap: assistant-ui has an AI SDK runtime adapter. Match its package and documented integration to the AI SDK major version in your application; older tutorials can use different package names and message shapes. See the [adapter version matrix](https://www.assistant-ui.com/docs/runtimes/ai-sdk/overview).
+Support reconnection by loading authoritative messages, pending approvals, and active runs. Replaying a conversation for display must not execute its historical tools again.
 
-## Render a state model
-
-This is an **illustrative application record**, not an SDK or provider wire format:
-
-```json
-{
-  "messageId": "msg_42",
-  "runId": "run_8",
-  "role": "assistant",
-  "parts": [
-    { "id": "p1", "kind": "text", "text": "I found the project." },
-    {
-      "id": "p2",
-      "kind": "tool",
-      "callId": "call_3",
-      "name": "change_deadline",
-      "state": "awaiting_approval",
-      "input": { "projectId": "prj_7", "date": "2026-09-25" },
-      "approvalId": "approval_6"
-    }
-  ]
-}
-```
-
-Use stable message and part identifiers to update existing elements during streaming. Keep source references as structured data with document identity or URLs, then render links beside supported statements. Render Markdown with a configured parser, restrict unsafe links, and avoid interpreting generated text as executable HTML.
-
-| Lifecycle | What the user should see |
-| --- | --- |
-| Request accepted | Acknowledgement and an identifiable run |
-| Input still streaming | A pending tool card; incomplete arguments cannot authorize execution |
-| Approval required | Exact proposed change and approve/reject controls |
-| Running | Meaningful current operation, with cancellation when supported |
-| Completed | Result, relevant resource link, and action receipt |
-| Failed or denied | Explicit outcome and any safe next action |
-
-Framework state names differ. AI Elements' Tool component, for example, recognizes input, approval, output, error, and denial states; map the backend's real lifecycle deliberately. See [Tool](https://elements.ai-sdk.dev/components/tool) and [Confirmation](https://elements.ai-sdk.dev/components/confirmation). Progress descriptions should describe observed events, rather than invent a private reasoning transcript.
-
-## Controls must reach the execution boundary
-
-An approval button submits a decision about a specific pending operation. The server must authenticate the actor, verify that operation and its current arguments, check permissions, and reject stale or repeated decisions. A client-supplied `approved: true` is not sufficient authorization. Tool rendering must never execute an operation simply because a component mounted.
-
-Define **stop generation**, **cancel work**, and **disconnect** separately. A closed browser connection may leave a worker running; reconnecting must recover its status rather than duplicate the action. Persist run status and completed results, and use the selected framework's supported resumable transport where appropriate. assistant-ui links its [resumable stream integration from the runtime documentation](https://www.assistant-ui.com/docs/runtimes/ai-sdk/overview).
-
-Related: [Generative UI](generative-ui.md), [Orchestration](../05-orchestration/README.md), [Calling models](../03-calling-models/README.md).
-
-**Evidence:** source-reviewed on 2026-09-19; JSON is illustrative and does not make an API call.
+For rendering, choose a library with a state adapter that fits the backend and a component system that fits the product. [assistant-ui](libraries/assistant-ui.md) provides runtime-aware primitives and styled elements; [AI SDK UI](libraries/vercel-ai-sdk-ui.md) supplies conversational state and transport integration. Neither choice decides the application's authorization or persistence model.

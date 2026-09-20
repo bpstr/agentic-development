@@ -1,6 +1,6 @@
-# Recipe: background work with a durable result
+# Background work with a durable result
 
-**Goal:** let a user request a research report, continue using the application, and return to the result later. This is an illustrative application contract, independent of any provider API.
+A durable background task lets a user request a research report, continue using the application, and return to the result later. This is an illustrative application contract, independent of any provider API.
 
 ## Persist before acknowledging work
 
@@ -16,7 +16,7 @@ Location: /api/runs/run_123
 {"run_id":"run_123","status":"queued"}
 ```
 
-The worker can own the loop or submit work to a [managed agent runtime](../docs/08-hosting-and-delivery/managed-agents.md). In both designs, correlate the application run with the provider's request/session identifiers.
+The worker can own the loop or submit work to a [managed agent runtime](../infrastructure/orchestration/managed-runtimes/managed-agents.md). In both designs, correlate the application run with the provider's request/session identifiers.
 
 ## Model states explicitly
 
@@ -60,4 +60,4 @@ This event shape is illustrative and not an AG-UI or provider schema. Translate 
 
 Give workers a lease or another mechanism for claiming work. A retry must check persisted progress and action receipts before repeating side effects. Bound attempts and end in an explicit failure state when recovery is exhausted. Tie approvals and later user input to the exact pending action so a stale browser tab cannot approve a changed operation.
 
-Use [execution-state guidance](../agent-systems/orchestration/execution/agent-loops.md), [tracing](../operations/tracing.md), and [interface lifecycle guidance](../docs/07-interfaces-and-rendering/chat-rendering.md) to implement and inspect the boundaries.
+Use [execution-state guidance](../infrastructure/orchestration/agent-loop.md), [tracing](../operations/observability/tracing.md), and [interface lifecycle guidance](../interfaces/chat/chat-interfaces.md) to implement and inspect the boundaries.

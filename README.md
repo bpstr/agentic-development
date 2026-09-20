@@ -1,192 +1,467 @@
 # Agentic Development
 
-A practical reference to the concepts, protocols, models, frameworks, and tools used to build agentic software.
+A practical technical reference to the concepts, protocols, models, frameworks, and tools used to build agentic software. Subjects are organized by capability, with implementations placed beneath the role they serve.
+
+Each article can be read independently. Concept pages explain the mechanism; implementation pages connect it to official documentation, setup, examples, and operational limits.
 
 ## Contents
 
-- **[Foundations](foundations/models-agents-and-workflows.md)**
-  - [Models, agents, and workflows](foundations/models-agents-and-workflows.md)
-  - [Context and prompting](foundations/context-and-prompting.md)
+- **Foundations**
+  - [Generative AI](foundations/generative-ai.md)
+  - [Agentic systems](foundations/agentic-systems.md)
+  - [Models versus agents](foundations/models-vs-agents.md)
+  - [Prompts and instructions](foundations/prompts-and-instructions.md)
+  - [Agentic workflows](foundations/agentic-workflows.md)
 - **Infrastructure**
   - **Models**
-  - [Models and providers](infrastructure/models/model-definition.md)
-  - Selection
-    - [Model selection](infrastructure/models/selection/model-selection.md)
-    - [Benchmarks and evaluations](infrastructure/models/selection/model-benchmarks.md)
-  - Providers
-    - [OpenAI](infrastructure/models/providers/openai.md)
-    - [Anthropic](infrastructure/models/providers/anthropic.md)
-    - [Google Gemini](infrastructure/models/providers/google.md)
-    - [xAI](infrastructure/models/providers/xai.md)
-  - Open-weight models
-    - [Introduction](infrastructure/models/open-source/open-models.md)
-    - [Kimi](infrastructure/models/open-source/kimi.md)
-    - [Qwen](infrastructure/models/open-source/qwen.md)
-    - [DeepSeek](infrastructure/models/open-source/deepseek.md)
-  - Media models
-    - [Media model taxonomy](infrastructure/models/media/media-models.md)
-    - [Text-to-image](infrastructure/models/media/text-to-image.md)
-    - [Image-to-image](infrastructure/models/media/image-to-image.md)
-    - [Text-to-video](infrastructure/models/media/text-to-video.md)
-    - [Image-to-video](infrastructure/models/media/image-to-video.md)
-    - Image generators
-      - [OpenAI GPT Image](infrastructure/models/media/image-generators/openai-gpt-image.md)
-    - Video generators
-      - [Google Veo](infrastructure/models/media/video-generators/veo.md)
-      - [Seedance](infrastructure/models/media/video-generators/seedance.md)
-  - Context engineering
-    - [Context engineering](infrastructure/context/context-engineering.md)
-    - [Context windows](infrastructure/context/context-window.md)
+    - [Model definition](infrastructure/models/model-definition.md)
+    - [Model capabilities](infrastructure/models/model-capabilities.md)
+    - [Model selection](infrastructure/models/model-selection.md)
+    - [Model evaluation](infrastructure/models/model-evaluation.md)
+    - [Model benchmarks](infrastructure/models/model-benchmarks.md)
+    - [Reasoning models](infrastructure/models/reasoning-models.md)
+    - [Multimodal models](infrastructure/models/multimodal-models.md)
+    - **Providers**
+      - [Anthropic](infrastructure/models/providers/anthropic.md)
+      - [Google Gemini](infrastructure/models/providers/google.md)
+      - [Mistral AI](infrastructure/models/providers/mistral.md)
+      - [Moonshot AI and the Kimi API](infrastructure/models/providers/moonshot-ai.md)
+      - [OpenAI](infrastructure/models/providers/openai.md)
+      - [xAI and Grok](infrastructure/models/providers/xai.md)
+      - **OpenAI models**
+        - [GPT-5.6 Luna](infrastructure/models/providers/openai-models/gpt-5.6-luna.md)
+        - [GPT-5.6 Sol](infrastructure/models/providers/openai-models/gpt-5.6-sol.md)
+        - [GPT-5.6 Terra](infrastructure/models/providers/openai-models/gpt-5.6-terra.md)
+        - [GPT-6 Astra](infrastructure/models/providers/openai-models/gpt-6-astra.md)
+    - **Open-weight models and licensing**
+      - [Open-weight models](infrastructure/models/open-source/open-models.md)
+      - [Model licensing](infrastructure/models/open-source/model-licensing.md)
+      - [Local model feasibility](infrastructure/models/open-source/local-models.md)
+      - [Kimi open-weight models](infrastructure/models/open-source/kimi.md)
+      - [Qwen open-weight models](infrastructure/models/open-source/qwen.md)
+      - [DeepSeek open-weight models](infrastructure/models/open-source/deepseek.md)
+      - [Llama open-weight models](infrastructure/models/open-source/llama.md)
+    - **Media**
+      - [Media models](infrastructure/models/media/media-models.md)
+      - [Text-to-image generation](infrastructure/models/media/text-to-image.md)
+      - [Image-to-image generation](infrastructure/models/media/image-to-image.md)
+      - [Text-to-video generation](infrastructure/models/media/text-to-video.md)
+      - [Image-to-video generation](infrastructure/models/media/image-to-video.md)
+      - **Image generators**
+        - [FLUX image models](infrastructure/models/media/image-generators/flux.md)
+        - [Gemini image generation](infrastructure/models/media/image-generators/gemini-image-generation.md)
+        - [OpenAI GPT Image](infrastructure/models/media/image-generators/openai-gpt-image.md)
+        - [Seedream image models](infrastructure/models/media/image-generators/seedream.md)
+        - [Stable Diffusion](infrastructure/models/media/image-generators/stable-diffusion.md)
+      - **Video generators**
+        - [Seedance video models](infrastructure/models/media/video-generators/seedance.md)
+        - [Google Veo](infrastructure/models/media/video-generators/veo.md)
+  - **Model adaptation**
+    - [Model distillation](infrastructure/model-adaptation/distillation.md)
+    - [Fine-tuning](infrastructure/model-adaptation/fine-tuning.md)
+    - [Model adaptation](infrastructure/model-adaptation/model-adaptation.md)
+    - [Model quantization](infrastructure/model-adaptation/quantization.md)
+  - **Inference**
+    - [Model inference](infrastructure/inference/inference-definition.md)
+    - [Model requests](infrastructure/inference/model-requests.md)
+    - [Model responses](infrastructure/inference/model-responses.md)
+    - [Structured output](infrastructure/inference/structured-output.md)
+    - [Streaming inference](infrastructure/inference/streaming.md)
+    - [Reasoning controls](infrastructure/inference/reasoning-controls.md)
+    - [Context caching](infrastructure/inference/context-caching.md)
+    - [Batch inference](infrastructure/inference/batch-inference.md)
+    - [Conversation state](infrastructure/inference/conversation-state.md)
+    - **APIs**
+      - [Anthropic Messages API](infrastructure/inference/apis/anthropic-messages-api.md)
+      - [Gemini API](infrastructure/inference/apis/gemini-api.md)
+      - [OpenAI Responses API](infrastructure/inference/apis/openai-responses-api.md)
+  - **Context**
     - [Context budgets](infrastructure/context/context-budget.md)
-    - [Context selection](infrastructure/context/context-selection.md)
     - [Context compaction](infrastructure/context/context-compaction.md)
+    - [Context engineering](infrastructure/context/context-engineering.md)
+    - [Context selection](infrastructure/context/context-selection.md)
+    - [Context windows](infrastructure/context/context-window.md)
     - [Instruction hierarchy](infrastructure/context/instruction-hierarchy.md)
-  - Computer use
+    - [Tool context](infrastructure/context/tool-context.md)
+    - [Working memory](infrastructure/context/working-memory.md)
+  - **Tools**
+    - [Tools](infrastructure/tools/tool-definition.md)
+    - [Tool calling](infrastructure/tools/tool-calling.md)
+    - [Tool execution](infrastructure/tools/tool-execution.md)
+    - [Tool discovery](infrastructure/tools/tool-discovery.md)
+    - [Tool permissions](infrastructure/tools/tool-permissions.md)
+    - [Tool approvals](infrastructure/tools/tool-approvals.md)
+    - [Hosted tools](infrastructure/tools/hosted-tools.md)
+    - **Provider tools**
+      - [Anthropic tool execution](infrastructure/tools/provider-tools/anthropic-tools.md)
+      - [Gemini tool execution](infrastructure/tools/provider-tools/gemini-tools.md)
+      - [OpenAI tool execution](infrastructure/tools/provider-tools/openai-tools.md)
+  - **Protocols**
+    - [Protocols in agentic systems](infrastructure/protocols/protocols.md)
+    - **MCP**
+      - [Model Context Protocol](infrastructure/protocols/mcp/mcp-definition.md)
+      - [MCP architecture](infrastructure/protocols/mcp/mcp-architecture.md)
+      - [MCP transports](infrastructure/protocols/mcp/mcp-transport.md)
+      - [MCP tools](infrastructure/protocols/mcp/mcp-tools.md)
+      - [MCP resources](infrastructure/protocols/mcp/mcp-resources.md)
+      - [MCP prompts](infrastructure/protocols/mcp/mcp-prompts.md)
+      - [MCP discovery](infrastructure/protocols/mcp/mcp-discovery.md)
+      - [MCP authentication and authorization](infrastructure/protocols/mcp/mcp-authentication.md)
+      - [Legacy MCP initialization](infrastructure/protocols/mcp/mcp-legacy.md)
+      - **Tools**
+        - [MCP Inspector](infrastructure/protocols/mcp/tools/mcp-inspector.md)
+        - [MCP Registry](infrastructure/protocols/mcp/tools/mcp-registry.md)
+    - **Agent communication**
+      - [Agent-to-agent communication](infrastructure/protocols/agent-communication/agent-to-agent.md)
+      - [Agent2Agent protocol](infrastructure/protocols/agent-communication/a2a.md)
+    - **Agent UI**
+      - [Agent-to-UI communication](infrastructure/protocols/agent-ui/agent-ui-communication.md)
+      - [Agent User Interaction Protocol](infrastructure/protocols/agent-ui/ag-ui.md)
+    - **WebMCP**
+      - [WebMCP](infrastructure/protocols/webmcp/webmcp-definition.md)
+  - **Orchestration**
+    - [Agent orchestration](infrastructure/orchestration/orchestration-definition.md)
+    - [Agent loops](infrastructure/orchestration/agent-loop.md)
+    - [Workflow orchestration](infrastructure/orchestration/workflow-orchestration.md)
+    - [Graph orchestration](infrastructure/orchestration/graph-orchestration.md)
+    - [Agent state management](infrastructure/orchestration/state-management.md)
+    - [Durable execution](infrastructure/orchestration/durable-execution.md)
+    - [Agent delegation](infrastructure/orchestration/delegation.md)
+    - [Agent handoffs](infrastructure/orchestration/handoffs.md)
+    - [Multi-agent systems](infrastructure/orchestration/multi-agent-systems.md)
+    - **Frameworks**
+      - [Agent frameworks](infrastructure/orchestration/frameworks/framework-definition.md)
+      - [AutoGen](infrastructure/orchestration/frameworks/autogen.md)
+      - [CrewAI](infrastructure/orchestration/frameworks/crewai.md)
+      - [Google Agent Development Kit](infrastructure/orchestration/frameworks/google-adk.md)
+      - [LangChain](infrastructure/orchestration/frameworks/langchain.md)
+      - [LangGraph](infrastructure/orchestration/frameworks/langgraph.md)
+      - [Mastra](infrastructure/orchestration/frameworks/mastra.md)
+      - [OpenAI Agents SDK](infrastructure/orchestration/frameworks/openai-agents-sdk.md)
+      - [PydanticAI](infrastructure/orchestration/frameworks/pydantic-ai.md)
+      - [Vercel AI SDK](infrastructure/orchestration/frameworks/vercel-ai-sdk.md)
+    - **Managed runtimes**
+      - [Claude Managed Agents](infrastructure/orchestration/managed-runtimes/claude-managed-agents.md)
+      - [Managed agent runtimes](infrastructure/orchestration/managed-runtimes/managed-agents.md)
+      - [OpenAI Agents API](infrastructure/orchestration/managed-runtimes/openai-agents-api.md)
+      - [Vertex AI Agent Engine and Agent Platform Runtime](infrastructure/orchestration/managed-runtimes/vertex-ai-agent-engine.md)
+  - **Knowledge**
+    - [Agent knowledge](infrastructure/knowledge/agent-knowledge.md)
+    - [Knowledge sources](infrastructure/knowledge/knowledge-sources.md)
+    - **Retrieval**
+      - [Retrieval](infrastructure/knowledge/retrieval/retrieval-definition.md)
+      - [Embeddings](infrastructure/knowledge/retrieval/embeddings.md)
+      - [Hybrid search](infrastructure/knowledge/retrieval/hybrid-search.md)
+      - [Keyword search](infrastructure/knowledge/retrieval/keyword-search.md)
+      - [Reranking](infrastructure/knowledge/retrieval/reranking.md)
+      - [Semantic search](infrastructure/knowledge/retrieval/semantic-search.md)
+    - **RAG**
+      - [Retrieval-augmented generation](infrastructure/knowledge/rag/rag-definition.md)
+      - [Chunking](infrastructure/knowledge/rag/chunking.md)
+      - [Citations and provenance](infrastructure/knowledge/rag/citations-and-provenance.md)
+      - [Grounded generation](infrastructure/knowledge/rag/grounded-generation.md)
+      - [The RAG pipeline](infrastructure/knowledge/rag/rag-pipeline.md)
+      - [Retrieval strategies](infrastructure/knowledge/rag/retrieval-strategies.md)
+      - **Frameworks**
+        - [LangChain retrieval components](infrastructure/knowledge/rag/frameworks/langchain-retrieval.md)
+        - [LlamaIndex for RAG](infrastructure/knowledge/rag/frameworks/llamaindex.md)
+    - **Vector databases**
+      - [Vector databases](infrastructure/knowledge/vector-databases/vector-databases.md)
+      - [pgvector](infrastructure/knowledge/vector-databases/pgvector.md)
+      - [Qdrant](infrastructure/knowledge/vector-databases/qdrant.md)
+      - [Pinecone](infrastructure/knowledge/vector-databases/pinecone.md)
+      - [Weaviate](infrastructure/knowledge/vector-databases/weaviate.md)
+    - **Knowledge graphs**
+      - [Knowledge graphs](infrastructure/knowledge/knowledge-graphs/knowledge-graph-definition.md)
+      - [Entity extraction](infrastructure/knowledge/knowledge-graphs/entity-extraction.md)
+      - [Relationship extraction](infrastructure/knowledge/knowledge-graphs/relationship-extraction.md)
+    - **GraphRAG**
+      - [Graph-based retrieval-augmented generation](infrastructure/knowledge/graphrag/graphrag-definition.md)
+      - [Community summaries](infrastructure/knowledge/graphrag/community-summaries.md)
+      - [Graph retrieval](infrastructure/knowledge/graphrag/graph-retrieval.md)
+      - **Frameworks**
+        - [Cognee basic local setup](infrastructure/knowledge/graphrag/frameworks/cognee-basic-setup.md)
+        - [Cognee indexing](infrastructure/knowledge/graphrag/frameworks/cognee-indexing.md)
+        - [Cognee retrieval](infrastructure/knowledge/graphrag/frameworks/cognee-retrieval.md)
+        - [Cognee](infrastructure/knowledge/graphrag/frameworks/cognee.md)
+        - [Microsoft GraphRAG](infrastructure/knowledge/graphrag/frameworks/microsoft-graphrag.md)
+    - **Memory**
+      - [Agent memory](infrastructure/knowledge/memory/memory-definition.md)
+      - [Short-term memory](infrastructure/knowledge/memory/short-term-memory.md)
+      - [Long-term memory](infrastructure/knowledge/memory/long-term-memory.md)
+      - [Conversation memory](infrastructure/knowledge/memory/conversation-memory.md)
+      - [Memory retrieval](infrastructure/knowledge/memory/memory-retrieval.md)
+      - [Memory lifecycle](infrastructure/knowledge/memory/memory-lifecycle.md)
+      - **Frameworks**
+        - [Cognee conversation and durable memory](infrastructure/knowledge/memory/frameworks/cognee-memory.md)
+        - [LangGraph memory](infrastructure/knowledge/memory/frameworks/langgraph-memory.md)
+        - [Mem0](infrastructure/knowledge/memory/frameworks/mem0.md)
+    - **Indexing**
+      - [Knowledge indexing](infrastructure/knowledge/indexing/indexing.md)
+      - [Incremental indexing](infrastructure/knowledge/indexing/incremental-indexing.md)
+      - [Knowledge freshness](infrastructure/knowledge/indexing/freshness.md)
+      - [Deletion from knowledge systems](infrastructure/knowledge/indexing/deletion.md)
+    - **Document intelligence**
+      - [Document understanding](infrastructure/knowledge/document-intelligence/document-understanding.md)
+      - [Optical character recognition](infrastructure/knowledge/document-intelligence/ocr.md)
+      - [Table extraction](infrastructure/knowledge/document-intelligence/table-extraction.md)
+    - **Web research**
+      - [Research source selection](infrastructure/knowledge/web-research/source-selection.md)
+      - [Web research](infrastructure/knowledge/web-research/web-research.md)
+  - **Hosting**
+    - [Agent hosting](infrastructure/hosting/agent-hosting.md)
+    - [Deployment architecture for agentic applications](infrastructure/hosting/deployment-architecture.md)
+    - **Gateways**
+      - [AI gateways](infrastructure/hosting/gateways/ai-gateways.md)
+      - [LiteLLM gateway](infrastructure/hosting/gateways/litellm.md)
+      - [OpenRouter as an AI gateway](infrastructure/hosting/gateways/openrouter-gateway.md)
+      - [Vercel AI Gateway](infrastructure/hosting/gateways/vercel-ai-gateway.md)
+    - **Inference**
+      - [Inference hosting](infrastructure/hosting/inference/inference-hosting.md)
+      - [Anthropic inference hosting](infrastructure/hosting/inference/anthropic-inference.md)
+      - [Fireworks AI](infrastructure/hosting/inference/fireworks-ai.md)
+      - [Google inference hosting](infrastructure/hosting/inference/google-inference.md)
+      - [Hugging Face inference services](infrastructure/hosting/inference/hugging-face-inference.md)
+      - [OpenAI inference hosting](infrastructure/hosting/inference/openai-inference.md)
+      - [Accessing inference through OpenRouter](infrastructure/hosting/inference/openrouter-inference.md)
+      - [Together AI](infrastructure/hosting/inference/together-ai.md)
+      - [xAI inference hosting](infrastructure/hosting/inference/xai-inference.md)
+    - **Local inference**
+      - [Local inference](infrastructure/hosting/local-inference/local-inference.md)
+      - [llama.cpp](infrastructure/hosting/local-inference/llama-cpp.md)
+      - [Ollama](infrastructure/hosting/local-inference/ollama.md)
+      - [vLLM](infrastructure/hosting/local-inference/vllm.md)
+    - **Sandboxes**
+      - [Execution sandboxes](infrastructure/hosting/sandboxes/sandbox-definition.md)
+      - [Daytona](infrastructure/hosting/sandboxes/daytona.md)
+      - [E2B](infrastructure/hosting/sandboxes/e2b.md)
+      - [Modal Sandboxes](infrastructure/hosting/sandboxes/modal.md)
+  - **Computer use**
     - [Computer use](infrastructure/computer-use/computer-use-definition.md)
-    - [Visual computer use](infrastructure/computer-use/visual-computer-use.md)
     - [Browser use](infrastructure/computer-use/browser-use.md)
-    - [Playwright](infrastructure/computer-use/tools/playwright.md)
-  - Identity and delegation
+    - [Visual computer use](infrastructure/computer-use/visual-computer-use.md)
+    - **Providers**
+      - [Anthropic computer use](infrastructure/computer-use/providers/anthropic-computer-use.md)
+      - [OpenAI computer use](infrastructure/computer-use/providers/openai-computer-use.md)
+    - **Tools**
+      - [Playwright](infrastructure/computer-use/tools/playwright.md)
+  - **Identity**
     - [Agent identity](infrastructure/identity/agent-identity.md)
-    - [User delegation](infrastructure/identity/user-delegation.md)
     - [OAuth for agents](infrastructure/identity/oauth-for-agents.md)
     - [Scoped credentials](infrastructure/identity/scoped-credentials.md)
-  - Events
+    - [User delegation](infrastructure/identity/user-delegation.md)
+  - **Events**
     - [Event-driven agents](infrastructure/events/event-driven-agents.md)
-    - [Webhooks](infrastructure/events/webhooks.md)
     - [Scheduled agents](infrastructure/events/scheduled-agents.md)
-  - Files and artifacts
-    - [Agent files](infrastructure/files/agent-files.md)
-    - [Artifact lifecycle](infrastructure/files/artifact-lifecycle.md)
+    - [Webhooks](infrastructure/events/webhooks.md)
+  - **Files**
+    - [Files in agent systems](infrastructure/files/agent-files.md)
     - [Agent-readable documents](infrastructure/files/agent-readable-documents.md)
-  - **Agent runtime**
-  - Calling
-    - [Requests and responses](infrastructure/inference/model-requests-and-responses.md)
-    - [Tool calling](infrastructure/tools/tool-calling.md)
-    - [Streaming and state](infrastructure/inference/streaming.md)
-    - [Managed runtime APIs](infrastructure/inference/runtime-apis.md)
-  - Tools and protocols
-    - [MCP](infrastructure/protocols/mcp/mcp-definition.md)
-    - [Legacy MCP initialization](infrastructure/protocols/mcp/mcp-legacy.md)
-    - [Discovery and authentication](infrastructure/protocols/discovery-and-authentication.md)
-    - [Agent and UI communication](infrastructure/protocols/agent-communication.md)
-    - [WebMCP](infrastructure/protocols/webmcp/webmcp-definition.md)
-  - Orchestration
-    - [Introduction](infrastructure/orchestration/orchestration-definition.md)
-    - Execution
-      - [Agent loops](infrastructure/orchestration/agent-loop.md)
-      - [State and recovery](infrastructure/orchestration/state-management.md)
-      - [Delegation and handoffs](infrastructure/orchestration/delegation.md)
-    - Frameworks
-      - [LangChain](infrastructure/orchestration/frameworks/langchain.md)
-      - [Google ADK](infrastructure/orchestration/frameworks/google-adk.md)
-      - [LangGraph](infrastructure/orchestration/frameworks/langgraph.md)
-      - [LangSmith](infrastructure/orchestration/frameworks/langsmith.md)
-      - [OpenAI Agents SDK](infrastructure/orchestration/frameworks/openai-agents-sdk.md)
-      - [OpenAI Agents API](infrastructure/orchestration/frameworks/openai-agents-api.md)
-      - [Vercel AI SDK](infrastructure/orchestration/frameworks/vercel-ai-sdk.md)
-      - [Claude Managed Agents](infrastructure/orchestration/frameworks/claude-managed-agents.md)
-  - Commerce
+    - [Artifact lifecycle](infrastructure/files/artifact-lifecycle.md)
+  - **Commerce**
     - [Agentic commerce](infrastructure/commerce/agentic-commerce.md)
-    - [Agentic checkout](infrastructure/commerce/checkout/agentic-checkout.md)
-    - [Agentic Commerce Protocol](infrastructure/commerce/protocols/agentic-commerce-protocol.md)
-    - [Schema.org Actions](infrastructure/commerce/structured-actions/schema-org-actions.md)
-  - Economics
+    - **Checkout**
+      - [Agentic checkout](infrastructure/commerce/checkout/agentic-checkout.md)
+    - **Protocols**
+      - [Agentic Commerce Protocol](infrastructure/commerce/protocols/agentic-commerce-protocol.md)
+    - **Structured actions**
+      - [Schema.org Actions](infrastructure/commerce/structured-actions/schema-org-actions.md)
+  - **Economics**
     - [Agent payments](infrastructure/economics/agent-payments.md)
-    - [Spending limits](infrastructure/economics/spending-limits.md)
-    - [x402](infrastructure/economics/protocols/x402.md)
-  - Model adaptation
-    - [Model adaptation](infrastructure/model-adaptation/model-adaptation.md)
-    - [Fine-tuning](infrastructure/model-adaptation/fine-tuning.md)
-    - [Distillation](infrastructure/model-adaptation/distillation.md)
-    - [Quantization](infrastructure/model-adaptation/quantization.md)
-  - [Synthetic data](infrastructure/synthetic-data/synthetic-data-definition.md)
-  - [Agent simulation](infrastructure/simulation/agent-simulation.md)
-  - Architecture
-    - [Agent-native applications](infrastructure/architecture/agent-native-applications.md)
+    - [Agent spending limits](infrastructure/economics/spending-limits.md)
+    - **Protocols**
+      - [x402](infrastructure/economics/protocols/x402.md)
+  - **Synthetic data**
+    - [Synthetic data](infrastructure/synthetic-data/synthetic-data-definition.md)
+  - **Simulation**
+    - [Agent simulation](infrastructure/simulation/agent-simulation.md)
+  - **Architecture**
     - [Agent-facing APIs](infrastructure/architecture/agent-facing-apis.md)
+    - [Agent-native applications](infrastructure/architecture/agent-native-applications.md)
     - [Deterministic boundaries](infrastructure/architecture/deterministic-boundaries.md)
-  - **Knowledge**
-  - [RAG](infrastructure/knowledge/rag/rag-definition.md)
-  - [Graphs, GraphRAG, and Cognee](infrastructure/knowledge/graphrag/graphrag-and-knowledge-graphs.md)
-  - [Memory and indexing](infrastructure/knowledge/memory/memory-and-indexing.md)
 - **Agentic web**
+  - [Agent-addressable actions](agentic-web/agent-addressable-actions.md)
   - [Agent-readable web](agentic-web/agent-readable-web.md)
   - [Machine-readable content](agentic-web/machine-readable-content.md)
-  - [Agent-addressable actions](agentic-web/agent-addressable-actions.md)
-  - [Markdown endpoints](agentic-web/formats/markdown-endpoints.md)
-  - [llms.txt](agentic-web/formats/llms-txt.md)
-  - [Structured web data](agentic-web/formats/structured-data.md)
+  - **Formats**
+    - [llms.txt](agentic-web/formats/llms-txt.md)
+    - [Markdown endpoints](agentic-web/formats/markdown-endpoints.md)
+    - [Structured web data](agentic-web/formats/structured-data.md)
 - **Communication**
-  - Human-agent collaboration
+  - **Human agent collaboration**
+    - [Agent approvals](communication/human-agent-collaboration/approvals.md)
+    - [Human escalation](communication/human-agent-collaboration/escalation.md)
     - [Human in the loop](communication/human-agent-collaboration/human-in-the-loop.md)
     - [Human on the loop](communication/human-agent-collaboration/human-on-the-loop.md)
-    - [Approvals](communication/human-agent-collaboration/approvals.md)
-    - [Escalation](communication/human-agent-collaboration/escalation.md)
-  - [Agent messaging](communication/messaging/agent-messaging.md)
-  - [Agent notifications](communication/notifications/agent-notifications.md)
+  - **Messaging**
+    - [Agent messaging](communication/messaging/agent-messaging.md)
+  - **Notifications**
+    - [Agent notifications](communication/notifications/agent-notifications.md)
 - **Interfaces**
-  - [Chat rendering](interfaces/chat/chat-interfaces.md)
-  - [Generative UI](interfaces/generative-ui/generative-ui-definition.md)
-  - [Realtime and voice](interfaces/realtime/realtime-and-voice.md)
-  - **Hosting**
-  - [Providers and gateways](infrastructure/hosting/providers-and-gateways.md)
-  - [Managed agents and sandboxes](infrastructure/hosting/managed-agents.md)
-  - [Deployment](infrastructure/hosting/deployment.md)
+  - [Agent interfaces](interfaces/agent-interfaces.md)
+  - **Chat**
+    - [Chat interfaces](interfaces/chat/chat-interfaces.md)
+    - [Message structure](interfaces/chat/message-structure.md)
+    - [Streaming messages](interfaces/chat/streaming-messages.md)
+    - [Tool rendering](interfaces/chat/tool-rendering.md)
+    - [Approval controls in chat](interfaces/chat/chat-approvals.md)
+    - **Libraries**
+      - [assistant-ui](interfaces/chat/libraries/assistant-ui.md)
+      - [Vercel AI Elements](interfaces/chat/libraries/vercel-ai-elements.md)
+      - [Vercel AI SDK UI](interfaces/chat/libraries/vercel-ai-sdk-ui.md)
+  - **Generative UI**
+    - [Generative UI](interfaces/generative-ui/generative-ui-definition.md)
+    - [Component generation](interfaces/generative-ui/component-generation.md)
+    - [Declarative UI](interfaces/generative-ui/declarative-ui.md)
+    - **Frameworks and protocols**
+      - [A2UI](interfaces/generative-ui/frameworks-and-protocols/a2ui.md)
+      - [MCP Apps](interfaces/generative-ui/frameworks-and-protocols/mcp-apps.md)
+      - [OpenUI by Thesys](interfaces/generative-ui/frameworks-and-protocols/openui.md)
+  - **Realtime**
+    - [Realtime agents](interfaces/realtime/realtime-agents.md)
+    - [Realtime transport](interfaces/realtime/realtime-transport.md)
+  - **Voice**
+    - [Voice agents](interfaces/voice/voice-agents.md)
+    - [Speech-to-speech interaction](interfaces/voice/speech-to-speech.md)
+    - [Voice delegation](interfaces/voice/voice-delegation.md)
+    - **Providers**
+      - [ElevenLabs ElevenAgents](interfaces/voice/providers/elevenlabs.md)
+      - [Gemini Live API](interfaces/voice/providers/gemini-live.md)
+      - [OpenAI GPT-Live](interfaces/voice/providers/openai-live.md)
 - **Operations**
-  - Governance
+  - **Observability**
+    - [Agent observability](operations/observability/agent-observability.md)
+    - [Tracing an agent request](operations/observability/tracing.md)
+    - [Spans](operations/observability/spans.md)
+    - [Tool tracing](operations/observability/tool-tracing.md)
+    - [Token usage](operations/observability/token-usage.md)
+    - **Platforms**
+      - [Arize Phoenix](operations/observability/platforms/arize-phoenix.md)
+      - [Langfuse](operations/observability/platforms/langfuse.md)
+      - [LangSmith observability](operations/observability/platforms/langsmith.md)
+      - [OpenTelemetry](operations/observability/platforms/opentelemetry.md)
+  - **Evaluation**
+    - [Evaluations: answers, actions, and recovery](operations/evaluation/agent-evaluation.md)
+    - [Evaluation datasets](operations/evaluation/evaluation-datasets.md)
+    - [Model output evaluation](operations/evaluation/model-output-evaluation.md)
+    - [Regression testing](operations/evaluation/regression-testing.md)
+    - [Tool evaluation](operations/evaluation/tool-evaluation.md)
+    - **Frameworks**
+      - [DeepEval](operations/evaluation/frameworks/deepeval.md)
+      - [LangSmith evaluation](operations/evaluation/frameworks/langsmith-evaluation.md)
+      - [OpenAI Evals](operations/evaluation/frameworks/openai-evals.md)
+      - [Ragas](operations/evaluation/frameworks/ragas.md)
+  - **Performance**
+    - [Agent latency](operations/performance/latency.md)
+    - [Time to first token](operations/performance/time-to-first-token.md)
+    - [Tool latency](operations/performance/tool-latency.md)
+    - [Agent cost](operations/performance/cost.md)
+    - [Application caching](operations/performance/caching.md)
+  - **Reliability**
+    - [Agent reliability](operations/reliability/agent-reliability.md)
+    - [Retries](operations/reliability/retries.md)
+    - [Idempotency](operations/reliability/idempotency.md)
+    - [Cancellation](operations/reliability/cancellation.md)
+    - [Failure recovery](operations/reliability/failure-recovery.md)
+  - **Security**
+    - [Security and permissions](operations/security/agent-security.md)
+    - [Data isolation](operations/security/data-isolation.md)
+    - [Prompt injection](operations/security/prompt-injection.md)
+    - [Sandboxing generated execution](operations/security/sandboxing.md)
+    - [Secrets in agent systems](operations/security/secrets.md)
+    - [Tool authorization](operations/security/tool-authorization.md)
+  - **Governance**
     - [Agent governance](operations/governance/agent-governance.md)
-    - [Audit logs](operations/governance/audit-logs.md)
-    - [Policy enforcement](operations/governance/policy-enforcement.md)
+    - [Agent audit logs](operations/governance/audit-logs.md)
     - [Data retention](operations/governance/data-retention.md)
-  - [Tracing](operations/observability/tracing.md)
-  - [Evaluations](operations/evaluation/agent-evaluation.md)
-  - [Security and permissions](operations/security/agent-security.md)
-  - [Cost and latency](operations/performance/cost-and-latency.md)
+    - [Policy enforcement](operations/governance/policy-enforcement.md)
 - **Development**
-  - [Coding agents and persistent bots](development/coding-agents/coding-agent-definition.md)
-  - Skills
+  - **Coding agents**
+    - [Coding agents](development/coding-agents/coding-agent-definition.md)
+    - [Coding-agent permissions](development/coding-agents/coding-agent-permissions.md)
+    - [Coding-agent verification](development/coding-agents/coding-agent-verification.md)
+    - [Repository context](development/coding-agents/repository-context.md)
+    - **Tools**
+      - [Claude Code](development/coding-agents/tools/claude-code.md)
+      - [Codex](development/coding-agents/tools/codex.md)
+      - [Cursor Agent](development/coding-agents/tools/cursor.md)
+      - [Gemini CLI](development/coding-agents/tools/gemini-cli.md)
+      - [Grok Bot](development/coding-agents/tools/grok-bot.md)
+      - [Grok Build](development/coding-agents/tools/grok-build.md)
+  - **Instructions**
+    - [Agent instructions](development/instructions/agent-instructions.md)
+    - [Project instructions](development/instructions/project-instructions.md)
+  - **Skills**
     - [Skill definition](development/skills/skill-definition.md)
+    - [Skill development](development/skills/skill-development.md)
+    - [Skill discovery](development/skills/skill-discovery.md)
     - [Skill marketplaces](development/skills/skill-marketplaces.md)
-    - [Skills.sh](development/skills/tools/skills-sh.md)
-    - [Humanizer](development/skills/examples/humanizer.md)
-    - [OpenAI official skills](development/skills/platforms/openai-official-skills.md)
-    - [Anthropic official skills](development/skills/platforms/anthropic-official-skills.md)
-    - [Claude commerce skills](development/skills/platforms/claude-commerce-skills.md)
-  - Plugins
+    - **Examples**
+      - [Humanizer](development/skills/examples/humanizer.md)
+    - **Platforms**
+      - [Anthropic official skills](development/skills/platforms/anthropic-official-skills.md)
+      - [Claude commerce skills](development/skills/platforms/claude-commerce-skills.md)
+      - [OpenAI official skills](development/skills/platforms/openai-official-skills.md)
+    - **Tools**
+      - [Agent Skills format](development/skills/tools/agent-skills.md)
+      - [Skills.sh and the Skills CLI](development/skills/tools/skills-sh.md)
+  - **Plugins**
     - [Plugin definition](development/plugins/plugin-definition.md)
+    - [Agent Plugins portable format](development/plugins/common-agent-plugin-format.md)
     - [Plugin development](development/plugins/plugin-development.md)
-    - [Agent Plugins specification](development/plugins/common-agent-plugin-format.md)
-  - [Discovery and proxies](development/proxies/proxy-definition.md)
-  - [Code intelligence](development/code-intelligence/code-intelligence.md)
-  - Knowledge frameworks
-    - [Cognee](infrastructure/knowledge/graphrag/frameworks/cognee.md)
+    - [Plugin distribution](development/plugins/plugin-distribution.md)
+    - **Platforms**
+      - [Claude Code plugins](development/plugins/platforms/claude-code-plugins.md)
+      - [OpenAI plugin packaging](development/plugins/platforms/openai-plugins.md)
+  - **Proxies**
+    - [Model and agent proxies](development/proxies/proxy-definition.md)
+    - [Protocol translation](development/proxies/protocol-translation.md)
+    - **Tools**
+      - [Codex Proxy](development/proxies/tools/codex-proxy.md)
+  - **Code intelligence**
+    - [Code intelligence](development/code-intelligence/code-intelligence.md)
+    - [Symbol indexing](development/code-intelligence/symbol-indexing.md)
+    - [Semantic code search](development/code-intelligence/semantic-code-search.md)
+    - [Code graphs](development/code-intelligence/code-graphs.md)
+    - **Tools**
+      - [Codanna](development/code-intelligence/tools/codanna.md)
+      - [Graphify](development/code-intelligence/tools/graphify.md)
+      - [Language Server Protocol](development/code-intelligence/tools/language-server-protocol.md)
+      - [Tree-sitter](development/code-intelligence/tools/tree-sitter.md)
 - **Patterns**
-  - [Supervisor](patterns/supervisor-pattern.md)
-  - [Router](patterns/router-pattern.md)
-  - [Planner-executor](patterns/planner-executor-pattern.md)
-  - [Agent as tool](patterns/agent-as-tool.md)
-  - [Handoff](patterns/handoff-pattern.md)
   - [A bounded tool loop](patterns/tool-loop.md)
-  - [Grounded answers](patterns/grounded-answers.md)
-  - [Background work](patterns/background-work.md)
-  - [Incremental architecture](patterns/incremental-build.md)
+  - [Answers grounded in workspace documents](patterns/grounded-answers.md)
+  - [Background work with a durable result](patterns/background-work.md)
+  - [Incremental agent architecture](patterns/incremental-build.md)
+  - [Agent-as-tool pattern](patterns/agent-as-tool.md)
+  - [Handoff pattern](patterns/handoff-pattern.md)
+  - [Planner-executor pattern](patterns/planner-executor-pattern.md)
+  - [Router pattern](patterns/router-pattern.md)
+  - [Supervisor pattern](patterns/supervisor-pattern.md)
 
 ## Glossary
 
-- **Agent** — a system in which a model can choose actions within a software-controlled execution loop.
-- **Agent loop** — repeated inference, action, result, and continuation until a terminal or suspended state.
-- **Context** — information made available to a model for an inference step.
-- **Embedding** — a vector representation commonly used for similarity retrieval.
-- **Generative UI** — interfaces whose structure or component selection is influenced by model output.
-- **GraphRAG** — retrieval that uses entities and relationships in addition to or instead of passage similarity.
-- **MCP** — Model Context Protocol, a protocol for connecting hosts with tools, resources, and prompts.
-- **RAG** — retrieval-augmented generation: retrieving external evidence and supplying it to generation.
-- **Tool call** — structured model output requesting an operation exposed by the surrounding system.
-- **WebMCP** — a browser-side API for exposing structured web-application tools to agents.
-- **Agentic commerce** — commerce workflows in which agents participate in discovery, checkout, payments, orders, or merchant operations.
-- **Workflow** — an execution structure whose stages are substantially determined by application code.
-
-Pages link directly to primary specifications, vendor documentation, papers, model cards, and maintainer repositories where useful.
+- **Agent** — an executing system that lets a model choose actions within application-controlled boundaries.
+- **Agent loop** — inference, action, result, and continuation until execution completes, suspends, or stops.
+- **Context** — the instructions, evidence, history, and tool information available to an inference step.
+- **Embedding** — a vector representation used for tasks such as similarity retrieval.
+- **Framework** — reusable software for constructing and running an application or agent workflow.
+- **Gateway** — an intermediary that routes requests and can apply authentication, budgets, or compatibility rules.
+- **Generative UI** — an interface whose component choice or structure is influenced by model output.
+- **GraphRAG** — retrieval-augmented generation that uses graph structure, relationships, or graph-derived summaries.
+- **Harness / runtime** — software that executes the agent loop, tools, policies, and state transitions.
+- **Inference** — applying a trained model to new input.
+- **Knowledge graph** — structured entities and relationships, ideally retaining the evidence behind their claims.
+- **MCP** — Model Context Protocol, connecting hosts with servers that expose tools, resources, and prompts.
+- **Memory** — selected information retained for later interactions, with an explicit retrieval and lifecycle policy.
+- **Model** — a learned computation used to generate, classify, embed, or otherwise transform input.
+- **Open weights** — published model parameters; the license and availability of other components must be assessed separately.
+- **RAG** — retrieval-augmented generation: retrieve external evidence and supply it to generation.
+- **Run** — a tracked execution with a goal, status, limits, intermediate operations, and an outcome.
+- **Skill** — packaged instructions and optional resources that teach an agent a repeatable task.
+- **Span** — a timed operation in a trace, with attributes and causal relationships.
+- **Tool call** — structured output requesting an operation exposed by the surrounding system.
+- **WebMCP** — a browser-side interface for exposing structured web-application tools to agents.
+- **Workflow** — coordinated execution whose sequence may be fixed in code or partly chosen by a model.
 
 [MIT license](LICENSE).

@@ -37,15 +37,3 @@ A measured two-second API request may contain network transit, provider queueing
 Streaming introduces several distinct measurements: HTTP acknowledgement, first event, first useful answer text, and completed result. A heartbeat or progress event can arrive quickly while the useful answer remains slow. Define the event used by every metric.
 
 Clock differences across services can distort a timeline. Prefer local monotonic durations and synchronize hosts; investigate impossible ordering before drawing latency conclusions.
-
-## Representative observability tools
-
-| Tool | Role |
-| --- | --- |
-| [OpenTelemetry](https://opentelemetry.io/docs/concepts/signals/traces/) | Instrumentation and trace propagation conventions across the application |
-| [LangSmith](https://docs.langchain.com/langsmith/observability) | Agent/model traces and evaluation workflows across supported frameworks |
-| [Langfuse](https://langfuse.com/docs/observability/overview) | LLM-oriented tracing, usage, prompt management, and evaluation; self-hosting is available |
-
-Check SDK capture defaults: OpenAI Agents SDK documents controls for sensitive model and function payloads. [Tracing data controls](https://openai.github.io/openai-agents-python/tracing/). Measure exporter overhead and queue behavior instead of assuming either zero cost or responsibility for all missing time.
-
-**Source review:** 2026-09-19. All timings above are invented for explanation; no tracing service was performance-tested.

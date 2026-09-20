@@ -1,10 +1,10 @@
 # Legacy MCP initialization
 
-**This page documents revision 2025-11-25, not the current 2026-07-28 request model.** It exists because integrations and tutorials using the initialization handshake remain relevant when connecting older clients. See the [current MCP chapter](mcp.md) before copying a wire example.
+[Official 2025-11-25 lifecycle](https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle) · [Modern compatibility rules](https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning)
 
-Under the legacy lifecycle, the client first sends `initialize` with its preferred supported protocol version, capabilities, and implementation identity. The server answers with a selected version and its capabilities. The client verifies compatibility and sends `notifications/initialized` before normal operations. [Official 2025-11-25 lifecycle](https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle).
+MCP revision 2025-11-25 uses an initialization handshake. This remains relevant for clients and servers that implement that revision. It differs from the request-scoped metadata model in revision 2026-07-28.
 
-The following is a **synthetic, unexecuted legacy exchange**:
+The client begins with its preferred version and capabilities:
 
 ```json
 {
@@ -14,10 +14,12 @@ The following is a **synthetic, unexecuted legacy exchange**:
   "params": {
     "protocolVersion": "2025-11-25",
     "capabilities": {},
-    "clientInfo": { "name": "legacy-client", "version": "1.0.0" }
+    "clientInfo": {"name": "legacy-client", "version": "1.0.0"}
   }
 }
 ```
+
+The server selects a supported version:
 
 ```json
 {
@@ -25,11 +27,13 @@ The following is a **synthetic, unexecuted legacy exchange**:
   "id": "initialize-1",
   "result": {
     "protocolVersion": "2025-11-25",
-    "capabilities": { "tools": {} },
-    "serverInfo": { "name": "task-server", "version": "1.0.0" }
+    "capabilities": {"tools": {}},
+    "serverInfo": {"name": "task-server", "version": "1.0.0"}
   }
 }
 ```
+
+If the client supports that version, it completes initialization:
 
 ```json
 {
@@ -38,19 +42,12 @@ The following is a **synthetic, unexecuted legacy exchange**:
 }
 ```
 
-The notification has no ID because it does not request a reply. After initialization, the client may use the negotiated capabilities, for example `tools/list` and `tools/call`. If the returned protocol version is unsupported by the client, it should disconnect rather than interpret messages using an assumed format.
+These are synthetic wire messages. The notification has no request ID and expects no response. Normal tool operations follow the negotiated lifecycle.
 
-## Do not mix revision-specific rules
+## Keep revision rules together
 
-| Concern | Legacy 2025-11-25 | Modern 2026-07-28 |
-| --- | --- | --- |
-| Version and capabilities | Initialization handshake | Per-request `_meta` |
-| Initial server discovery | Initialization result | Optional `server/discover` request |
-| Completed result marker | No modern `resultType` requirement | `resultType: "complete"` |
-| Additional client input | Negotiated server-initiated request features | `input_required` result pattern |
+Do not add modern `resultType` requirements or per-request capability rules to a legacy example and assume the mixture represents a third compatible protocol. Likewise, old HTTP session and event-stream behavior should not be carried into a modern implementation without the documented compatibility path.
 
-The [current compatibility rules](https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning) describe implementations that support both eras and the transport-specific fallback behavior. Do not implement a blanket fallback on every error: a recognized modern version error should be handled as a version mismatch, not mistaken for an older server.
+A protocol revision, an SDK release, and a server package version are independent. Record all three when diagnosing interoperability. Updating a client dependency does not establish that the target host uses the newest wire revision.
 
-For maintenance, record three independent versions in an integration note: the protocol revision, the client SDK package, and the server package. Updating the package number does not by itself tell a reviewer which protocol revision the target host negotiated. Keep a short captured exchange from your own test environment when establishing interoperability.
-
-**Review:** source-checked **2026-09-19**. This repository has not run this handshake against a server; the example explains the legacy contract.
+Use captured exchanges from a controlled environment to verify negotiation, tool listing, and one actual call. A successful package installation alone tests none of those behaviors.

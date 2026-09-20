@@ -1,16 +1,16 @@
-# Recipe: answers grounded in workspace documents
+# Answers grounded in workspace documents
 
-**Goal:** answer “What must we verify before the next release?” using documents the current user can access, while linking each material claim to its source. This is an illustrative implementation design; no retrieval backend is provisioned by this recipe.
+Answer “What must we verify before the next release?” using documents the current user can access, while linking each material claim to its source. This is an illustrative implementation design; no retrieval backend is provisioned by this recipe.
 
 ## Start with the question's data needs
 
-If the user asks for the current status of task `APP-42`, use the application API. If they ask about a written release procedure, retrieve relevant document sections. If they ask which dependencies block release, query explicit relationships before introducing a graph extracted from prose. See [the knowledge chapter's decision guide](../06-knowledge-and-memory/README.md).
+If the user asks for the current status of task `APP-42`, use the application API. If they ask about a written release procedure, retrieve relevant document sections. If they ask which dependencies block release, query explicit relationships before introducing a graph extracted from prose. See [knowledge sources](../infrastructure/knowledge/knowledge-sources.md).
 
 ## Carry provenance through the pipeline
 
 Parse documents into sections with a source ID, revision, title, canonical URL, and access scope. Store retrieval metadata alongside each chunk. At query time, apply the user's access constraints during retrieval and verify them before returning the source content.
 
-For a small document set, keyword search or a database query can be sufficient. Add embeddings, hybrid search, or reranking when evaluation cases show the need. The [RAG chapter](../knowledge/rag.md) explains those mechanisms.
+For a small document set, keyword search or a database query can be sufficient. Add embeddings, hybrid search, or reranking when evaluation cases show the need. The [RAG pipeline](../infrastructure/knowledge/rag/rag-pipeline.md) explains those mechanisms.
 
 An application-owned context record could be:
 
@@ -40,4 +40,4 @@ When no source answers the question, return a useful gap: “The release guide c
 
 Include cases with an exact answer, synonymous wording, contradictory revisions, no answer, and a relevant document the user cannot access. Measure retrieval quality separately from answer quality. Revoke access and delete a source, then verify the system no longer retrieves its chunks or derived summaries.
 
-Only consider [GraphRAG or Cognee](../knowledge/graphs-and-cognee.md) when relationship reasoning, corpus summaries, or reusable memory make their additional indexing and operational work worthwhile. Keep source documents as the reference for extracted claims.
+Only consider [GraphRAG](../infrastructure/knowledge/graphrag/graphrag-definition.md) when relationship reasoning, corpus summaries, or reusable memory make their additional indexing and operational work worthwhile. Keep source documents as the reference for extracted claims.
