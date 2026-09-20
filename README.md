@@ -34,6 +34,31 @@ A practical reference to the concepts, protocols, models, frameworks, and tools 
     - Video generators
       - [Google Veo](infrastructure/models/media/video-generators/veo.md)
       - [Seedance](infrastructure/models/media/video-generators/seedance.md)
+  - Context engineering
+    - [Context engineering](infrastructure/context/context-engineering.md)
+    - [Context windows](infrastructure/context/context-window.md)
+    - [Context budgets](infrastructure/context/context-budget.md)
+    - [Context selection](infrastructure/context/context-selection.md)
+    - [Context compaction](infrastructure/context/context-compaction.md)
+    - [Instruction hierarchy](infrastructure/context/instruction-hierarchy.md)
+  - Computer use
+    - [Computer use](infrastructure/computer-use/computer-use-definition.md)
+    - [Visual computer use](infrastructure/computer-use/visual-computer-use.md)
+    - [Browser use](infrastructure/computer-use/browser-use.md)
+    - [Playwright](infrastructure/computer-use/tools/playwright.md)
+  - Identity and delegation
+    - [Agent identity](infrastructure/identity/agent-identity.md)
+    - [User delegation](infrastructure/identity/user-delegation.md)
+    - [OAuth for agents](infrastructure/identity/oauth-for-agents.md)
+    - [Scoped credentials](infrastructure/identity/scoped-credentials.md)
+  - Events
+    - [Event-driven agents](infrastructure/events/event-driven-agents.md)
+    - [Webhooks](infrastructure/events/webhooks.md)
+    - [Scheduled agents](infrastructure/events/scheduled-agents.md)
+  - Files and artifacts
+    - [Agent files](infrastructure/files/agent-files.md)
+    - [Artifact lifecycle](infrastructure/files/artifact-lifecycle.md)
+    - [Agent-readable documents](infrastructure/files/agent-readable-documents.md)
   - **Agent runtime**
   - Calling
     - [Requests and responses](infrastructure/inference/model-requests-and-responses.md)
@@ -66,10 +91,40 @@ A practical reference to the concepts, protocols, models, frameworks, and tools 
     - [Agentic checkout](infrastructure/commerce/checkout/agentic-checkout.md)
     - [Agentic Commerce Protocol](infrastructure/commerce/protocols/agentic-commerce-protocol.md)
     - [Schema.org Actions](infrastructure/commerce/structured-actions/schema-org-actions.md)
+  - Economics
+    - [Agent payments](infrastructure/economics/agent-payments.md)
+    - [Spending limits](infrastructure/economics/spending-limits.md)
+    - [x402](infrastructure/economics/protocols/x402.md)
+  - Model adaptation
+    - [Model adaptation](infrastructure/model-adaptation/model-adaptation.md)
+    - [Fine-tuning](infrastructure/model-adaptation/fine-tuning.md)
+    - [Distillation](infrastructure/model-adaptation/distillation.md)
+    - [Quantization](infrastructure/model-adaptation/quantization.md)
+  - [Synthetic data](infrastructure/synthetic-data/synthetic-data-definition.md)
+  - [Agent simulation](infrastructure/simulation/agent-simulation.md)
+  - Architecture
+    - [Agent-native applications](infrastructure/architecture/agent-native-applications.md)
+    - [Agent-facing APIs](infrastructure/architecture/agent-facing-apis.md)
+    - [Deterministic boundaries](infrastructure/architecture/deterministic-boundaries.md)
   - **Knowledge**
   - [RAG](infrastructure/knowledge/rag/rag-definition.md)
   - [Graphs, GraphRAG, and Cognee](infrastructure/knowledge/graphrag/graphrag-and-knowledge-graphs.md)
   - [Memory and indexing](infrastructure/knowledge/memory/memory-and-indexing.md)
+- **Agentic web**
+  - [Agent-readable web](agentic-web/agent-readable-web.md)
+  - [Machine-readable content](agentic-web/machine-readable-content.md)
+  - [Agent-addressable actions](agentic-web/agent-addressable-actions.md)
+  - [Markdown endpoints](agentic-web/formats/markdown-endpoints.md)
+  - [llms.txt](agentic-web/formats/llms-txt.md)
+  - [Structured web data](agentic-web/formats/structured-data.md)
+- **Communication**
+  - Human-agent collaboration
+    - [Human in the loop](communication/human-agent-collaboration/human-in-the-loop.md)
+    - [Human on the loop](communication/human-agent-collaboration/human-on-the-loop.md)
+    - [Approvals](communication/human-agent-collaboration/approvals.md)
+    - [Escalation](communication/human-agent-collaboration/escalation.md)
+  - [Agent messaging](communication/messaging/agent-messaging.md)
+  - [Agent notifications](communication/notifications/agent-notifications.md)
 - **Interfaces**
   - [Chat rendering](interfaces/chat/chat-interfaces.md)
   - [Generative UI](interfaces/generative-ui/generative-ui-definition.md)
@@ -79,6 +134,11 @@ A practical reference to the concepts, protocols, models, frameworks, and tools 
   - [Managed agents and sandboxes](infrastructure/hosting/managed-agents.md)
   - [Deployment](infrastructure/hosting/deployment.md)
 - **Operations**
+  - Governance
+    - [Agent governance](operations/governance/agent-governance.md)
+    - [Audit logs](operations/governance/audit-logs.md)
+    - [Policy enforcement](operations/governance/policy-enforcement.md)
+    - [Data retention](operations/governance/data-retention.md)
   - [Tracing](operations/observability/tracing.md)
   - [Evaluations](operations/evaluation/agent-evaluation.md)
   - [Security and permissions](operations/security/agent-security.md)
@@ -102,6 +162,11 @@ A practical reference to the concepts, protocols, models, frameworks, and tools 
   - Knowledge frameworks
     - [Cognee](infrastructure/knowledge/graphrag/frameworks/cognee.md)
 - **Patterns**
+  - [Supervisor](patterns/supervisor-pattern.md)
+  - [Router](patterns/router-pattern.md)
+  - [Planner-executor](patterns/planner-executor-pattern.md)
+  - [Agent as tool](patterns/agent-as-tool.md)
+  - [Handoff](patterns/handoff-pattern.md)
   - [A bounded tool loop](patterns/tool-loop.md)
   - [Grounded answers](patterns/grounded-answers.md)
   - [Background work](patterns/background-work.md)
