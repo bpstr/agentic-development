@@ -418,6 +418,7 @@ Each article can be read independently. Concept pages explain the mechanism; imp
     - [Protocol translation](development/proxies/protocol-translation.md)
     - **Tools**
       - [Codex Proxy](development/proxies/tools/codex-proxy.md)
+      - [Headroom](development/proxies/tools/headroom.md)
   - **Code intelligence**
     - [Code intelligence](development/code-intelligence/code-intelligence.md)
     - [Symbol indexing](development/code-intelligence/symbol-indexing.md)
