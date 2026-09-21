@@ -308,6 +308,7 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
       - [Agentic checkout](infrastructure/commerce/checkout/agentic-checkout.md)
     - **Protocols**
       - [Agentic Commerce Protocol](infrastructure/commerce/protocols/agentic-commerce-protocol.md)
+      - [Universal Commerce Protocol](infrastructure/commerce/protocols/universal-commerce-protocol.md)
     - **Structured actions**
       - [Schema.org Actions](infrastructure/commerce/structured-actions/schema-org-actions.md)
   - **Economics**
@@ -324,13 +325,23 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
     - [Agent-native applications](infrastructure/architecture/agent-native-applications.md)
     - [Deterministic boundaries](infrastructure/architecture/deterministic-boundaries.md)
 - **Agentic web**
+  - [Agentic web](agentic-web/agentic-web-definition.md)
   - [Agent-addressable actions](agentic-web/agent-addressable-actions.md)
   - [Agent-readable web](agentic-web/agent-readable-web.md)
+  - [Agent interaction models](agentic-web/interaction-models.md)
+  - [Agent service discovery](agentic-web/agent-service-discovery.md)
   - [Machine-readable content](agentic-web/machine-readable-content.md)
+  - **Access**
+    - [Agent access policy](agentic-web/access/agent-access-policy.md)
+    - [Content-use signals](agentic-web/access/content-use-signals.md)
   - **Formats**
     - [llms.txt](agentic-web/formats/llms-txt.md)
     - [Markdown endpoints](agentic-web/formats/markdown-endpoints.md)
     - [Structured web data](agentic-web/formats/structured-data.md)
+  - **Operations**
+    - [Agent traffic](agentic-web/operations/agent-traffic.md)
+  - **Trust**
+    - [Automated client identity](agentic-web/trust/automated-client-identity.md)
 - **Communication**
   - **Human agent collaboration**
     - [Agent approvals](communication/human-agent-collaboration/approvals.md)
@@ -490,6 +501,7 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
 ## Glossary
 
 - **Agent** — an executing system that lets a model choose actions within application-controlled boundaries.
+- **Agentic web** — web content and capabilities exposed so software agents can discover, interpret, authorize, and invoke them without relying only on human-oriented interfaces.
 - **Agent loop** — inference, action, result, and continuation until execution completes, suspends, or stops.
 - **Cloud coding agent** — a coding agent whose repository tools run in remote infrastructure, not merely a remotely hosted model.
 - **Context** — the instructions, evidence, history, and tool information available to an inference step.
