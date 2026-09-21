@@ -84,6 +84,7 @@ Some implementation knowledge is intentionally volatile. Treat these areas as ma
 - model/provider catalogs under `infrastructure/models/providers/`, provider-specific model directories, open-weight model pages, and media/voice model lists;
 - hosted inference, agent runtimes, managed agent services, RAG/search/memory platforms, and other cloud product pages;
 - provider API pages, provider tools, SDK examples, endpoint names, authentication flows, and supported transports;
+- cloud coding under `development/coding-agents/` and managed-runtime examples: product versus API/SDK boundaries, cloud CLI flags, beta headers, repository checkout/upload behavior, GitHub authorization and credential lifetimes, sandbox versus hosted-tool networking, session recovery and output paths, approval/cancellation semantics, artifact retention, budgets, and subscription versus API execution billing;
 - non-text ingestion under `infrastructure/knowledge/multimodal/`, document-intelligence tools, OCR/ASR/vision pipelines, and multimodal retrieval: loader defaults, format/codec support, output schemas, timestamp/coordinate preservation, model artifacts, and licenses;
 - protocol/specification versions, registries, marketplaces, framework/tool releases, and product renames;
 - preview/GA/deprecation status, supported regions, pricing, quotas, limits, model IDs, and availability claims.

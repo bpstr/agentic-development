@@ -422,6 +422,7 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
 - **Development**
   - **Coding agents**
     - [Coding agents](development/coding-agents/coding-agent-definition.md)
+    - [Cloud coding agents](development/coding-agents/cloud-coding-agents.md)
     - [Coding-agent permissions](development/coding-agents/coding-agent-permissions.md)
     - [Coding-agent verification](development/coding-agents/coding-agent-verification.md)
     - [Specification-driven development](development/coding-agents/spec-driven-development.md)
@@ -490,6 +491,7 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
 
 - **Agent** — an executing system that lets a model choose actions within application-controlled boundaries.
 - **Agent loop** — inference, action, result, and continuation until execution completes, suspends, or stops.
+- **Cloud coding agent** — a coding agent whose repository tools run in remote infrastructure, not merely a remotely hosted model.
 - **Context** — the instructions, evidence, history, and tool information available to an inference step.
 - **Embedding** — a vector representation used for tasks such as similarity retrieval.
 - **Evaluator–optimizer** — a bounded loop that generates, checks, and revises one artifact against explicit criteria.
