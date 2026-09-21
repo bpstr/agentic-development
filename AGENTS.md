@@ -90,7 +90,7 @@ Some implementation knowledge is intentionally volatile. Treat these areas as ma
 
 Maintenance work should **update existing pages before creating new ones**. A new model version, renamed product, additional endpoint, or incremental provider feature normally belongs in an existing provider or capability page. Create a new page only when the external change introduces a distinct capability, architecture, protocol, major implementation surface, or independently useful product that deserves its own place in the taxonomy.
 
-When a provider renames or reorganizes a service, preserve useful historical terminology in the article where it helps search and migration, but use the current official name as the primary term. Update README links and cross-references after moves or renames.
+When a provider renames or reorganizes a service, preserve useful historical terminology in the article where it helps search and migration, but use the current official name as the primary term. Update README links and cross-references after moves or renames, and review the root overview for affected terminology or links.
 
 For recurring freshness scans:
 
@@ -100,7 +100,7 @@ For recurring freshness scans:
 4. remove obsolete details that no longer help explain the capability;
 5. avoid creating pages for every release or announcement;
 6. propose a new page only when the taxonomy is missing a durable, materially distinct topic;
-7. run the normal completeness checks after updates.
+7. review `overview.md` for any changed capability or concept boundary and run the normal completeness checks after updates.
 
 A maintenance scan may report a suggested page and path without creating it when the taxonomy fit is uncertain. Prefer a concise suggestion over speculative filesystem growth.
 
@@ -114,6 +114,8 @@ Do not turn the repository into an “awesome AI tools” list. Add implementati
 
 Peripheral areas are welcome when they materially affect agentic development. Examples include media generation, agentic commerce, browser-native agent interfaces, skills and plugins, code intelligence, observability, security, and deployment.
 
+Use course curricula to discover missing questions, not to generate matching chapters automatically. Before adding a page, identify the decision, mechanism, failure diagnosis, or verification method that existing pages do not already explain. Prefer a worked example in the existing canonical article when that closes the gap. Clearly label illustrative data and application pseudocode; never present invented comparisons as measured results.
+
 ## Writing
 
 Write as a technical reference book, not an online course.
@@ -124,15 +126,28 @@ Write as a technical reference book, not an online course.
 - Link directly to primary sources where they support the knowledge.
 - Examples should clarify the concept rather than advertise a product.
 - Prefer concise technical prose over marketing terminology.
-- Keep the root `README.md` as the primary table of contents and compact glossary.
-- Use nested bullet lists for the complete table of contents, with every knowledge page linked once under its actual filesystem parent. Use tables only for substantive comparisons.
-- Keep the root limited to `README.md`, `LICENSE`, `AGENTS.md`, and content directories. Do not add documentation generators, a `docs/` wrapper, scripts, example projects, CI workflows, or course administration files unless explicitly requested.
+- Keep the root `README.md` as the primary table of contents and compact glossary; link to `overview.md` near its opening for conceptual orientation.
+- Use nested bullet lists for the complete table of contents, with every knowledge page linked once under its actual filesystem parent. The root overview is linked in the README opening rather than duplicated in a content directory. Use tables only for substantive comparisons or concise concept-to-meaning maps.
+- Keep the root limited to `README.md`, `overview.md`, `LICENSE`, `AGENTS.md`, and content directories. The explicitly requested overview is the only root conceptual-summary exception. Do not add documentation generators, a `docs/` wrapper, scripts, example projects, CI workflows, or course administration files unless explicitly requested.
+
+## Root conceptual overview
+
+`overview.md` is the single-file, one-page-style conceptual map of the entire repository. It explains what the topic families mean before readers choose a deep dive. It is not a duplicate table of contents, vendor directory, release feed, or condensed copy of every article.
+
+- Cover every top-level content area and every materially distinct capability family. Group implementation variants under the capability they serve; do not add a row for every tool, provider, or model release.
+- Use very short explanations and relative links to canonical concept articles. Keep important boundaries visible, including models versus executing agents, context versus durable memory, inference versus orchestration, retrieval versus generation, and source understanding versus media generation.
+- Target roughly 800–1,100 visible words. Preserve compactness by merging or replacing wording instead of appending endlessly. Do not add setup instructions, code blocks, detailed algorithms, benchmark scores, prices, model IDs, or volatile release claims.
+- Whenever pages are added, removed, moved, renamed, or conceptually corrected, review the overview in the same change. Update affected wording and links in the same commit as the finalized content and README changes. Do not edit it merely to create maintenance activity when its meaning remains accurate.
+- Summarize only content that actually exists. Future proposals belong in discussion, not in the overview as completed coverage.
+- During freshness scans, review the overview for changed scope or terminology, but keep routine provider-version changes within implementation pages.
+
+Validate conceptual coverage against the actual filesystem and README, not only against the previous overview. Check its relative links and confirm that a reader can distinguish neighboring concepts without opening every page. Preserve the README's complete index and glossary rather than moving them into the overview.
 
 ## Completeness and validation
 
 Create actual explanatory articles when implementing a taxonomy; a filename, link collection, placeholder, or proposed tree is not a completed guide. Each page should define its subject and provide a useful mechanism, example, decision, or limitation. Split implementation setup into descriptive companion pages when it becomes too large.
 
-Before publishing, check global filename uniqueness, README coverage, relative links including anchors, fenced JSON and code syntax, and obsolete references after moves. Perform temporary checks outside the repository rather than adding repository machinery. Use offline execution where it meaningfully validates an example. Do not call paid APIs or claim live integration testing merely because a snippet parses.
+Before publishing, check global filename uniqueness, README coverage, overview concept coverage and length, relative links including anchors, fenced JSON and code syntax, and obsolete references after moves. Perform temporary checks outside the repository rather than adding repository machinery. Use offline execution where it meaningfully validates an example. Do not call paid APIs or claim live integration testing merely because a snippet parses.
 
 Remove outdated source-review banners and course navigation from retained pages. Keep relevant API revision and preview limitations in the knowledge itself. Preserve the MIT license and useful existing explanations while relocating content.
 

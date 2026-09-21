@@ -4,6 +4,8 @@ A practical technical reference to the concepts, protocols, models, frameworks, 
 
 Each article can be read independently. Concept pages explain the mechanism; implementation pages connect it to official documentation, setup, examples, and operational limits.
 
+Start with the [one-page conceptual overview](overview.md) for a high-level map of the whole topic. The index below links every deeper article.
+
 ## Contents
 
 - **Foundations**
@@ -73,6 +75,10 @@ Each article can be read independently. Concept pages explain the mechanism; imp
     - [Fine-tuning](infrastructure/model-adaptation/fine-tuning.md)
     - [Model adaptation](infrastructure/model-adaptation/model-adaptation.md)
     - [Model quantization](infrastructure/model-adaptation/quantization.md)
+  - **Optimization**
+    - [Prompt optimization](infrastructure/optimization/prompt-optimization.md)
+    - **Frameworks**
+      - [DSPy for prompt optimization](infrastructure/optimization/frameworks/dspy.md)
   - **Inference**
     - [Model inference](infrastructure/inference/inference-definition.md)
     - [Model requests](infrastructure/inference/model-requests.md)
@@ -134,6 +140,7 @@ Each article can be read independently. Concept pages explain the mechanism; imp
   - **Orchestration**
     - [Agent orchestration](infrastructure/orchestration/orchestration-definition.md)
     - [Agent loops](infrastructure/orchestration/agent-loop.md)
+    - [Agent harnesses and cross-session continuity](infrastructure/orchestration/agent-harness.md)
     - [Workflow orchestration](infrastructure/orchestration/workflow-orchestration.md)
     - [Graph orchestration](infrastructure/orchestration/graph-orchestration.md)
     - [Agent state management](infrastructure/orchestration/state-management.md)
@@ -382,6 +389,7 @@ Each article can be read independently. Concept pages explain the mechanism; imp
     - [Model output evaluation](operations/evaluation/model-output-evaluation.md)
     - [Regression testing](operations/evaluation/regression-testing.md)
     - [Tool evaluation](operations/evaluation/tool-evaluation.md)
+    - [Retrieval evaluation](operations/evaluation/retrieval-evaluation.md)
     - **Frameworks**
       - [DeepEval](operations/evaluation/frameworks/deepeval.md)
       - [LangSmith evaluation](operations/evaluation/frameworks/langsmith-evaluation.md)
@@ -416,6 +424,7 @@ Each article can be read independently. Concept pages explain the mechanism; imp
     - [Coding agents](development/coding-agents/coding-agent-definition.md)
     - [Coding-agent permissions](development/coding-agents/coding-agent-permissions.md)
     - [Coding-agent verification](development/coding-agents/coding-agent-verification.md)
+    - [Specification-driven development](development/coding-agents/spec-driven-development.md)
     - [Repository context](development/coding-agents/repository-context.md)
     - **Tools**
       - [Claude Code](development/coding-agents/tools/claude-code.md)
@@ -473,6 +482,7 @@ Each article can be read independently. Concept pages explain the mechanism; imp
   - [Agent-as-tool pattern](patterns/agent-as-tool.md)
   - [Handoff pattern](patterns/handoff-pattern.md)
   - [Planner-executor pattern](patterns/planner-executor-pattern.md)
+  - [Evaluator–optimizer pattern](patterns/evaluator-optimizer-pattern.md)
   - [Router pattern](patterns/router-pattern.md)
   - [Supervisor pattern](patterns/supervisor-pattern.md)
 
@@ -482,6 +492,7 @@ Each article can be read independently. Concept pages explain the mechanism; imp
 - **Agent loop** — inference, action, result, and continuation until execution completes, suspends, or stops.
 - **Context** — the instructions, evidence, history, and tool information available to an inference step.
 - **Embedding** — a vector representation used for tasks such as similarity retrieval.
+- **Evaluator–optimizer** — a bounded loop that generates, checks, and revises one artifact against explicit criteria.
 - **Framework** — reusable software for constructing and running an application or agent workflow.
 - **Gateway** — an intermediary that routes requests and can apply authentication, budgets, or compatibility rules.
 - **Generative UI** — an interface whose component choice or structure is influenced by model output.
@@ -493,6 +504,7 @@ Each article can be read independently. Concept pages explain the mechanism; imp
 - **Memory** — selected information retained for later interactions, with an explicit retrieval and lifecycle policy.
 - **Model** — a learned computation used to generate, classify, embed, or otherwise transform input.
 - **Open weights** — published model parameters; the license and availability of other components must be assessed separately.
+- **Prompt optimization** — selecting instructions or demonstrations against explicit evaluation criteria for later requests.
 - **RAG** — retrieval-augmented generation: retrieve external evidence and supply it to generation.
 - **Run** — a tracked execution with a goal, status, limits, intermediate operations, and an outcome.
 - **Skill** — packaged instructions and optional resources that teach an agent a repeatable task.
