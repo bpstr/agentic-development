@@ -75,6 +75,34 @@ Time-sensitive product details such as model IDs, pricing, API versions, browser
 
 Community directories such as Skills.sh can be used to document discovery, installation, popularity, or community skills, but the skill's canonical repository remains the source for its actual contents.
 
+## Freshness and external updates
+
+Some implementation knowledge is intentionally volatile. Treat these areas as maintenance hotspots and verify them against current primary sources whenever they are touched:
+
+- model/provider catalogs under `infrastructure/models/providers/`, provider-specific model directories, open-weight model pages, and media/voice model lists;
+- hosted inference, agent runtimes, managed agent services, RAG/search/memory platforms, and other cloud product pages;
+- provider API pages, provider tools, SDK examples, endpoint names, authentication flows, and supported transports;
+- protocol/specification versions, registries, marketplaces, framework/tool releases, and product renames;
+- preview/GA/deprecation status, supported regions, pricing, quotas, limits, model IDs, and availability claims.
+
+Maintenance work should **update existing pages before creating new ones**. A new model version, renamed product, additional endpoint, or incremental provider feature normally belongs in an existing provider or capability page. Create a new page only when the external change introduces a distinct capability, architecture, protocol, major implementation surface, or independently useful product that deserves its own place in the taxonomy.
+
+When a provider renames or reorganizes a service, preserve useful historical terminology in the article where it helps search and migration, but use the current official name as the primary term. Update README links and cross-references after moves or renames.
+
+For recurring freshness scans:
+
+1. inspect official documentation, model catalogs, release notes, specifications, and canonical repositories;
+2. compare current claims in the repository with those sources;
+3. correct stale names, model lists, examples, status labels, and links in place;
+4. remove obsolete details that no longer help explain the capability;
+5. avoid creating pages for every release or announcement;
+6. propose a new page only when the taxonomy is missing a durable, materially distinct topic;
+7. run the normal completeness checks after updates.
+
+A maintenance scan may report a suggested page and path without creating it when the taxonomy fit is uncertain. Prefer a concise suggestion over speculative filesystem growth.
+
+Stable concept pages do not need churn merely because a provider release occurred. Update them only when the underlying concept, terminology, or important implementation boundary has changed.
+
 ## Scope
 
 Keep pages focused. Split a subject into additional lexical files instead of growing one large catch-all document.
