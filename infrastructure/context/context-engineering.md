@@ -17,3 +17,33 @@ Keep source boundaries intact. A retrieved issue comment is evidence, even if it
 Compaction is lossy. Store exact IDs, decisions, constraints, and unresolved work separately from a conversational summary when they affect later actions. Reload mutable facts such as task status from their authoritative source.
 
 Measure context failures directly: missed corrections, wrong record selection, outdated facts, and unnecessary retrieval. Adding more documents can worsen distraction, cost, and input processing time. The useful context is the smallest set that supports the next decision reliably, with retrieval available for the remaining uncertainty.
+
+## Diagnose a correction lost during compaction
+
+Suppose an authorized user first says “prepare the R7 update,” then corrects the request: “Use project P-17, not P-71; keep it a draft; the date is not approved.” Later, the conversation exceeds its context budget.
+
+| Representation | Information available to the next step | Failure or benefit |
+| --- | --- | --- |
+| Lossy summary: “Prepare the release update” | General topic only | Wrong project, invented date, or accidental publication becomes more likely |
+| Structured task record plus a short summary | Exact scope, draft-only intent, unresolved date, source references | The next step can retrieve current facts without losing the correction |
+
+An **illustrative task record** is:
+
+```json
+{
+  "project_id": "P-17",
+  "release_id": "R7",
+  "requested_output": "draft",
+  "constraints": ["do not publish", "do not invent a release date"],
+  "supersedes": {"project_id": "P-71"},
+  "source_message_ids": ["msg-18", "msg-23"],
+  "unresolved": ["approved release date"],
+  "refresh_before_use": ["release status", "task owners", "permissions"]
+}
+```
+
+This record captures intent; it is not an authorization token. Its fields must be derived from trusted application state and user instructions, not promoted from a retrieved document. Scope, permissions, and approval are still checked at execution time.
+
+To test compaction, feed the same post-compaction request through an uncompacted control and the compacted context. Assert that only P-17 is queried, no publication is attempted, and the date remains unresolved unless an authoritative source supplies it. Then change a task owner in the store and verify that the agent reloads it rather than treating the summary as current truth.
+
+Add adversarial cases where an old P-71 document includes “publish immediately,” a recent message withdraws permission, or a relevant source is deleted. Diagnose separately whether information was omitted, retrieved but ignored, or treated as more authoritative than it should be. Increasing the context window is not a substitute for identifying which boundary failed.

@@ -58,6 +58,29 @@ assertions:
 
 Injecting the forbidden call deliberately tests the boundary even if the current model normally avoids it. Add separate cases for valid actions, duplicate delivery, stale permissions, missing records, ambiguous names, tool timeouts, and cancellation after a write has already completed.
 
+## Capability and regression suites
+
+A capability suite explores difficult work the system does not yet perform reliably; a regression suite protects accepted behavior. Keep their results separate. A difficult new research task must not hide a regression in a routine update. Conversely, a perfect score on easy cases says little about newly required capabilities. [Anthropic's agent-evaluation guidance](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) distinguishes these purposes and emphasizes isolated trials.
+
+For example, add a multi-document dependency investigation to capability evaluation while keeping exact-key lookup, ambiguous-name clarification, and cross-workspace denial in regression evaluation. Once the investigation meets the agreed acceptance criteria, retain representative cases as regression protection. Do not change the grader merely to make a candidate pass.
+
+## Measure repeated trials without hiding inconsistency
+
+This **illustrative dataset is not a measured model result**. Each trial starts from an isolated copy of the same task state; P means all required outcome checks pass and F means at least one fails.
+
+| Task | Baseline trials | Candidate trials |
+| --- | --- | --- |
+| Exact-key lookup | P P P | P P P |
+| Resolve an ambiguous title | P F F | P P F |
+| Recover a duplicated update | P P F | P P P |
+| Reject a forbidden update | P P P | P P P |
+
+The baseline passes 9/12 trials; the candidate passes 11/12. Both succeed at least once on 4/4 tasks, but they succeed in all three trials on 2/4 and 3/4 tasks respectively. Reporting only “every task solved” hides the remaining ambiguity failure. Twelve trials do not establish a population-level improvement; inspect paired failures and repeat a representative suite.
+
+`pass@k` concerns at least one success in k attempts; `pass^k` concerns success in all k attempts. For one hypothetical task with independent attempts and fixed success probability p = 0.8, at k = 3 these probabilities are `1 - (1 - p)^3 = 0.992` and `p^3 = 0.512`. Do not substitute a pooled success rate into these formulas when tasks have different difficulty or failures are correlated. The table above reports observed task-group counts, not a general unbiased benchmark estimator.
+
+Extra attempts are also not free retries in production. A write with an unknown outcome needs reconciliation, not repeated execution until one response looks successful. Count infrastructure failures, grading failures, and application failures separately under a declared policy; never silently discard failed trials.
+
 ## Make comparisons reproducible
 
 Save dataset revision, model identifier, generation settings, prompt revision, tool schemas, application commit, and retrieval snapshot or freshness policy. Use a held-out set so repeated prompt tuning does not become memorization of examples. Repeat representative live cases when nondeterminism matters, report counts alongside percentages, and examine failures individually.
