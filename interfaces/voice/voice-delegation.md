@@ -1,16 +1,16 @@
 # Voice delegation
 
-Voice delegation separates an ongoing spoken conversation from the work needed to answer or act. The voice layer manages listening and speaking; a backend agent or service performs retrieval, reasoning, and domain operations. This is useful when work takes longer than a natural conversational pause.
+Voice delegation is the interface pattern for keeping a spoken conversation responsive while separate backend work runs. The voice surface manages listening, speaking, and user feedback; a backend agent or service performs retrieval, reasoning, or domain operations.
 
 A durable application flow is:
 
-1. Persist the user's request in the current conversation.
-2. Create a backend run and associate it with the voice delegation.
-3. Let the voice layer acknowledge observed progress while work continues.
-4. Save the final result with sources and action receipts.
-5. Notify the live session and speak the useful part at an appropriate moment.
+1. persist the user's resolved request in the current conversation;
+2. create a backend run and associate it with the voice turn;
+3. show that work is running without blocking unrelated conversation;
+4. save the final result with sources and action receipts;
+5. surface the result visually and speak a concise summary when appropriate.
 
-An illustrative application completion event is:
+An application-level completion event might look like:
 
 ```json
 {
@@ -22,10 +22,10 @@ An illustrative application completion event is:
 }
 ```
 
-The completion event is not a provider schema. An adapter maps it to the selected voice API and retains the provider delegation identifier. That mapping prevents two concurrent requests from receiving each other's result.
+This is not a provider schema. An adapter maps application state to the selected voice API. Keep provider delegation/session identifiers so concurrent requests cannot receive each other's results.
 
-New speech may refine, replace, or cancel a request. Store the relationship explicitly; a delayed mutation must recheck permissions and preconditions before committing. Stopping audio and cancelling work are independent operations.
+New speech may refine, replace, or cancel a request. Model those relationships explicitly. Stopping playback, interrupting the conversational model, and cancelling backend work are separate operations.
 
-Choose who owns backend context. A managed delegation service may prepare requests and return results automatically. An application-managed bridge can control history, routing, budgets, validation, and redaction. [GPT-Live's delegation guide](https://developers.openai.com/api/docs/guides/live-delegation) documents both approaches, including the distinction between a completed backend response and spoken output.
+A completion should remain useful after disconnect: persist the detailed result and restore it when the conversation is reopened. The visible voice UI can then summarize current work as **running**, **needs approval**, **completed**, or **failed** rather than leaving the user with an indefinite speaking/thinking indicator.
 
-On disconnect, finish or cancel each run according to policy. Persist results so that their usefulness does not depend on the user remaining on the call.
+OpenAI's [GPT-Live delegation guide](https://developers.openai.com/api/docs/guides/live-delegation) is one concrete implementation of this pattern. The application-facing behavior should remain provider-independent. See [voice session states](voice-session-states.md) and [background work](../../patterns/background-work.md).

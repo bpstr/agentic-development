@@ -24,6 +24,7 @@ Each article can be read independently. Concept pages explain the mechanism; imp
     - **Providers**
       - [Anthropic](infrastructure/models/providers/anthropic.md)
       - [Google Gemini](infrastructure/models/providers/google.md)
+      - [ElevenLabs](infrastructure/models/providers/elevenlabs.md)
       - [Mistral AI](infrastructure/models/providers/mistral.md)
       - [Moonshot AI and the Kimi API](infrastructure/models/providers/moonshot-ai.md)
       - [OpenAI](infrastructure/models/providers/openai.md)
@@ -41,6 +42,17 @@ Each article can be read independently. Concept pages explain the mechanism; imp
       - [Qwen open-weight models](infrastructure/models/open-source/qwen.md)
       - [DeepSeek open-weight models](infrastructure/models/open-source/deepseek.md)
       - [Llama open-weight models](infrastructure/models/open-source/llama.md)
+    - **Voice and audio**
+      - [Voice and audio models](infrastructure/models/voice/voice-models.md)
+      - [Speech-to-text models](infrastructure/models/voice/speech-to-text.md)
+      - [Text-to-speech models](infrastructure/models/voice/text-to-speech.md)
+      - [Speech-to-speech interaction](infrastructure/models/voice/speech-to-speech.md)
+      - **Providers**
+        - [ElevenLabs voice integration](infrastructure/models/voice/providers/elevenlabs-agents.md)
+        - [Gemini Live API](infrastructure/models/voice/providers/gemini-live.md)
+        - [OpenAI GPT-Live and realtime voice](infrastructure/models/voice/providers/openai-live.md)
+        - [Deepgram voice models and Voice Agent API](infrastructure/models/voice/providers/deepgram-voice.md)
+        - [Hume Empathic Voice Interface](infrastructure/models/voice/providers/hume-evi.md)
     - **Media**
       - [Media models](infrastructure/models/media/media-models.md)
       - [Text-to-image generation](infrastructure/models/media/text-to-image.md)
@@ -321,13 +333,10 @@ Each article can be read independently. Concept pages explain the mechanism; imp
     - [Realtime agents](interfaces/realtime/realtime-agents.md)
     - [Realtime transport](interfaces/realtime/realtime-transport.md)
   - **Voice**
-    - [Voice agents](interfaces/voice/voice-agents.md)
-    - [Speech-to-speech interaction](interfaces/voice/speech-to-speech.md)
+    - [Voice agent interfaces](interfaces/voice/voice-agents.md)
+    - [Voice turn-taking](interfaces/voice/voice-turn-taking.md)
+    - [Voice session states](interfaces/voice/voice-session-states.md)
     - [Voice delegation](interfaces/voice/voice-delegation.md)
-    - **Providers**
-      - [ElevenLabs ElevenAgents](interfaces/voice/providers/elevenlabs.md)
-      - [Gemini Live API](interfaces/voice/providers/gemini-live.md)
-      - [OpenAI GPT-Live](interfaces/voice/providers/openai-live.md)
 - **Operations**
   - **Observability**
     - [Agent observability](operations/observability/agent-observability.md)
