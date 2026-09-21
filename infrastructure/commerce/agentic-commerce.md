@@ -16,6 +16,8 @@ A useful application separates recommendation from execution:
 4. Complete the authorized purchase through a defined contract.
 5. Reconcile the order and fulfillment state.
 
-[Agentic checkout](checkout/agentic-checkout.md) describes the purchase capability. The [Agentic Commerce Protocol](protocols/agentic-commerce-protocol.md) specifies one concrete interaction model. [Schema.org Actions](structured-actions/schema-org-actions.md) describe web semantics, while [Claude commerce skills](../../development/skills/platforms/claude-commerce-skills.md) package reusable agent behavior.
+[Agentic checkout](checkout/agentic-checkout.md) describes the purchase capability. The [Agentic Commerce Protocol](protocols/agentic-commerce-protocol.md) and [Universal Commerce Protocol](protocols/universal-commerce-protocol.md) provide distinct commerce contracts. UCP also separates commerce capabilities from transports such as REST, MCP, and A2A. [Schema.org Actions](structured-actions/schema-org-actions.md) describe web semantics, while [Claude commerce skills](../../development/skills/platforms/claude-commerce-skills.md) package reusable agent behavior.
+
+Do not collapse commerce discovery, checkout, and payment into one permission. A platform may be allowed to discover products without being authorized to create an order, and a valid checkout session does not itself grant spending authority.
 
 These layers can cooperate, but none removes the need for explicit identity, business authorization, reliable state transitions, and auditable outcomes.
