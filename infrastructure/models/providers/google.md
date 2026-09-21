@@ -1,15 +1,29 @@
 # Google Gemini
 
-[Official Gemini model catalog](https://ai.google.dev/gemini-api/docs/models) · [Gemini API pricing](https://ai.google.dev/gemini-api/docs/pricing) · [Gemini documentation](https://ai.google.dev/gemini-api/docs)
+[Official Gemini model catalog](https://ai.google.dev/gemini-api/docs/models) · [Gemini API pricing](https://ai.google.dev/gemini-api/docs/pricing) · [Gemini documentation](https://ai.google.dev/gemini-api/docs) · [Gemini Enterprise Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/overview)
 
 Google's Gemini family includes general-purpose multimodal models and specialized model surfaces. General inference, live audio, speech generation, image generation, embeddings, and video generation must be selected by capability rather than assuming one Gemini endpoint provides them all.
 
 The catalog identifies stable and preview versions separately. Individual model pages determine the exact model ID, lifecycle status, supported modalities, and controls. Use those identifiers in configuration instead of copying a model name from an unrelated tutorial.
 
-For realtime speech, the current catalog includes Gemini Live models. See [Gemini Live API](../voice/providers/gemini-live.md) and the [voice model overview](../voice/voice-models.md). Speech-generation models are also listed separately from the Live conversational models.
+For realtime speech, see [Gemini Live API](../voice/providers/gemini-live.md) and the [voice model overview](../voice/voice-models.md). Speech-generation models are separate from the Live conversational models.
 
-For example, an assistant that searches documents and reads screenshots needs language generation, image understanding, and reliable function calling. A separate requirement to create an illustration calls for an image model. Generating an embedding for retrieval is another operation again, even if all three are offered by the same provider.
+## Google-hosted agent and knowledge services
 
-Google ADK is an orchestration framework; Vertex AI Agent Engine is a managed execution service. Neither name describes a general-purpose inference model. Keep their evaluation and deployment decisions separate from selecting a Gemini model.
+Gemini model inference is only one layer of Google's current agent platform. Keep these services distinct when evaluating an architecture:
 
-When comparing Gemini with another provider, preserve the task, source evidence, permissions, and success criteria. Prompt formats and reasoning controls need not map one-to-one. Preview availability, account access, and a successful sample request also do not establish long-term production availability.
+- [Gemini API](../../inference/apis/gemini-api.md) provides model inference and supported built-in tools.
+- [Google Agent Development Kit](../../orchestration/frameworks/google-adk.md) is an application framework, not a hosted model or runtime.
+- [Agent Runtime](../../orchestration/managed-runtimes/vertex-ai-agent-engine.md), formerly associated with Vertex AI Agent Engine naming, hosts agent applications on Gemini Enterprise Agent Platform.
+- [Managed Agents API](../../orchestration/managed-runtimes/google-managed-agents-api.md) is a separate preview service for autonomous agents running in managed sandboxes.
+- [RAG Engine](../../knowledge/rag/platforms/google-rag-engine.md) manages ingestion and retrieval pipelines for private knowledge.
+- [Agent Search](../../knowledge/retrieval/platforms/google-agent-search.md), formerly Vertex AI Search, provides managed enterprise search and grounding.
+- [Agent Platform Memory Bank](../../knowledge/memory/platforms/google-memory-bank.md) provides managed long-term agent memory across sessions.
+- [Spanner Graph](../../knowledge/graphrag/platforms/google-spanner-graph.md) is Google's hosted graph database surface for relationship-aware retrieval and GraphRAG.
+- [Gemini Notebook Enterprise](../../knowledge/document-intelligence/platforms/gemini-notebook-enterprise.md), formerly NotebookLM Enterprise, provides grounded research notebooks and a preview management/source API.
+
+Agent Studio is Google's low-code workspace for designing and testing prompts and agents. Vector Search provides managed vector retrieval and can back RAG Engine. Gemini in BigQuery adds AI-assisted analytics and conversational data workflows. These are adjacent hosted surfaces; add separate repository pages only when their agentic role needs more than the provider-level summary.
+
+For example, an assistant that searches documents and reads screenshots needs language generation, image understanding, and reliable function calling. A separate requirement to create an illustration calls for an image model. A requirement to manage an enterprise corpus or persistent agent memory calls for a hosted knowledge service rather than a different Gemini model.
+
+When comparing Gemini or Google-hosted services with another provider, preserve the task, source evidence, permissions, and success criteria. Prompt formats, tool contracts, storage boundaries, regional availability, and preview status need not map one-to-one.
