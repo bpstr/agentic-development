@@ -67,6 +67,8 @@ For data/knowledge tools, show both **ingestion/indexing** and **retrieval/query
 
 Do not invent code from an uncertain API. If exact syntax is unstable or cannot be verified, explain the flow conceptually and link to the current official example.
 
+For non-text sources, distinguish accepted file formats from modalities actually analyzed. Verify adapter routing, optional dependencies, text flattening, and preservation of page coordinates, timestamps, speaker labels, and confidence. Keep extraction, generated interpretation, retrieval, and media generation separate. Source-code observations must identify the inspected revision rather than imply that every installed release behaves identically.
+
 ## Sources
 
 Use primary sources: specifications, official documentation, papers, model cards, and canonical repositories. Avoid aggregator sites where a primary source exists.
@@ -82,6 +84,7 @@ Some implementation knowledge is intentionally volatile. Treat these areas as ma
 - model/provider catalogs under `infrastructure/models/providers/`, provider-specific model directories, open-weight model pages, and media/voice model lists;
 - hosted inference, agent runtimes, managed agent services, RAG/search/memory platforms, and other cloud product pages;
 - provider API pages, provider tools, SDK examples, endpoint names, authentication flows, and supported transports;
+- non-text ingestion under `infrastructure/knowledge/multimodal/`, document-intelligence tools, OCR/ASR/vision pipelines, and multimodal retrieval: loader defaults, format/codec support, output schemas, timestamp/coordinate preservation, model artifacts, and licenses;
 - protocol/specification versions, registries, marketplaces, framework/tool releases, and product renames;
 - preview/GA/deprecation status, supported regions, pricing, quotas, limits, model IDs, and availability claims.
 
