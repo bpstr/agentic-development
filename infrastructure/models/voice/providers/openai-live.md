@@ -1,34 +1,28 @@
-# OpenAI GPT-Live
+# OpenAI GPT-Live and realtime voice
 
-Official documentation: [Getting started with GPT-Live](https://developers.openai.com/api/docs/guides/live) and [delegation and tools](https://developers.openai.com/api/docs/guides/live-delegation).
+Official documentation: [OpenAI model catalog](https://developers.openai.com/api/docs/models), [GPT-Live 1](https://developers.openai.com/api/docs/models/gpt-live-1), [getting started with GPT-Live](https://developers.openai.com/api/docs/guides/live), [delegation and tools](https://developers.openai.com/api/docs/guides/live-delegation), and the [Realtime API guide](https://developers.openai.com/api/docs/guides/realtime).
 
-GPT-Live manages a spoken conversation while a backend handles reasoning and tools. It supports listening while speaking, and the backend can continue working through interruptions. Choose the voice model independently from the agent or model that performs the task.
+OpenAI exposes more than one voice architecture. **GPT-Live 1** is a full-duplex voice model that can keep a spoken conversation active while delegating reasoning and tool work to a backend. The **GPT-Realtime** family instead performs realtime audio interaction and tool selection within the realtime model/session architecture. Separate transcription and text-to-speech models are also listed in the model catalog.
 
-Two delegation modes divide the integration differently. **Responses delegation** has OpenAI prepare backend model requests and return results to the live conversation. **Client delegation** lets the application choose context, run its own agent or service, and return verified results. In both modes, custom functions, permissions, confirmations, and durable business records remain application responsibilities.
+Do not treat those surfaces as interchangeable merely because they all accept audio. Choose according to who should own reasoning, tool execution, turn-taking, and the spoken conversation.
 
-## Basic session configuration
+## GPT-Live delegation
 
-The official delegation guide documents this configuration shape:
+GPT-Live separates the conversational model from backend work. The backend can continue during an interruption because stopping speech and cancelling work are separate operations.
 
-```js
-export const session = {
-  model: "gpt-live-1",
-  delegation: {
-    type: "responses",
-    responses: {
-      model: "gpt-5.6-terra",
-      instructions: "Answer release questions using verified project data.",
-    },
-  },
-};
-```
+Two delegation modes divide the integration differently:
 
-This configures a session; it does not open a connection. Use the WebRTC quickstart linked from the getting-started guide for a browser microphone, playback, and event channel. Serve the client over HTTPS or localhost and create the session through a trusted server holding the project API key. Wait for `session.started` before normal primary-connection commands.
+- **Responses delegation** lets GPT-Live prepare supported Responses requests and return backend results to the live conversation.
+- **Client delegation** lets the application prepare context, run its own agent or service, validate the result, and send the useful result back.
 
-## Correlate speech and work
+In both modes, permissions, confirmations, private function execution, and durable business records remain application responsibilities.
 
-Responses-backed backend events arrive inside `response.event` envelopes. Dispatch using the nested `event.type` and retain the outer `delegation_id`. A backend completion does not mean its result was spoken or heard.
+The official guide uses `gpt-live-1` as the Live model identifier. For browser microphone and playback, OpenAI documents WebRTC and recommends keeping project API credentials on a trusted server.
 
-With client delegation, maintain transcript and application context: the delegation event supplies metadata rather than a complete task prompt. Returning the correct result therefore depends on a context bridge as well as an execution service.
+A backend completion does not mean its result was spoken or heard. Persist the backend outcome independently and keep enough identifiers to correlate the voice turn, delegation, tool execution, and final application record.
 
-Keep detailed business instructions in the backend and conversational style in the voice prompt. Choose delegation mode when creating the session; changing modes requires a new session. Close sessions explicitly and account for voice duration separately from backend model and tool usage. The [Realtime API](https://developers.openai.com/api/docs/guides/realtime) remains a distinct documented voice architecture.
+## Realtime models
+
+The current OpenAI model catalog separately lists GPT-Realtime models for speech-to-speech workflows, including reasoning-capable variants, plus dedicated transcription and speech-generation models. Model names and lifecycle status are time-sensitive; keep exact identifiers in application configuration and verify them against the catalog before deployment.
+
+See [voice models](../voice-models.md), [speech-to-text](../speech-to-text.md), and [text-to-speech](../text-to-speech.md) for the capability split.
