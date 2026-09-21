@@ -155,8 +155,9 @@ Each article can be read independently. Concept pages explain the mechanism; imp
     - **Managed runtimes**
       - [Claude Managed Agents](infrastructure/orchestration/managed-runtimes/claude-managed-agents.md)
       - [Managed agent runtimes](infrastructure/orchestration/managed-runtimes/managed-agents.md)
+      - [Google Managed Agents API](infrastructure/orchestration/managed-runtimes/google-managed-agents-api.md)
+      - [Google Agent Runtime and Vertex AI Agent Engine](infrastructure/orchestration/managed-runtimes/vertex-ai-agent-engine.md)
       - [OpenAI Agents API](infrastructure/orchestration/managed-runtimes/openai-agents-api.md)
-      - [Vertex AI Agent Engine and Agent Platform Runtime](infrastructure/orchestration/managed-runtimes/vertex-ai-agent-engine.md)
   - **Knowledge**
     - [Agent knowledge](infrastructure/knowledge/agent-knowledge.md)
     - [Knowledge sources](infrastructure/knowledge/knowledge-sources.md)
@@ -167,6 +168,8 @@ Each article can be read independently. Concept pages explain the mechanism; imp
       - [Keyword search](infrastructure/knowledge/retrieval/keyword-search.md)
       - [Reranking](infrastructure/knowledge/retrieval/reranking.md)
       - [Semantic search](infrastructure/knowledge/retrieval/semantic-search.md)
+      - **Platforms**
+        - [Google Agent Search](infrastructure/knowledge/retrieval/platforms/google-agent-search.md)
     - **RAG**
       - [Retrieval-augmented generation](infrastructure/knowledge/rag/rag-definition.md)
       - [Chunking](infrastructure/knowledge/rag/chunking.md)
@@ -177,6 +180,8 @@ Each article can be read independently. Concept pages explain the mechanism; imp
       - **Frameworks**
         - [LangChain retrieval components](infrastructure/knowledge/rag/frameworks/langchain-retrieval.md)
         - [LlamaIndex for RAG](infrastructure/knowledge/rag/frameworks/llamaindex.md)
+      - **Platforms**
+        - [Google Agent Platform RAG Engine](infrastructure/knowledge/rag/platforms/google-rag-engine.md)
     - **Vector databases**
       - [Vector databases](infrastructure/knowledge/vector-databases/vector-databases.md)
       - [pgvector](infrastructure/knowledge/vector-databases/pgvector.md)
@@ -197,6 +202,8 @@ Each article can be read independently. Concept pages explain the mechanism; imp
         - [Cognee retrieval](infrastructure/knowledge/graphrag/frameworks/cognee-retrieval.md)
         - [Cognee](infrastructure/knowledge/graphrag/frameworks/cognee.md)
         - [Microsoft GraphRAG](infrastructure/knowledge/graphrag/frameworks/microsoft-graphrag.md)
+      - **Platforms**
+        - [Google Cloud Spanner Graph for GraphRAG](infrastructure/knowledge/graphrag/platforms/google-spanner-graph.md)
     - **Memory**
       - [Agent memory](infrastructure/knowledge/memory/memory-definition.md)
       - [Short-term memory](infrastructure/knowledge/memory/short-term-memory.md)
@@ -208,6 +215,8 @@ Each article can be read independently. Concept pages explain the mechanism; imp
         - [Cognee conversation and durable memory](infrastructure/knowledge/memory/frameworks/cognee-memory.md)
         - [LangGraph memory](infrastructure/knowledge/memory/frameworks/langgraph-memory.md)
         - [Mem0](infrastructure/knowledge/memory/frameworks/mem0.md)
+      - **Platforms**
+        - [Google Agent Platform Memory Bank](infrastructure/knowledge/memory/platforms/google-memory-bank.md)
     - **Indexing**
       - [Knowledge indexing](infrastructure/knowledge/indexing/indexing.md)
       - [Incremental indexing](infrastructure/knowledge/indexing/incremental-indexing.md)
@@ -217,6 +226,8 @@ Each article can be read independently. Concept pages explain the mechanism; imp
       - [Document understanding](infrastructure/knowledge/document-intelligence/document-understanding.md)
       - [Optical character recognition](infrastructure/knowledge/document-intelligence/ocr.md)
       - [Table extraction](infrastructure/knowledge/document-intelligence/table-extraction.md)
+      - **Platforms**
+        - [Gemini Notebook Enterprise](infrastructure/knowledge/document-intelligence/platforms/gemini-notebook-enterprise.md)
     - **Web research**
       - [Research source selection](infrastructure/knowledge/web-research/source-selection.md)
       - [Web research](infrastructure/knowledge/web-research/web-research.md)
