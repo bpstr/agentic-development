@@ -168,6 +168,7 @@ Each article can be read independently. Concept pages explain the mechanism; imp
       - [Keyword search](infrastructure/knowledge/retrieval/keyword-search.md)
       - [Reranking](infrastructure/knowledge/retrieval/reranking.md)
       - [Semantic search](infrastructure/knowledge/retrieval/semantic-search.md)
+      - [Multimodal retrieval](infrastructure/knowledge/retrieval/multimodal-retrieval.md)
       - **Platforms**
         - [Google Agent Search](infrastructure/knowledge/retrieval/platforms/google-agent-search.md)
     - **RAG**
@@ -222,10 +223,23 @@ Each article can be read independently. Concept pages explain the mechanism; imp
       - [Incremental indexing](infrastructure/knowledge/indexing/incremental-indexing.md)
       - [Knowledge freshness](infrastructure/knowledge/indexing/freshness.md)
       - [Deletion from knowledge systems](infrastructure/knowledge/indexing/deletion.md)
+    - **Multimodal source understanding**
+      - [Multimodal source understanding](infrastructure/knowledge/multimodal/multimodal-source-understanding.md)
+      - [Image understanding and image-to-text](infrastructure/knowledge/multimodal/image-understanding.md)
+      - [Audio understanding](infrastructure/knowledge/multimodal/audio-understanding.md)
+      - [Video understanding and temporal evidence](infrastructure/knowledge/multimodal/video-understanding.md)
+      - **Tools**
+        - [Cognee input transformers and loaders](infrastructure/knowledge/multimodal/tools/cognee-input-transformers.md)
+        - [FFmpeg and ffprobe for media preprocessing](infrastructure/knowledge/multimodal/tools/ffmpeg-media-preprocessing.md)
+      - **Providers**
+        - [Gemini for multimodal source understanding](infrastructure/knowledge/multimodal/providers/gemini-multimodal-understanding.md)
     - **Document intelligence**
       - [Document understanding](infrastructure/knowledge/document-intelligence/document-understanding.md)
       - [Optical character recognition](infrastructure/knowledge/document-intelligence/ocr.md)
       - [Table extraction](infrastructure/knowledge/document-intelligence/table-extraction.md)
+      - **Tools**
+        - [Docling](infrastructure/knowledge/document-intelligence/tools/docling.md)
+        - [Unstructured document partitioning](infrastructure/knowledge/document-intelligence/tools/unstructured.md)
       - **Platforms**
         - [Gemini Notebook Enterprise](infrastructure/knowledge/document-intelligence/platforms/gemini-notebook-enterprise.md)
     - **Web research**
@@ -322,6 +336,8 @@ Each article can be read independently. Concept pages explain the mechanism; imp
     - [Agent notifications](communication/notifications/agent-notifications.md)
 - **Interfaces**
   - [Agent interfaces](interfaces/agent-interfaces.md)
+  - [Advanced assistant-ui implementation manual](interfaces/implementation-manual.md)
+  - [Testing advanced assistant-ui workflows](interfaces/testing-guide.md)
   - **Chat**
     - [Chat interfaces](interfaces/chat/chat-interfaces.md)
     - [Message structure](interfaces/chat/message-structure.md)

@@ -33,3 +33,9 @@ Keep source IDs, revisions, and ingestion receipts in the owning application. In
 Choose datasets according to sharing and lifecycle requirements. Node-set tags organize graph content; they are not a replacement for permission boundaries. With backend access control enabled, verify dataset ownership, grants, and the selected graph/vector handlers.
 
 Reindex changed sources deliberately and inspect extracted identities and relationships. Preserve supporting passages and propagate deletion to derived graph claims and summaries. For rapidly changing state such as task status, query the application directly instead of depending on indexing latency.
+
+## Non-text sources
+
+Select and inspect the [input transformer/loader](../../multimodal/tools/cognee-input-transformers.md) before assuming that a supported file is fully understood. The inspected video adapter transcribes audio without inspecting frames; the Docling adapter exports plain text rather than the complete structured document. Preserve page, region, and time evidence before those transformations when the application requires precise grounding.
+
+For image-, audio-, and video-specific evidence, use the [multimodal processing methods](../../multimodal/multimodal-source-understanding.md) and retain the mapping from derived text to its source. A graph built from a lossy caption is still limited by that caption's observations.
