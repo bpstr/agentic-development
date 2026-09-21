@@ -45,13 +45,13 @@ An **agent** uses a model to choose steps toward a goal; application code suppli
 | [Identity](infrastructure/identity/agent-identity.md) | Establish who acts for whom. OAuth, delegated access, and scoped credentials bound authority independently of model instructions. |
 | [Events](infrastructure/events/event-driven-agents.md) | Webhooks, schedules, and other signals initiate work. Delivery can repeat, so triggers need deduplication and recoverable execution. |
 | [Files and artifacts](infrastructure/files/agent-files.md) | Manage source documents and generated outputs, including storage, revisions, access, and artifact lifecycle. |
-| [Commerce](infrastructure/commerce/agentic-commerce.md) and [economics](infrastructure/economics/agent-payments.md) | Separate discovery and purchase intent from checkout, payment, and spending authority. Commerce protocols, Schema.org Actions, and x402 describe different interactions. |
+| [Commerce](infrastructure/commerce/agentic-commerce.md) and [economics](infrastructure/economics/agent-payments.md) | Separate discovery and purchase intent from checkout, payment, and spending authority. ACP and UCP describe commerce interactions; AP2 and x402 address payment-related boundaries. |
 | [Synthetic data](infrastructure/synthetic-data/synthetic-data-definition.md) and [simulation](infrastructure/simulation/agent-simulation.md) | Generate examples or controlled environments for development and evaluation; neither automatically represents real workloads. |
 | [Architecture](infrastructure/architecture/agent-native-applications.md) | Build agent-facing APIs and applications with deterministic boundaries around identity, validation, and consequential effects. |
 
 ## Agentic web and communication
 
-The [agentic web](agentic-web/agent-readable-web.md) makes content and actions discoverable through machine-readable pages, Markdown endpoints, llms.txt, structured data, and addressable operations. Discoverability does not grant access.
+The [agentic web](agentic-web/agentic-web-definition.md) treats software agents as first-class web clients. Discovery and machine-readable representations help them find and understand resources; APIs, MCP, A2A, and WebMCP expose different interaction surfaces; identity, access policy, rate limits, and delegated authority constrain what they may do. Discoverability never grants access.
 
 [Human collaboration](communication/human-agent-collaboration/human-in-the-loop.md) includes approvals, escalation, and active intervention; human-on-the-loop supervision watches ongoing work. [Messaging](communication/messaging/agent-messaging.md) exchanges information, while [notifications](communication/notifications/agent-notifications.md) surface relevant changes without requiring an open conversation.
 
