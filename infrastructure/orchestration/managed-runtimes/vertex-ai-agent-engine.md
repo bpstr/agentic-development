@@ -1,40 +1,25 @@
-# Vertex AI Agent Engine and Agent Platform Runtime
+# Google Agent Runtime and Vertex AI Agent Engine
 
-Official documentation: [Managed runtime overview](https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale), [Environment setup](https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/runtime/setup), [Use an ADK agent](https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/use-an-adk-agent).
+Official documentation: [Agent Runtime](https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/runtime), [runtime quickstart](https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/runtime/quickstart), [ADK runtime quickstart](https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/runtime/quickstart-adk), and [runtime contract](https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/runtime-contract).
 
-Vertex AI Agent Engine's documentation now leads to Gemini Enterprise Agent Platform and its managed Agent Runtime. The runtime deploys and operates agent applications with managed sessions and integrations. Google ADK is one supported framework; Gemini model inference is another, separate service boundary.
+Google's current managed hosting surface is **Agent Runtime** in Gemini Enterprise Agent Platform. Earlier documentation and APIs used Vertex AI Agent Engine / Reasoning Engine terminology. The API resource name `ReasoningEngine` remains for backwards compatibility even though the product documentation now uses Agent Runtime.
 
-The setup requires a Google Cloud project, an eligible region, enabled services, application credentials, and suitable IAM roles. Build and validate the agent locally, package its dependencies, and deploy it using the official runtime guide. A model API key alone does not deploy an agent service.
+Agent Runtime hosts agent applications that you build. It is framework-independent and can deploy agents built with ADK and other supported frameworks or custom containers that implement the runtime contract. This is different from [Managed Agents API](google-managed-agents-api.md), where Google supplies the autonomous harness and sandbox around a configured agent.
 
-For an existing ADK deployment, the REST API avoids coupling this example to an SDK generation. Install `google-auth` and `requests`, configure application credentials, and set `GOOGLE_CLOUD_LOCATION`, `AGENT_RESOURCE` (the full deployed resource name), and `APPLICATION_USER_ID`:
+The current Agent Platform SDK for Python exposes runtime operations through `agentplatform.Client(...).runtimes`. Google is moving agent-platform operations into the dedicated `google-cloud-agentplatform` package while generative model APIs use the Google Gen AI SDK.
 
-```python
-import os
-import google.auth
-from google.auth.transport.requests import Request
-import requests
+A deployment lifecycle is:
 
-credentials, _ = google.auth.default(
-    scopes=["https://www.googleapis.com/auth/cloud-platform"]
-)
-credentials.refresh(Request())
-location = os.environ["GOOGLE_CLOUD_LOCATION"]
-resource = os.environ["AGENT_RESOURCE"]
-url = f"https://{location}-aiplatform.googleapis.com/v1/{resource}:streamQuery"
-with requests.post(
-    url, params={"alt": "sse"}, stream=True, timeout=(10, 120),
-    headers={"Authorization": f"Bearer {credentials.token}"},
-    json={"class_method": "async_stream_query", "input": {
-        "user_id": os.environ["APPLICATION_USER_ID"],
-        "message": "Report the capabilities of this agent.",
-    }},
-) as response:
-    response.raise_for_status()
-    for line in response.iter_lines(decode_unicode=True):
-        if line:
-            print(line)
-```
+1. build and test the agent application;
+2. choose project, location, IAM, and network settings;
+3. deploy the application to Agent Runtime;
+4. invoke the deployed agent through the SDK or underlying API;
+5. manage sessions, memory, observability, and deployment lifecycle separately.
 
-The ADK deployment supports session creation, listing, retrieval, deletion, and streamed queries. Omitting a session ID creates a session for the query; a continuing product conversation should map to the correct existing session.
+Custom containers can expose application-specific HTTP endpoints in addition to the Agent Platform runtime endpoints. The runtime contract currently requires the container to listen on port 8080.
 
-Derive `APPLICATION_USER_ID` from authenticated application identity in production. IAM governs access to cloud resources but does not automatically implement workspace membership in your product. Keep application operations authorized at their business-service boundary. Match SDK examples to their installation guide: the current documentation contains both `agentplatform` runtime examples and `vertexai` setup examples. Verify the installed client surface before combining them.
+Agent Platform Sessions and [Memory Bank](../../knowledge/memory/platforms/google-memory-bank.md) are separate state services that can be combined with Runtime. Gemini inference is another separate service boundary; deploying an agent does not imply that every model call or business tool is hosted by Runtime.
+
+Derive application user identity from authenticated product identity, not an arbitrary client-supplied string. IAM controls access to Google Cloud resources but does not automatically implement your product's workspace membership or business authorization.
+
+Google's Agent Platform naming and SDK surface are evolving quickly. Verify current SDK migration guidance, supported regions, resource names, and runtime capabilities before copying an older Vertex AI Agent Engine example.
