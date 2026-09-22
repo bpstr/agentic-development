@@ -177,6 +177,7 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
       - [Semantic search](infrastructure/knowledge/retrieval/semantic-search.md)
       - [Multimodal retrieval](infrastructure/knowledge/retrieval/multimodal-retrieval.md)
       - **Platforms**
+        - [Azure AI Search](infrastructure/knowledge/retrieval/platforms/azure-ai-search.md)
         - [Google Agent Search](infrastructure/knowledge/retrieval/platforms/google-agent-search.md)
     - **RAG**
       - [Retrieval-augmented generation](infrastructure/knowledge/rag/rag-definition.md)
@@ -200,6 +201,8 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
       - [Knowledge graphs](infrastructure/knowledge/knowledge-graphs/knowledge-graph-definition.md)
       - [Entity extraction](infrastructure/knowledge/knowledge-graphs/entity-extraction.md)
       - [Relationship extraction](infrastructure/knowledge/knowledge-graphs/relationship-extraction.md)
+      - [Ontology design](infrastructure/knowledge/knowledge-graphs/ontology-design.md)
+      - [Temporal knowledge graphs](infrastructure/knowledge/knowledge-graphs/temporal-knowledge-graphs.md)
     - **GraphRAG**
       - [Graph-based retrieval-augmented generation](infrastructure/knowledge/graphrag/graphrag-definition.md)
       - [Community summaries](infrastructure/knowledge/graphrag/community-summaries.md)
@@ -210,7 +213,17 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
         - [Cognee retrieval](infrastructure/knowledge/graphrag/frameworks/cognee-retrieval.md)
         - [Cognee](infrastructure/knowledge/graphrag/frameworks/cognee.md)
         - [Microsoft GraphRAG](infrastructure/knowledge/graphrag/frameworks/microsoft-graphrag.md)
+        - [LightRAG](infrastructure/knowledge/graphrag/frameworks/lightrag.md)
+        - [LlamaIndex property graphs](infrastructure/knowledge/graphrag/frameworks/llamaindex-property-graphs.md)
+      - **Libraries**
+        - [Neo4j GraphRAG Python](infrastructure/knowledge/graphrag/libraries/neo4j-graphrag-python.md)
+        - [FalkorDB GraphRAG SDK](infrastructure/knowledge/graphrag/libraries/falkordb-graphrag-sdk.md)
+      - **Integrations**
+        - [GraphRAG application integration](infrastructure/knowledge/graphrag/integrations/graphrag-application-integration.md)
+        - [Cognee production integration](infrastructure/knowledge/graphrag/integrations/cognee-production-integration.md)
+        - [Deploying GraphRAG on Azure](infrastructure/knowledge/graphrag/integrations/azure-graphrag-deployment.md)
       - **Platforms**
+        - [GraphRAG with Azure HorizonDB](infrastructure/knowledge/graphrag/platforms/azure-horizondb-graphrag.md)
         - [Google Cloud Spanner Graph for GraphRAG](infrastructure/knowledge/graphrag/platforms/google-spanner-graph.md)
     - **Memory**
       - [Agent memory](infrastructure/knowledge/memory/memory-definition.md)
@@ -221,6 +234,7 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
       - [Memory lifecycle](infrastructure/knowledge/memory/memory-lifecycle.md)
       - **Frameworks**
         - [Cognee conversation and durable memory](infrastructure/knowledge/memory/frameworks/cognee-memory.md)
+        - [Graphiti temporal memory](infrastructure/knowledge/memory/frameworks/graphiti.md)
         - [LangGraph memory](infrastructure/knowledge/memory/frameworks/langgraph-memory.md)
         - [Mem0](infrastructure/knowledge/memory/frameworks/mem0.md)
       - **Platforms**
@@ -401,6 +415,7 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
     - [Regression testing](operations/evaluation/regression-testing.md)
     - [Tool evaluation](operations/evaluation/tool-evaluation.md)
     - [Retrieval evaluation](operations/evaluation/retrieval-evaluation.md)
+    - [GraphRAG evaluation](operations/evaluation/graphrag-evaluation.md)
     - **Frameworks**
       - [DeepEval](operations/evaluation/frameworks/deepeval.md)
       - [LangSmith evaluation](operations/evaluation/frameworks/langsmith-evaluation.md)
