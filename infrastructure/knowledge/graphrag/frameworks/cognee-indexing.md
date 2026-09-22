@@ -1,10 +1,12 @@
 # Cognee indexing
 
-Official resources: [Remember operation](https://docs.cognee.ai/core-concepts/main-operations/remember), [remember API](https://docs.cognee.ai/python-api/remember), [Dataset permissions](https://docs.cognee.ai/core-concepts/multi-user-mode/permissions-system/overview).
+Official resources: [Remember operation](https://docs.cognee.ai/core-concepts/main-operations/remember), [remember API](https://docs.cognee.ai/python-api/remember), [cognify API](https://docs.cognee.ai/python-api/cognify), [Dataset permissions](https://docs.cognee.ai/core-concepts/multi-user-mode/permissions-system/overview).
 
-Cognee's `remember` ingests permanent content and runs its processing pipeline when no session ID is supplied. A session ID selects a different memory path. Keep document indexing explicit rather than accidentally mixing source ingestion with conversation caching.
+`remember` without a session ID ingests permanent content and runs processing. Supplying a session ID selects a different memory path. Source indexing should be explicit rather than accidentally mixed with conversation caching.
 
-After the [basic setup](cognee-basic-setup.md), create a small UTF-8 text file named `runbook.txt`. Save this as `index_runbook.py` and run it from the same directory:
+## Ingest a source and observe completion
+
+After the [local setup](cognee-basic-setup.md), create a UTF-8 `runbook.txt` containing DOC-7's rollback procedure. Save this as `index_runbook.py`:
 
 ```python
 import asyncio
@@ -26,16 +28,36 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-The documented API accepts paths and other supported input forms. This example uses a blocking completion of the pipeline and disables the additional improvement stage. If enabling background execution, track completion separately before declaring the source searchable.
+This awaits the ordinary foreground pipeline. Check its result and then retrieve a known source passage before marking the application revision searchable. For a multi-document job, preserve per-item outcomes; one completed document does not imply the entire batch succeeded.
 
-Keep source IDs, revisions, and ingestion receipts in the owning application. Incremental loading is useful, but does not by itself define ordering for external change events, a deletion policy, or an atomic multi-source publication boundary.
+The inspected [1.6.0 remember implementation](https://github.com/topoteretes/cognee/blob/v1.6.0/cognee/api/v1/remember/remember.py) anchors background work as Python tasks and records improvement errors separately from primary ingestion success. An in-process task is not an external durable queue, and successful ingestion does not prove optional improvement succeeded. A service should expose these states separately and recover after process termination.
 
-Choose datasets according to sharing and lifecycle requirements. Node-set tags organize graph content; they are not a replacement for permission boundaries. With backend access control enabled, verify dataset ownership, grants, and the selected graph/vector handlers.
+## Choose extraction deliberately
 
-Reindex changed sources deliberately and inspect extracted identities and relationships. Preserve supporting passages and propagate deletion to derived graph claims and summaries. For rapidly changing state such as task status, query the application directly instead of depending on indexing latency.
+Use local GLiNER for the supported bounded schema when that is enough. Use LLM extraction or a custom `graph_model`/pipeline when the domain requires controlled types or richer relationships. GLiNER is not a drop-in replacement for arbitrary custom or temporal pipelines. Preserve unresolved identities rather than forcing Billing aliases into one node.
 
-## Non-text sources
+The [ontology guide](../../knowledge-graphs/ontology-design.md) explains the distinction between a valid schema and a true claim. Keep authoritative application dependencies separate from extracted relations; import explicit task IDs and source revisions instead of asking a model to reconstruct them from display text.
 
-Select and inspect the [input transformer/loader](../../multimodal/tools/cognee-input-transformers.md) before assuming that a supported file is fully understood. The inspected video adapter transcribes audio without inspecting frames; the Docling adapter exports plain text rather than the complete structured document. Preserve page, region, and time evidence before those transformations when the application requires precise grounding.
+Optional contradiction processing identifies conflicting claims; it does not automatically correct authoritative records or remove false facts. Optional provenance tracking records processing evidence, but a nonfatal ledger failure can leave coverage gaps. Inspect pipeline warnings and compare tracked outputs with expected source/claim counts before relying on the ledger for an audit. Configure optional stages before startup and use the required database migrations documented for the selected release.
 
-For image-, audio-, and video-specific evidence, use the [multimodal processing methods](../../multimodal/multimodal-source-understanding.md) and retain the mapping from derived text to its source. A graph built from a lossy caption is still limited by that caption's observations.
+## Budget and version the pipeline
+
+Set `self_improvement` explicitly. Record extraction model, prompt, schema, chunker, embedding model, dimensions, and library release. Ingestion, embeddings, graph processing, improvement, and later answer generation are separate cost stages.
+
+The documented `remember` dry run is a constrained estimation path, not a full invoice forecast. It excludes embedding and improvement costs and does not apply to every input or extractor. In particular, do not copy an LLM-estimation example into the GLiNER demonstration and assume it estimates local work. Measure representative source batches and account for retries and changed-source rebuilds.
+
+## Own the external source lifecycle
+
+Keep canonical source ID, external revision, ingestion receipt, dataset UUID, provider data ID, and published application revision in the owning service. Incremental loading does not by itself establish event ordering, deletion semantics, or atomic publication across relational, graph, and vector stores.
+
+Use an idempotency key based on source identity, revision, and pipeline version. Reject a late older revision rather than overwriting a newer one. A deletion tombstone must prevent an already queued indexing task from recreating the source. Keep the previous published revision during partial rebuilds only when authorization and retention policy allow it.
+
+Use dataset boundaries according to ownership and sharing. Node-set tags organize content but are not a substitute for permissions. A workspace dataset with project node sets still needs project-level authorization in the application when some projects are private.
+
+The documented [forget API](https://docs.cognee.ai/python-api/forget) distinguishes a scoped data-item deletion, whole-dataset deletion, and memory-only cleanup. Its provenance-driven memory cleanup may miss nodes written by custom pipelines without tracked source items. Verify the selected pipeline's source-to-derived-object mapping before promising complete deletion. Never use a global prune as an undocumented fallback in a shared request.
+
+## Preserve non-text evidence
+
+Inspect the [input transformer](../../multimodal/tools/cognee-input-transformers.md) before assuming a supported format is fully analyzed. The previously inspected video path transcribed audio rather than frames; Docling text export did not preserve its complete structured output. Keep the inspected revision attached to such observations.
+
+Store source locations before lossy conversion: page and region for documents, timestamps and speakers for audio, and frame/time evidence for video. A graph extracted from a caption is limited to what that caption actually observes. See [multimodal source understanding](../../multimodal/multimodal-source-understanding.md), and return the original locator alongside generated interpretations.
