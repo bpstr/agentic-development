@@ -99,6 +99,19 @@ if __name__ == "__main__":
 
 Real tools need authorization against the authenticated user and workspace, schema validation, bounded result sizes, and idempotency for writes. A model-selected workspace ID is not authorization. This example has no external write tool and is not a production permission system.
 
+
+## Parallel tool calls
+
+Parallel function calling is enabled by default when function tools are supplied on both Chat Completions and Responses. Muse Spark may therefore return several independent calls in one model turn. Execute every returned call, preserve each call identifier, append one matching result per call, and only then continue inference. Set `parallel_tool_calls: false` when operations must be serialized.
+
+This matters beyond latency. Parallel reads are usually straightforward; parallel writes need explicit conflict and authorization rules. A batch of tool calls is not a transaction, and one successful side effect must not be repeated merely because another call in the same batch failed. Give each mutating operation an idempotency key or durable receipt, and define whether partial success is acceptable.
+
+Meta's current tool-calling documentation also notes that each guarded call in a Muse Code parallel batch can have its own approval prompt. Treat approval as per-operation authority rather than approval for the batch as a whole.
+
+For an agent loop, useful acceptance cases are: three independent reads returned in one turn; mixed read/write calls; one rejected call among successful siblings; one slow or timed-out call; duplicate/retried results; and `parallel_tool_calls: false` as the serial control. Measure wall-clock gain separately from correctness and duplicate effects.
+
+See [tool calling](https://dev.meta.ai/docs/tool-calling) and the [Chat Completions schema](https://dev.meta.ai/docs/api-reference/chat-completions/schemas#parallel-tool-calls).
+
 ## Reasoning, streaming, and state
 
 For stateless continuation, request encrypted reasoning explicitly and replay retained typed output items unchanged. `store=False` controls response-history storage; it does not by itself establish a universal zero-retention policy. Alternatively, use stored responses and `previous_response_id`; resend request-level `instructions` when needed.
