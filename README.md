@@ -27,6 +27,7 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
       - [Anthropic](infrastructure/models/providers/anthropic.md)
       - [Google Gemini](infrastructure/models/providers/google.md)
       - [ElevenLabs](infrastructure/models/providers/elevenlabs.md)
+      - [Meta AI and Muse models](infrastructure/models/providers/meta-ai.md)
       - [Mistral AI](infrastructure/models/providers/mistral.md)
       - [Moonshot AI and the Kimi API](infrastructure/models/providers/moonshot-ai.md)
       - [OpenAI](infrastructure/models/providers/openai.md)
@@ -92,6 +93,7 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
     - **APIs**
       - [Anthropic Messages API](infrastructure/inference/apis/anthropic-messages-api.md)
       - [Gemini API](infrastructure/inference/apis/gemini-api.md)
+      - [Meta Model API and Muse Spark](infrastructure/inference/apis/meta-model-api.md)
       - [OpenAI Responses API](infrastructure/inference/apis/openai-responses-api.md)
   - **Context**
     - [Context budgets](infrastructure/context/context-budget.md)
@@ -380,6 +382,9 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
       - [assistant-ui](interfaces/chat/libraries/assistant-ui.md)
       - [Vercel AI Elements](interfaces/chat/libraries/vercel-ai-elements.md)
       - [Vercel AI SDK UI](interfaces/chat/libraries/vercel-ai-sdk-ui.md)
+  - **Desktop**
+    - **Apps**
+      - [Muse desktop and the personal-agent interface](interfaces/desktop/apps/muse-desktop.md)
   - **Generative UI**
     - [Generative UI](interfaces/generative-ui/generative-ui-definition.md)
     - [Component generation](interfaces/generative-ui/component-generation.md)
@@ -460,6 +465,7 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
       - [Gemini CLI](development/coding-agents/tools/gemini-cli.md)
       - [Grok Bot](development/coding-agents/tools/grok-bot.md)
       - [Grok Build](development/coding-agents/tools/grok-build.md)
+      - [Muse Code](development/coding-agents/tools/muse-code.md)
   - **Instructions**
     - [Agent instructions](development/instructions/agent-instructions.md)
     - [Project instructions](development/instructions/project-instructions.md)

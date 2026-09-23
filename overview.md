@@ -57,7 +57,7 @@ The [agentic web](agentic-web/agentic-web-definition.md) treats software agents 
 
 ## Interfaces
 
-[Chat](interfaces/chat/chat-interfaces.md) presents messages, streamed parts, tool activity, and approvals. [Generative UI](interfaces/generative-ui/generative-ui-definition.md) selects or describes interactive components. [Realtime](interfaces/realtime/realtime-agents.md) and [voice](interfaces/voice/voice-agents.md) add session state, turn-taking, interruption, and delegation. The [implementation manual](interfaces/implementation-manual.md) and [testing guide](interfaces/testing-guide.md) connect these elements to lifecycle and failure handling.
+[Chat](interfaces/chat/chat-interfaces.md) presents messages, streamed parts, tool activity, and approvals. Desktop [agent interfaces](interfaces/agent-interfaces.md) connect local files and applications through permissions; the visible client need not host inference or execution. [Generative UI](interfaces/generative-ui/generative-ui-definition.md) selects or describes interactive components. [Realtime](interfaces/realtime/realtime-agents.md) and [voice](interfaces/voice/voice-agents.md) add session state, turn-taking, interruption, and delegation. The [implementation manual](interfaces/implementation-manual.md) and [testing guide](interfaces/testing-guide.md) connect these elements to lifecycle and failure handling.
 
 ## Operations
 
