@@ -130,7 +130,7 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
       - [Legacy MCP initialization](infrastructure/protocols/mcp/mcp-legacy.md)
       - **Tools**
         - [MCP Inspector](infrastructure/protocols/mcp/tools/mcp-inspector.md)
-        - [MCP Registry](infrastructure/protocols/mcp/tools/mcp-registry.md)
+        - [MCP Registry](infrastructure/protocols/mcp/mcp-registry.md)
     - **Agent communication**
       - [Agent-to-agent communication](infrastructure/protocols/agent-communication/agent-to-agent.md)
       - [Agent2Agent protocol](infrastructure/protocols/agent-communication/a2a.md)
@@ -499,7 +499,7 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
       - [OpenAI plugin packaging](development/plugins/platforms/openai-plugins.md)
   - **Proxies**
     - [Model and agent proxies](development/proxies/proxy-definition.md)
-    - [Protocol translation](development/proxies/proxy-translation.md)
+    - [Protocol translation](development/proxies/protocol-translation.md)
     - **Tools**
       - [Codex Proxy](development/proxies/tools/codex-proxy.md)
       - [Headroom](development/proxies/tools/headroom.md)
