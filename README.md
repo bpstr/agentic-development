@@ -130,7 +130,7 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
       - [Legacy MCP initialization](infrastructure/protocols/mcp/mcp-legacy.md)
       - **Tools**
         - [MCP Inspector](infrastructure/protocols/mcp/tools/mcp-inspector.md)
-        - [MCP Registry](infrastructure/protocols/mcp/mcp-registry.md)
+        - [MCP Registry](infrastructure/protocols/mcp/tools/mcp-registry.md)
     - **Agent communication**
       - [Agent-to-agent communication](infrastructure/protocols/agent-communication/agent-to-agent.md)
       - [Agent2Agent protocol](infrastructure/protocols/agent-communication/a2a.md)
