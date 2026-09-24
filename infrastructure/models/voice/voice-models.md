@@ -16,8 +16,8 @@ Model names and preview status change frequently. Verify the linked provider cat
 | Provider | Realtime / speech-to-speech | Speech-to-text | Text-to-speech |
 | --- | --- | --- | --- |
 | OpenAI | GPT-Live 1; GPT-Realtime family | GPT-Transcribe, GPT-Live-Transcribe, GPT-Realtime-Whisper and related transcription models | GPT-4o Mini TTS and legacy TTS models |
-| Google | Gemini 3.8 Live; Gemini 3.8 Live Extended Thinking | Audio understanding/transcription capabilities depend on the selected Gemini surface | Gemini 2.5 Pro TTS and other speech-generation models in the Gemini catalog |
-| ElevenLabs | ElevenAgents combines conversational infrastructure with selectable speech models | Scribe v2; Scribe v2 Realtime | Eleven v3, Eleven v3 Conversational, Eleven Multilingual v2, Eleven Flash v2.5 |
+| Google | Gemini 3.8 Live; Gemini 3.8 Live Extended Thinking; Gemini 3.5 Live Translate preview | Gemini 3.5 Transcribe; Gemini 3.5 Transcribe Live | Gemini 3.8 Flash TTS; Gemini 3.8 Flash-Lite TTS |
+| ElevenLabs | ElevenAgents combines conversational infrastructure with selectable speech models | Scribe v2; Scribe v2 Realtime; Scribe v2 Medical | Eleven v3, Eleven v3 Conversational, Eleven Multilingual v2, Eleven Flash v2.5 |
 | Deepgram | Voice Agent API composes listening, reasoning, and speaking | Flux and Nova families | Flux TTS and Aura families |
 | Hume | Empathic Voice Interface (EVI) speech-language models | Integrated into EVI for conversational use | Octave speech-language models and Hume voices |
 
