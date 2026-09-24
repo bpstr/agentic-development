@@ -1,10 +1,12 @@
 # Google Gemini
 
-[Official Gemini model catalog](https://ai.google.dev/gemini-api/docs/models) · [Gemini API pricing](https://ai.google.dev/gemini-api/docs/pricing) · [Gemini documentation](https://ai.google.dev/gemini-api/docs) · [Gemini Enterprise Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/overview)
+[Official Gemini model catalog](https://ai.google.dev/gemini-api/docs/models) · [Gemini deprecations](https://ai.google.dev/gemini-api/docs/deprecations) · [Gemini API pricing](https://ai.google.dev/gemini-api/docs/pricing) · [Gemini Enterprise Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/overview)
 
 Google's Gemini family includes general-purpose multimodal models and specialized model surfaces. General inference, live audio, speech generation, image generation, embeddings, and video generation must be selected by capability rather than assuming one Gemini endpoint provides them all.
 
-The catalog identifies stable and preview versions separately. Individual model pages determine the exact model ID, lifecycle status, supported modalities, and controls. Use those identifiers in configuration instead of copying a model name from an unrelated tutorial.
+The current stable general-purpose Flash tier is **Gemini 3.8 Flash** (`gemini-3.8-flash`), released September 2, 2026. It accepts text, image, video, audio, and PDF input and produces text output, with supported capabilities including function calling, structured output, code execution, search grounding, and preview computer use. The catalog continues to list other Gemini 3 family models for different speed, cost, preview, image, audio, and live workloads rather than one universal replacement chain.
+
+Stable and preview lifecycle status matters. For example, `gemini-3.1-pro-preview` remains a preview model, while Gemini 3.8 Live and the 3.8 TTS models have their own later September release dates. Use the deprecations page and individual model page as the authority for exact shutdown dates, replacements, identifiers, supported modalities, and controls.
 
 For realtime speech, see [Gemini Live API](../voice/providers/gemini-live.md) and the [voice model overview](../voice/voice-models.md). Speech-generation models are separate from the Live conversational models.
 
