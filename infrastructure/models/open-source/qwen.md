@@ -1,29 +1,19 @@
 # Qwen open-weight models
 
-[Canonical Qwen3 repository](https://github.com/QwenLM/Qwen3) · [Official Qwen documentation](https://qwen.readthedocs.io/)
+[Canonical Qwen3.8 repository](https://github.com/QwenLM/Qwen3.8) · [Official Qwen documentation](https://qwen.readthedocs.io/) · [Publisher model collection](https://huggingface.co/collections/Qwen/qwen38)
 
-Qwen is Alibaba's model family with downloadable releases for different sizes and capabilities. Qwen3 is a documented reference for instruction following, reasoning modes, and model serving. The exact release matters: an instruct-only derivative is not interchangeable with a model that can switch thinking modes.
+Qwen is Alibaba's model family with downloadable releases for different sizes and capabilities. **Qwen3.8** is the current documented open-model series, following Qwen3.5 and Qwen3.6. The publisher positions it for coding, professional work, research, and long-horizon agentic tasks, with explicit `reasoning_effort` control and optional preservation of reasoning context between turns. These are model capabilities and publisher claims, not measurements performed by this repository.
 
-The repository's Transformers example loads a model and tokenizer, applies the publisher's chat template, then decodes only the newly generated tokens. For a deployment based on `Qwen/Qwen3-30B-A3B-Instruct-2507`, that sequence is:
+The exact artifact matters. The August 2026 Qwen3.8 releases include a large mixture-of-experts model and a smaller dense model; downstream runtimes do not necessarily support every checkpoint, modality, reasoning control, or tool parser on the same schedule. Pin the model revision, tokenizer or processor, serving runtime, and chat/tool template together.
 
-```python
-from transformers import AutoModelForCausalLM, AutoTokenizer
+The canonical repository currently demonstrates an OpenAI-compatible local server through Transformers:
 
-model_id = "Qwen/Qwen3-30B-A3B-Instruct-2507"
-tokenizer = AutoTokenizer.from_pretrained(model_id)
-model = AutoModelForCausalLM.from_pretrained(
-    model_id, torch_dtype="auto", device_map="auto"
-)
-text = tokenizer.apply_chat_template(
-    [{"role": "user", "content": "Explain a database index in two sentences."}],
-    tokenize=False,
-    add_generation_prompt=True,
-)
-inputs = tokenizer([text], return_tensors="pt").to(model.device)
-output = model.generate(**inputs, max_new_tokens=128)
-print(tokenizer.decode(output[0][inputs.input_ids.shape[1]:], skip_special_tokens=True))
+```bash
+transformers serve Qwen/Qwen3.8-27B --port 8000 --continuous-batching
 ```
 
-Running this documentation example downloads substantial weights and requires suitable hardware and compatible dependencies; it is not a claim of local validation. Pin an artifact revision for repeatable deployment.
+Running this example downloads substantial model artifacts and requires a compatible current Transformers release and suitable hardware. It is documentation-grounded, not a claim of local validation. Other supported runtimes such as SGLang, vLLM, llama.cpp, MLX, and third-party quantizations have their own compatibility boundaries; verify support for the exact model revision before deployment.
 
-The Qwen3 repository describes its listed open-weight releases as Apache 2.0. Verify the individual artifact and derivative lineage. Tool-call behavior additionally depends on the serving runtime's parser and template: a model generating fluent text has not yet demonstrated a correct agent tool loop.
+Tool-call behavior depends on more than the weights. A runtime may require a model-specific reasoning parser, tool-call parser, or chat template. A model generating fluent JSON has not yet demonstrated a correct agent loop: validate schema selection, arguments, continuation after tool results, and failure recovery through the actual serving configuration.
+
+Do not generalize the license of an older Qwen generation to a newer checkpoint or derivative. Read the license distributed with the exact model weights, and evaluate quantized or repackaged artifacts as separate distributions with their own provenance and terms.

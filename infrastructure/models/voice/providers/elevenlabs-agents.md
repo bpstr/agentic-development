@@ -5,9 +5,11 @@ Official documentation: [model catalog](https://elevenlabs.io/docs/overview/mode
 ElevenLabs exposes several layers that should be distinguished:
 
 - speech models such as Eleven v3, Eleven v3 Conversational, Eleven Multilingual v2, and Eleven Flash v2.5;
-- speech-recognition models such as Scribe v2 and Scribe v2 Realtime;
+- speech-recognition models such as Scribe v2, Scribe v2 Realtime, and Scribe v2 Medical;
 - **ElevenAgents**, a managed conversational-agent platform;
 - **Speech Engine**, which adds speech recognition, synthesis, turn-taking, and interruption handling around an application-controlled LLM.
+
+Scribe v2 Medical (`scribe_v2_medical`) is a batch speech-to-text specialization for clinical audio. It uses the Speech to Text API family and produces draft transcription for review; it is not a clinical decision model. For live transcription, use the realtime model rather than assuming the medical specialization is streamable.
 
 The managed agent and Speech Engine products are not themselves single voice models. Keep the selected STT/TTS model, agent configuration, and application tool execution as separate concerns.
 

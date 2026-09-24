@@ -2,13 +2,13 @@
 
 [Official computer use guide](https://developers.openai.com/api/docs/guides/tools-computer-use).
 
-OpenAI computer use lets models inspect a browser or desktop and request interaction. The guide offers code execution through libraries such as Playwright, or a structured `computer` tool. For GPT-6 Astra, it recommends code execution; the structured tool remains an alternative.
+OpenAI computer use lets models inspect a browser or desktop and request interaction. The guide offers code execution through libraries such as Playwright or PyAutoGUI, or a structured `computer` tool. For GPT-6 Astra, OpenAI recommends code execution; the structured tool remains an alternative.
 
-For the structured route, this is a request body for `POST /v1/responses` using the model in the guide:
+For the structured route, this is a request body for `POST /v1/responses` using the current Astra model:
 
 ```json
 {
-  "model": "gpt-5.6-sol",
+  "model": "gpt-6-astra",
   "tools": [{"type": "computer"}],
   "input": "Inspect the current page using the computer tool."
 }
