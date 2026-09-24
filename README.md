@@ -314,6 +314,9 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
     - [Event-driven agents](infrastructure/events/event-driven-agents.md)
     - [Scheduled agents](infrastructure/events/scheduled-agents.md)
     - [Webhooks](infrastructure/events/webhooks.md)
+    - **Scheduling**
+      - [Schedule timing semantics](infrastructure/events/scheduling/schedule-timing.md)
+      - [Scheduled execution environments](infrastructure/events/scheduling/scheduled-execution-environments.md)
   - **Files**
     - [Files in agent systems](infrastructure/files/agent-files.md)
     - [Agent-readable documents](infrastructure/files/agent-readable-documents.md)
@@ -438,6 +441,8 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
     - [Idempotency](operations/reliability/idempotency.md)
     - [Cancellation](operations/reliability/cancellation.md)
     - [Failure recovery](operations/reliability/failure-recovery.md)
+    - [Scheduled-run recovery](operations/reliability/scheduled-run-recovery.md)
+    - [Testing scheduled work](operations/reliability/schedule-testing.md)
   - **Security**
     - [Security and permissions](operations/security/agent-security.md)
     - [Data isolation](operations/security/data-isolation.md)
@@ -458,6 +463,7 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
     - [Coding-agent verification](development/coding-agents/coding-agent-verification.md)
     - [Specification-driven development](development/coding-agents/spec-driven-development.md)
     - [Repository context](development/coding-agents/repository-context.md)
+    - [Scheduled development](development/coding-agents/scheduled-development.md)
     - **Tools**
       - [Claude Code](development/coding-agents/tools/claude-code.md)
       - [Codex](development/coding-agents/tools/codex.md)
@@ -493,7 +499,7 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
       - [OpenAI plugin packaging](development/plugins/platforms/openai-plugins.md)
   - **Proxies**
     - [Model and agent proxies](development/proxies/proxy-definition.md)
-    - [Protocol translation](development/proxies/protocol-translation.md)
+    - [Protocol translation](development/proxies/proxy-translation.md)
     - **Tools**
       - [Codex Proxy](development/proxies/tools/codex-proxy.md)
       - [Headroom](development/proxies/tools/headroom.md)
@@ -511,6 +517,7 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
   - [A bounded tool loop](patterns/tool-loop.md)
   - [Answers grounded in workspace documents](patterns/grounded-answers.md)
   - [Background work with a durable result](patterns/background-work.md)
+  - [Scheduled summaries](patterns/scheduled-summaries.md)
   - [Incremental agent architecture](patterns/incremental-build.md)
   - [Agent-as-tool pattern](patterns/agent-as-tool.md)
   - [Handoff pattern](patterns/handoff-pattern.md)
@@ -538,10 +545,12 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
 - **MCP** — Model Context Protocol, connecting hosts with servers that expose tools, resources, and prompts.
 - **Memory** — selected information retained for later interactions, with an explicit retrieval and lifecycle policy.
 - **Model** — a learned computation used to generate, classify, embed, or otherwise transform input.
+- **Occurrence** — one intended scheduled execution, whose identity remains stable across retry attempts.
 - **Open weights** — published model parameters; the license and availability of other components must be assessed separately.
 - **Prompt optimization** — selecting instructions or demonstrations against explicit evaluation criteria for later requests.
 - **RAG** — retrieval-augmented generation: retrieve external evidence and supply it to generation.
 - **Run** — a tracked execution with a goal, status, limits, intermediate operations, and an outcome.
+- **Schedule** — a rule for when work becomes eligible, with explicit timing, lateness and overlap policies.
 - **Skill** — packaged instructions and optional resources that teach an agent a repeatable task.
 - **Span** — a timed operation in a trace, with attributes and causal relationships.
 - **Tool call** — structured output requesting an operation exposed by the surrounding system.
