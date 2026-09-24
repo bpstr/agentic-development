@@ -63,3 +63,21 @@ Keep development tasks for prompt, rubric, and stopping-rule tuning separate fro
 Include deliberately correct artifacts to measure unnecessary edits; seeded defects to measure repairs; fluent but unsupported proposals; verbose regressions; contradictory requirements; evaluator timeouts; test tampering; and repeated naming or architecture oscillations. Inspect rejected improvements as well as accepted regressions.
 
 If the stopping policy repeatedly checks a noisy score, it can eventually select noise as apparent progress. Validate that policy on held-out trajectories and use independent final checks instead of tuning it to favorable intermediate results. Log `no_change`, `blocked`, `incomplete`, and `accepted` distinctly. Documentation or test commands written by an agent are not evidence those checks ran.
+
+
+### Compare context-continuity policies
+
+When the workflow uses follow-up prompts over the same artifact, record the review lens for each pass as well as its parent artifact. Distinguish targeted passes such as security or failure recovery from generic “review again” prompts; they spend additional calls on different inference problems.
+
+For the same starting artifact, compare at least these policies when context management is under study:
+
+| Policy | What the next pass receives |
+| --- | --- |
+| Continuous context | Authoritative inputs plus the accumulated conversation |
+| Fresh session | Authoritative brief plus current artifact, without prior conversation |
+| Fresh + durable state | Brief, current artifact, accepted decisions, evidence, tests, and unresolved risks |
+| Independent baseline review | The same baseline artifact in isolation, before earlier review changes are integrated |
+
+Measure requirement retention, new material findings, duplicate rediscovery, unsupported new assumptions, repair/regression rates, cost, and time. For continuous sessions, record when a generated suggestion first appears and whether later passes incorrectly treat it as authoritative. For fresh sessions, record validated constraints that are lost and have to be rediscovered. For durable-state sessions, inspect whether the externalized state itself omitted or distorted an important constraint.
+
+A final fresh-context review can be useful as a test condition because it removes the previous reasoning trajectory, but it is not automatically a better evaluator. Compare it against the same held-out evidence used for other policies.
