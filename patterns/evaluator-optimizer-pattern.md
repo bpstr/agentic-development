@@ -120,3 +120,10 @@ There are three useful session policies:
 A fresh session is not independent ground truth, especially when it uses the same model. It is a context intervention: it removes the previous trajectory from the prompt. Conversely, resetting context can lose a hard-won invariant if that knowledge was never externalized. Before a reset, promote validated discoveries into the durable state rather than relying on a chat summary alone.
 
 For long work, prefer **artifact-mediated iteration**: conversation is disposable working memory; code, tests, specifications, decision records, evidence, and task state carry accepted progress. A useful final pass can reconstruct a clean packet from that state and review the whole artifact for contradictions introduced by earlier aspect-specific passes.
+
+
+## Branching and regeneration
+
+Branching is another way to spend test-time compute. Instead of continuing one review trajectory, fork from the same authoritative checkpoint and let two or more sessions independently regenerate or redesign the next candidate. Compare the branches against the same requirements and evidence before selecting or combining anything.
+
+This can expose alternatives that local follow-up review would never reach and avoids making every later idea inherit the previous conversation's rationale. It also discards useful accumulated reasoning, multiplies cost, and still needs a reliable selector; several branches from the same model are not independent ground truth. Keep branching distinct from aspect-specific review: use review to inspect and repair an existing artifact, and regeneration when deliberately exploring a different solution path.
