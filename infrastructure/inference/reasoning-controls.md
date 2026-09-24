@@ -41,3 +41,12 @@ A model's ability to generate an answer, detect an error, preserve constraints, 
 The [harmful-overthinking preprint](https://arxiv.org/abs/2606.02835) distinguishes unnecessary reasoning from a correct intermediate answer that later becomes wrong. Its oracle knowledge of a correct prefix is a diagnostic upper bound, not an available production stopping signal. Do not infer that shorter reasoning is universally safer either.
 
 Select models and budgets using held-out task outcomes, not self-reported confidence, explanation length, or the best answer retrospectively found in a trace. For multi-call workflows, use the [evaluator–optimizer pattern](../../patterns/evaluator-optimizer-pattern.md) to preserve verified progress and the [output evaluation guidance](../../operations/evaluation/model-output-evaluation.md#evaluate-revision-trajectories) to measure repairs and regressions.
+
+
+## Multi-turn review is a separate compute strategy
+
+A sequence such as “review the implementation,” “now check security,” and “now check edge cases” allocates additional inference calls to **different review lenses over one evolving artifact**. It is not equivalent to regenerating the original answer from scratch. Evaluate it separately from a single high-effort response and from blind generic requests to “improve again.”
+
+Session continuity is another experimental variable. A continuous session carries discoveries and also carries generated assumptions, explanations, and anchoring. A fresh session removes that conversational trajectory but can lose useful knowledge. A third strategy externalizes accepted state—brief, current artifact, decisions, evidence, tests, and unresolved risks—and gives that packet to a fresh session. This preserves durable knowledge while treating conversation as working memory rather than project memory.
+
+Do not call fresh-session passes independent merely because the context was reset. The same model can reproduce the same blind spot, and different models can share one. Measure whether context reset changes repairs, regressions, rediscovery cost, latency, and resource use.
