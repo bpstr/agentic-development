@@ -67,3 +67,12 @@ After each batch, run targeted tests and affected integration checks; before acc
 ## Refactoring completion evidence
 
 Report the preservation contract, reviewed diff, test commands and exit results, environment, tested commit, baseline failures, newly detected failures, unverified surfaces, and rollback boundary. Include what did not change. Fewer smells, less duplication, higher coverage, or fewer lines are secondary improvements only after the relevant behavior contract survives.
+
+
+## Review the same refactor through multiple lenses
+
+Follow-up review does not require another broad rewrite. After a coherent refactor, separate passes can inspect API compatibility, initialization and dependency wiring, transaction/effect ordering, concurrency, performance, test trustworthiness, and cumulative integration. Each pass should begin from the same preservation contract and current repository revision; findings from an earlier pass remain proposals until verified or recorded as accepted constraints.
+
+For expensive repository exploration, continuous context can retain useful symbol and call-path understanding. Once an invariant is validated, externalize it into tests, task constraints, or an explicit decision note. A later fresh-session reviewer can then receive the repository at the accepted commit, preservation contract, baseline/held-out checks, and accepted decisions without inheriting pages of model-generated rationale.
+
+This creates a practical comparison between **continuous review**, **fresh-session review**, and **fresh review with durable state**. The last is often attractive for independent-ish final inspection: it removes conversational anchoring while preserving verified discoveries. It still needs tests and evidence; a new session using the same model is not an independent semantic oracle.
