@@ -8,7 +8,7 @@ The current toolset uses the standard Messages API without a beta header. A mini
 
 ```json
 {
-  "model": "claude-opus-5",
+  "model": "claude-opus-5-5",
   "max_tokens": 1024,
   "tools": [{"type": "computer_toolset_20260801"}],
   "messages": [{"role": "user", "content": "Inspect the current desktop."}]
@@ -17,6 +17,6 @@ The current toolset uses the standard Messages API without a beta header. A mini
 
 Authenticate using the API's normal credentials and version header. Responses contain `tool_use` blocks whose member `name`, such as `screenshot` or `left_click`, is paired with `toolset_name: "computer"`. Execute blocks in order and return one `tool_result` per call, matching `tool_use_id` and echoing the toolset name. Return images for screenshot observations.
 
-The toolset rejects older fields such as `display_width_px` and `name`. Coordinates use the returned screenshot's pixel space. Disable unsupported members through `configs`; zoom is enabled by default.
+The toolset rejects older fields such as `display_width_px` and `name`. Coordinates use the returned screenshot's pixel space. Disable unsupported members through `configs`; zoom is enabled by default. On the Claude API and Google Cloud, Claude Opus 5.5 accepts computer use through `computer_toolset_20260801` and rejects the older `computer_20251124` tool version; Amazon Bedrock currently retains different compatibility behavior. Verify the selected platform before migrating an existing integration.
 
 On failure, stop dependent actions and report unexecuted calls accurately. Isolate the desktop, bound the loop, and verify saved state before announcing success. Page instructions and screenshots remain untrusted inputs.
