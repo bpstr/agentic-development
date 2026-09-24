@@ -4,7 +4,7 @@ Official documentation: [Gemini model catalog](https://ai.google.dev/gemini-api/
 
 Gemini Live provides a bidirectional realtime session for audio, text, and supported visual input with spoken output. It supports conversational capabilities such as interruptions, transcripts, and tool use.
 
-The current Gemini catalog lists **Gemini 3.8 Live** as the default low-latency voice-agent model and **Gemini 3.8 Live Extended Thinking** for interactions that require more background reasoning. The catalog separately lists speech-generation models such as Gemini 2.5 Pro TTS. Verify exact identifiers and lifecycle status in the catalog before deployment.
+The current Gemini catalog lists **Gemini 3.8 Live** as the default low-latency voice-agent model and **Gemini 3.8 Live Extended Thinking** for interactions that require more background reasoning. Speech recognition and synthesis are also exposed as separate model surfaces: **Gemini 3.5 Transcribe** / **Transcribe Live** for STT and **Gemini 3.8 Flash TTS** / **Gemini 3.8 Flash-Lite TTS** for speech generation. Verify exact identifiers, preview status, and lifecycle state in the catalog before deployment.
 
 ## Integration boundaries
 
