@@ -90,3 +90,14 @@ Explore genuinely different architectures as separate candidates from the same b
 Use schemas, contract examples, small feasibility spikes, load experiments, or executable state models where they can resolve a specific uncertainty. These checks validate particular claims, not the entire architecture. Record which conclusions remain judgment-based or unverified.
 
 Stop when agreed drivers are sufficiently addressed for the next authorized stage, no new supported blocker appears, or further progress requires missing evidence or a stakeholder decision. Keep an unresolved-risk register rather than polishing uncertainty into certainty. Apply the [evaluator–optimizer acceptance policy](../../patterns/evaluator-optimizer-pattern.md) to retain the best supported draft, not automatically the most recent one.
+
+
+### Treat the specification as durable state, not the chat transcript
+
+Architecture follow-ups are often aspect reviews rather than replacements: inspect scalability, then security, then failure recovery, developer experience, implementation feasibility, and finally cross-cutting consistency. Keep the original drivers and current architecture authoritative across those passes. A previous reviewer's suggestion becomes durable only when it is accepted as a requirement, decision, assumption, or unresolved risk.
+
+For long design work, externalize the state needed to restart cleanly: goals and non-goals, stable requirement IDs, accepted/superseded decisions, current architecture, evidence, assumptions, and unresolved risks. Then a fresh session can review the current design without inheriting the narrative that produced it. This is **artifact-mediated iteration**: the design and decision artifacts carry progress; the conversation is working memory.
+
+Do not reset blindly. If a session discovered a non-obvious legacy constraint or feasibility result, first record the validated discovery in the authoritative state. Otherwise the next reviewer may repeatedly propose an option already rejected for a good reason. Conversely, carrying the entire transcript can anchor later reviewers to earlier generated explanations and turn speculative suggestions into apparent requirements.
+
+A useful final review can therefore start from a reconstructed authoritative packet rather than the whole conversation and ask whether aspect-specific changes conflict with one another or with the original drivers. This fresh-context pass changes the information presented to the model; it does not make the reviewer independent ground truth.
