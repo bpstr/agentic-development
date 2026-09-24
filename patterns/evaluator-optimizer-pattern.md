@@ -103,3 +103,20 @@ A passing draft remains a draft when that is what the user requested. Publicatio
 For [mass refactoring](../development/coding-agents/coding-agent-verification.md#mass-refactoring-without-semantic-drift), verify behavior preservation and cumulative integration, not just cleaner files. For [architecture specifications](../development/coding-agents/spec-driven-development.md#iterating-on-blueprints-and-architecture-specifications), retain architectural drivers and test failure scenarios rather than rewarding additional components.
 
 Test a first-pass success, one successful correction, correct-to-incorrect revision, rejected regression, exhausted attempts, evaluator timeout, an unsupported date rewritten more persuasively, changed evidence, conflicting architecture tradeoffs, and cancellation before publication. Include candidate text that tells the evaluator to ignore its rubric: the artifact is evaluation data, not an instruction source.
+
+
+## Multi-pass review and session boundaries
+
+A follow-up such as “review this work,” “check failure modes,” or “inspect another aspect” is not necessarily a request to regenerate the artifact. Treat it as another **review pass over the same evolving artifact**. Aspect-specific passes can allocate attention to correctness, security, performance, operability, maintainability, or requirement coverage while preserving the rest.
+
+The review conversation itself is not an authoritative source. Distinguish **durable authoritative state**—the original brief, accepted decisions, current artifact, repository revision, tests, primary evidence, and unresolved risks—from **generated conversational state** such as prior critiques, discarded alternatives, speculative explanations, and summaries. Later passes may use the latter as working context, but must not silently promote it into a requirement.
+
+There are three useful session policies:
+
+1. **Continuous-context review:** keep the conversation when accumulated exploration materially helps the next pass.
+2. **Fresh-session review:** give a new session the authoritative brief and current artifact when prior reasoning risks anchoring the review.
+3. **Fresh session with durable decision state:** carry the current artifact plus accepted decisions, evidence, constraints, and unresolved risks, while discarding the conversational transcript. This preserves project knowledge without requiring the next reviewer to inherit the previous reviewer's narrative.
+
+A fresh session is not independent ground truth, especially when it uses the same model. It is a context intervention: it removes the previous trajectory from the prompt. Conversely, resetting context can lose a hard-won invariant if that knowledge was never externalized. Before a reset, promote validated discoveries into the durable state rather than relying on a chat summary alone.
+
+For long work, prefer **artifact-mediated iteration**: conversation is disposable working memory; code, tests, specifications, decision records, evidence, and task state carry accepted progress. A useful final pass can reconstruct a clean packet from that state and review the whole artifact for contradictions introduced by earlier aspect-specific passes.
