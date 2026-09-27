@@ -16,3 +16,5 @@ A request to execute a tool is data. It does not grant permission and does not p
 Bound iterations, elapsed time, parallel calls, and spending independently. Check cancellation before scheduling new actions. Preserve unresolved call results after a disconnect so the next worker does not blindly repeat a mutation.
 
 The [tool-loop pattern](../../patterns/tool-loop.md) shows application responsibilities. [OpenAI's agent runner documentation](https://developers.openai.com/api/docs/guides/agents/running-agents) describes a framework implementation of the same loop.
+
+An outer worker-session runner may repeat this loop across fresh contexts. [Periodic loop supervision](../../patterns/periodic-loop-supervision.md) adds a slower review of whether those sessions advance the original goal; it adjusts strategy rather than replacing runtime timeouts or cancellation.

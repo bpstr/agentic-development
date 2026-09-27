@@ -2,6 +2,8 @@
 
 A supervisor agent coordinates tools or specialist agents. It interprets the objective, selects delegates, supplies context, integrates results, and decides whether additional work is required. Responsibility for the overall outcome remains with the supervisor.
 
+This delegation pattern differs from [periodic loop supervision](periodic-loop-supervision.md): a separately triggered reviewer inspects progress across worker sessions and corrects the workflow without becoming another implementation worker. The two patterns can coexist, but neither replaces deterministic runtime recovery.
+
 For a release review, it might ask one specialist to inspect migration risk and another to examine unresolved regressions, then combine their evidence into a decision brief. Each subtask needs a bounded question and an expected result; “review everything” creates overlapping work and difficult verification.
 
 [LangChain's subagent documentation](https://docs.langchain.com/oss/python/langchain/multi-agent/subagents) illustrates centralized coordination. A fixed workflow can perform similar dispatch when the steps are already known; model supervision is useful when decomposition or follow-up depends on intermediate findings.

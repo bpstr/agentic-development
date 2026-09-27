@@ -57,6 +57,8 @@ Use stable task/branch/PR identities to avoid opening another pull request on ev
 
 Preserve the approved objective and acceptance checks across sessions. Re-read authoritative code and task state instead of letting an ever-growing self-summary redefine the goal. A rejected approach should be recorded with evidence so the next run does not simply repeat it.
 
+[Periodic loop supervision](../../patterns/periodic-loop-supervision.md) reviews bounded run evidence and proposes the smallest justified strategy change. An independent schedule can inspect an active worker; an every-N-workers checkpoint waits for session outcomes. Apply workflow changes at safe boundaries, preserve original criteria, and leave hung-process recovery to runtime watchdogs. Healthy work should not be replanned merely because a review is due.
+
 Separate new user demand from agent-generated activity. Otherwise an agent's commit can trigger a review, whose comments trigger another edit, indefinitely. Apply provenance, event filters, cooldowns and a maximum number of repair/review cycles per task. Still allow necessary verification of agent changes; suppressing every bot event can hide failures.
 
 Pause on repeated no-progress attempts or contradictory requirements. Do not reinterpret an empty backlog as permission to refactor the entire repository. Broad architectural changes should return to planning and approval.

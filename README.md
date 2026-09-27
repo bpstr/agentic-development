@@ -525,6 +525,7 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
   - [Evaluator–optimizer pattern](patterns/evaluator-optimizer-pattern.md)
   - [Router pattern](patterns/router-pattern.md)
   - [Supervisor pattern](patterns/supervisor-pattern.md)
+  - [Periodic loop supervision](patterns/periodic-loop-supervision.md)
 
 ## Glossary
 

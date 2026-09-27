@@ -12,6 +12,7 @@ An agent harness is the surrounding system that supplies a model with context, e
 | [Durable execution](durable-execution.md) | What survives a crash, and how are unresolved effects recovered? |
 | [Context engineering](../context/context-engineering.md) | What evidence and instructions enter this inference? |
 | Cross-session handover | What remains to do, what is actually verified, and what must be rechecked? |
+| [Periodic loop supervision](../../patterns/periodic-loop-supervision.md) | Is work across sessions advancing the original goal, or does the strategy need correction? |
 
 A worker can resume its queue position perfectly while a new model session misinterprets a prose summary and repeats completed work. Conversely, a detailed progress note cannot reconcile an external write whose result was never recorded.
 
