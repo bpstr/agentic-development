@@ -63,7 +63,7 @@ The [agentic web](agentic-web/agentic-web-definition.md) treats software agents 
 
 [Observability](operations/observability/agent-observability.md) explains a run through traces, spans, tool timing, and token usage. [Evaluation](operations/evaluation/agent-evaluation.md) measures answers, actions, and recovery with datasets, graders, and regression tests; [retrieval evaluation](operations/evaluation/retrieval-evaluation.md) isolates evidence quality, while [graph evaluation](operations/evaluation/graphrag-evaluation.md) checks supported paths and incremental retrieval value.
 
-[Performance](operations/performance/latency.md) balances latency, first useful output, tool overhead, caching, and cost. [Reliability](operations/reliability/agent-reliability.md) defines retries, idempotency, cancellation, and recovery. [Security](operations/security/agent-security.md) constrains injection, data exposure, tools, secrets, and execution. [Governance](operations/governance/agent-governance.md) supplies policies, auditability, and retention.
+[Performance](operations/performance/latency.md) balances latency, first useful output, tool overhead, caching, and cost. [Reliability](operations/reliability/agent-reliability.md) defines retries, idempotency, cancellation, and recovery. [Security](operations/security/agent-security.md) constrains injection, data exposure, tools, secrets, execution, and information flow at the tool boundary. [Governance](operations/governance/agent-governance.md) supplies policies, auditability, and retention.
 
 ## Development and patterns
 
