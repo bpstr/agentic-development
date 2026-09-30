@@ -20,3 +20,5 @@ Keep authorization distinct from consent. An actor may have permission to publis
 Re-check permissions after a suspended run resumes. A previously valid resource may have moved or access may have been revoked. Avoid leaking existence through error messages for inaccessible objects.
 
 Use the same business authorization service for forms, agents, APIs, and background jobs. Duplicating weaker checks in a tool adapter creates a path around the application's ordinary rules. Tests should deliberately inject forbidden model arguments and verify that no unauthorized effect occurs.
+
+Authorization of the actor is not the same as information-flow control. A user may be allowed to send email, yet a session that has read untrusted or private content may still be forbidden to send that mix outward. [OpenAPPA](tools/openappa.md) evaluates the second question at tool dispatch.
