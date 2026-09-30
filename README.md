@@ -1,1 +1,141 @@
-SEE_LOCAL_FILE
+# Agentic Development
+
+A practical technical reference to the concepts, protocols, models, frameworks, and tools used to build agentic software. Subjects are organized by capability, with implementations placed beneath the role they serve.
+
+Each article can be read independently. Concept pages explain the mechanism; implementation pages connect it to official documentation, setup, examples, and operational limits.
+
+Start with the [one-page conceptual overview](overview.md) for a high-level map of the whole topic. The index below links every deeper article.
+
+## Contents
+
+- **Foundations**
+  - [Generative AI](foundations/generative-ai.md)
+  - [Agentic systems](foundations/agentic-systems.md)
+  - [Models versus agents](foundations/models-vs-agents.md)
+  - [Prompts and instructions](foundations/prompts-and-instructions.md)
+  - [Agentic workflows](foundations/agentic-workflows.md)
+- **Infrastructure**
+  - **Models**
+    - [Model definition](infrastructure/models/model-definition.md)
+    - [Model capabilities](infrastructure/models/model-capabilities.md)
+    - [Model selection](infrastructure/models/model-selection.md)
+    - [Model evaluation](infrastructure/models/model-evaluation.md)
+    - [Model benchmarks](infrastructure/models/model-benchmarks.md)
+    - [Reasoning models](infrastructure/models/reasoning-models.md)
+    - [Multimodal models](infrastructure/models/multimodal-models.md)
+    - **Providers**
+      - [Anthropic](infrastructure/models/providers/anthropic.md)
+      - [Google Gemini](infrastructure/models/providers/google.md)
+      - [ElevenLabs](infrastructure/models/providers/elevenlabs.md)
+      - [Meta AI and Muse models](infrastructure/models/providers/meta-ai.md)
+      - [Mistral AI](infrastructure/models/providers/mistral.md)
+      - [Moonshot AI and the Kimi API](infrastructure/models/providers/moonshot-ai.md)
+      - [OpenAI](infrastructure/models/providers/openai.md)
+      - [xAI and Grok](infrastructure/models/providers/xai.md)
+      - **OpenAI models**
+        - [GPT-5.6 Luna](infrastructure/models/providers/openai-models/gpt-5.6-luna.md)
+        - [GPT-5.6 Sol](infrastructure/models/providers/openai-models/gpt-5.6-sol.md)
+        - [GPT-5.6 Terra](infrastructure/models/providers/openai-models/gpt-5.6-terra.md)
+        - [GPT-6 Astra](infrastructure/models/providers/openai-models/gpt-6-astra.md)
+    - **Open-weight models and licensing**
+      - [Open-weight models](infrastructure/models/open-source/open-models.md)
+      - [Model licensing](infrastructure/models/open-source/model-licensing.md)
+      - [Local model feasibility](infrastructure/models/open-source/local-models.md)
+      - [Kimi open-weight models](infrastructure/models/open-source/kimi.md)
+      - [Qwen open-weight models](infrastructure/models/open-source/qwen.md)
+      - [DeepSeek open-weight models](infrastructure/models/open-source/deepseek.md)
+      - [Llama open-weight models](infrastructure/models/open-source/llama.md)
+    - **Voice and audio**
+      - [Voice and audio models](infrastructure/models/voice/voice-models.md)
+      - [Speech-to-text models](infrastructure/models/voice/speech-to-text.md)
+      - [Text-to-speech models](infrastructure/models/voice/text-to-speech.md)
+      - [Speech-to-speech interaction](infrastructure/models/voice/speech-to-speech.md)
+      - **Providers**
+        - [ElevenLabs voice integration](infrastructure/models/voice/providers/elevenlabs-agents.md)
+        - [Gemini Live API](infrastructure/models/voice/providers/gemini-live.md)
+        - [OpenAI GPT-Live and realtime voice](infrastructure/models/voice/providers/openai-live.md)
+        - [Deepgram voice models and Voice Agent API](infrastructure/models/voice/providers/deepgram-voice.md)
+        - [Hume Empathic Voice Interface](infrastructure/models/voice/providers/hume-evi.md)
+    - **Media**
+      - [Media models](infrastructure/models/media/media-models.md)
+      - [Text-to-image generation](infrastructure/models/media/text-to-image.md)
+      - [Image-to-image generation](infrastructure/models/media/image-to-image.md)
+      - [Text-to-video generation](infrastructure/models/media/text-to-video.md)
+      - [Image-to-video generation](infrastructure/models/media/image-to-video.md)
+      - **Image generators**
+        - [FLUX image models](infrastructure/models/media/image-generators/flux.md)
+        - [Gemini image generation](infrastructure/models/media/image-generators/gemini-image-generation.md)
+        - [OpenAI GPT Image](infrastructure/models/media/image-generators/openai-gpt-image.md)
+        - [Seedream image models](infrastructure/models/media/image-generators/seedream.md)
+        - [Stable Diffusion](infrastructure/models/media/image-generators/stable-diffusion.md)
+      - **Video generators**
+        - [Seedance video models](infrastructure/models/media/video-generators/seedance.md)
+        - [Google Veo](infrastructure/models/media/video-generators/veo.md)
+  - **Model adaptation**
+    - [Model distillation](infrastructure/model-adaptation/distillation.md)
+    - [Fine-tuning](infrastructure/model-adaptation/fine-tuning.md)
+    - [Model adaptation](infrastructure/model-adaptation/model-adaptation.md)
+    - [Model quantization](infrastructure/model-adaptation/quantization.md)
+  - **Optimization**
+    - [Prompt optimization](infrastructure/optimization/prompt-optimization.md)
+    - **Frameworks**
+      - [DSPy for prompt optimization](infrastructure/optimization/frameworks/dspy.md)
+  - **Inference**
+    - [Model inference](infrastructure/inference/inference-definition.md)
+    - [Model requests](infrastructure/inference/model-requests.md)
+    - [Model responses](infrastructure/inference/model-responses.md)
+    - [Structured output](infrastructure/inference/structured-output.md)
+    - [Streaming inference](infrastructure/inference/streaming.md)
+    - [Reasoning controls](infrastructure/inference/reasoning-controls.md)
+    - [Context caching](infrastructure/inference/context-caching.md)
+    - [Batch inference](infrastructure/inference/batch-inference.md)
+    - [Conversation state](infrastructure/inference/conversation-state.md)
+    - **APIs**
+      - [Anthropic Messages API](infrastructure/inference/apis/anthropic-messages-api.md)
+      - [Gemini API](infrastructure/inference/apis/gemini-api.md)
+      - [Meta Model API and Muse Spark](infrastructure/inference/apis/meta-model-api.md)
+      - [OpenAI Responses API](infrastructure/inference/apis/openai-responses-api.md)
+  - **Context**
+    - [Context budgets](infrastructure/context/context-budget.md)
+    - [Context compaction](infrastructure/context/context-compaction.md)
+    - [Context engineering](infrastructure/context/context-engineering.md)
+    - [Context selection](infrastructure/context/context-selection.md)
+    - [Context windows](infrastructure/context/context-window.md)
+    - [Instruction hierarchy](infrastructure/context/instruction-hierarchy.md)
+    - [Tool context](infrastructure/context/tool-context.md)
+    - [Working memory](infrastructure/context/working-memory.md)
+  - **Tools**
+    - [Tools](infrastructure/tools/tool-definition.md)
+    - [Tool calling](infrastructure/tools/tool-calling.md)
+    - [Tool execution](infrastructure/tools/tool-execution.md)
+    - [Tool discovery](infrastructure/tools/tool-discovery.md)
+    - [Tool permissions](infrastructure/tools/tool-permissions.md)
+    - [Tool approvals](infrastructure/tools/tool-approvals.md)
+    - [Hosted tools](infrastructure/tools/hosted-tools.md)
+    - **Provider tools**
+      - [Anthropic tool execution](infrastructure/tools/provider-tools/anthropic-tools.md)
+      - [Gemini tool execution](infrastructure/tools/provider-tools/gemini-tools.md)
+      - [OpenAI tool execution](infrastructure/tools/provider-tools/openai-tools.md)
+  - **Protocols**
+    - [Protocols in agentic systems](infrastructure/protocols/protocols.md)
+    - **MCP**
+      - [Model Context Protocol](infrastructure/protocols/mcp/mcp-definition.md)
+      - [MCP architecture](infrastructure/protocols/mcp/mcp-architecture.md)
+      - [MCP transports](infrastructure/protocols/mcp/mcp-transport.md)
+      - [MCP tools](infrastructure/protocols/mcp/mcp-tools.md)
+      - [MCP resources](infrastructure/protocols/mcp/mcp-resources.md)
+      - [MCP prompts](infrastructure/protocols/mcp/mcp-prompts.md)
+      - [MCP discovery](infrastructure/protocols/mcp/mcp-discovery.md)
+      - [MCP authentication and authorization](infrastructure/protocols/mcp/mcp-authentication.md)
+      - [Legacy MCP initialization](infrastructure/protocols/mcp/mcp-legacy.md)
+      - **Tools**
+        - [MCP Inspector](infrastructure/protocols/mcp/tools/mcp-inspector.md)
+        - [MCP Registry](infrastructure/protocols/mcp/tools/mcp-registry.md)
+    - **Agent communication**
+      - [Agent-to-agent communication](infrastructure/protocols/agent-communication/agent-to-agent.md)
+      - [Agent2Agent protocol](infrastructure/protocols/agent-communication/a2a.md)
+    - **Agent UI**
+      - [Agent-to-UI communication](infrastructure/protocols/agent-ui/agent-ui-communication.md)
+      - [Agent User Interaction Protocol](infrastructure/protocols/agent-ui/ag-ui.md)
+    - **WebMCP**
+      - [WebMCP](infrastructure/protocols/webmcp/webmcp-definition.md)
