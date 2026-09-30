@@ -50,3 +50,5 @@ Bind approvals to a specific operation, actor, destination, and relevant content
 Keep credentials out of prompts and trace payloads. Set retention, redaction, and access rules for conversations and tool outputs, including external observability services. A sandbox can restrict code execution while the surrounding API still retains conversation data; evaluate these as separate properties.
 
 Test malicious retrieved content, cross-tenant identifiers, revoked access, altered approvals, duplicate writes, and secret-bearing error messages. A refusal in the final answer is useful evidence only if the forbidden action also failed to occur.
+
+A separate class of control tracks *what the trajectory has already read* and whether that data may flow to the next tool destination. [OpenAPPA](tools/openappa.md) is one deterministic implementation of that information-flow check.
