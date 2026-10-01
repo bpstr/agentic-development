@@ -33,10 +33,10 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
       - [OpenAI](infrastructure/models/providers/openai.md)
       - [xAI and Grok](infrastructure/models/providers/xai.md)
       - **OpenAI models**
-        - [GPT-5.6 Luna](infrastructure/models/providers/openai-models/gpt-5.6-luna.md)
-        - [GPT-5.6 Sol](infrastructure/models/providers/openai-models/gpt-5.6-sol.md)
-        - [GPT-5.6 Terra](infrastructure/models/providers/openai-models/gpt-5.6-terra.md)
         - [GPT-6 Astra](infrastructure/models/providers/openai-models/gpt-6-astra.md)
+        - [GPT-6 Luna](infrastructure/models/providers/openai-models/gpt-6-luna.md)
+        - [GPT-6.1 Sol](infrastructure/models/providers/openai-models/gpt-6.1-sol.md)
+        - [GPT-5.6 Terra](infrastructure/models/providers/openai-models/gpt-5.6-terra.md)
     - **Open-weight models and licensing**
       - [Open-weight models](infrastructure/models/open-source/open-models.md)
       - [Model licensing](infrastructure/models/open-source/model-licensing.md)

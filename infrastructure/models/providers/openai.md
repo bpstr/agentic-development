@@ -7,10 +7,10 @@ OpenAI develops general-purpose language models and specialized models for capab
 The current GPT-6 general-purpose family is split by workload rather than one universal default:
 
 - [GPT-6 Astra](openai-models/gpt-6-astra.md) is the highest-capability tier for demanding reasoning and complex work.
-- **GPT-6 Sol** (`gpt-6-sol`) is positioned for complex coding and agentic workflows with a lower cost than Astra.
-- **GPT-6 Luna** (`gpt-6-luna`) is the efficient tier for focused, high-volume tasks.
+- [GPT-6.1 Sol](openai-models/gpt-6.1-sol.md) (`gpt-6.1-sol`) is the lower-cost complex-work tier. OpenAI released it on September 29, 2026 as an upgrade to GPT-6 Sol, with emphasis on coding, computer use, and professional work.
+- [GPT-6 Luna](openai-models/gpt-6-luna.md) (`gpt-6-luna`) is the efficient tier for focused, high-volume tasks.
 
-OpenAI released Sol and Luna on September 22, 2026. The retained [GPT-5.6 Sol](openai-models/gpt-5.6-sol.md), [GPT-5.6 Terra](openai-models/gpt-5.6-terra.md), and [GPT-5.6 Luna](openai-models/gpt-5.6-luna.md) profiles document the preceding family and should not be used as a current catalog substitute. Verify exact model identifiers, endpoints, tool support, rate limits, and pricing against the model catalog before deployment.
+GPT-6 Sol and Luna first appeared on September 22, 2026; GPT-6.1 Sol superseded the original Sol model one week later. The retained [GPT-5.6 Terra](openai-models/gpt-5.6-terra.md) profile documents the preceding family and should not be used as a current catalog substitute. Verify exact identifiers, endpoints, reasoning controls, tool support, regions, rate limits, and pricing against the model catalog before deployment.
 
 OpenAI's audio catalog includes dedicated Live/Realtime voice models, transcription models, and text-to-speech models. See [OpenAI GPT-Live and realtime voice](../voice/providers/openai-live.md) and the [voice model overview](../voice/voice-models.md).
 
