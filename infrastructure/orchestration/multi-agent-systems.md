@@ -95,9 +95,50 @@ Measure against a competent single agent, independent candidates with verificati
 
 Ablate role specialization, peer messages, memory sharing, and the verifier separately. Use held-out tasks and repeated trials. Track accepted task completion, regressions, unsupported claims, time to a verified result, total resource cost including failed runs, and recovery from stale or duplicate messages. Report uncertainty and actual token and tool usage, not only nominal agent count. State whether improvements come from new evidence, extra candidates, or better selection.
 
-[MacNet](https://arxiv.org/abs/2406.07155) studies collaboration graphs extending beyond a thousand agents using directed acyclic structures. That is prior art for large populations, not proof that a thousand simultaneously active asynchronous workers are optimal. [Agent-scaling research](https://arxiv.org/abs/2512.08296) reports task- and topology-dependent gains and failures. Its results should not become universal thresholds for agent counts.
+[MacNet](https://arxiv.org/abs/2406.07155) studies collaboration graphs extending beyond a thousand agents using directed acyclic structures. That is prior art for large populations, not proof that a thousand simultaneously active asynchronous workers are optimal. The [MacNet implementation reference](frameworks/macnet.md) distinguishes its node-count parameter, edge critics, boundary nodes, synchronous public runner, and proposed text-task adaptation. [Agent-scaling research](https://arxiv.org/abs/2512.08296) reports task- and topology-dependent gains and failures. Its results should not become universal thresholds for agent counts.
 
 Expand only when additional agents improve verified outcomes enough to justify coordination and failure handling. Reject a proposed topology when its advantage vanishes against a simpler baseline given comparable resources.
+
+## Internal delegation and binary records
+
+An internal delegation should identify a bounded question, parent inquiry, task revision, evidence references, deadline, and validated budget reservation. The child inherits a subset of the originating authority; spawning a child must not reset the run's spending limit. Distinguish task acceptance from message delivery and from verified completion.
+
+Use native typed calls within a process when sufficient. Across processes, [Protobuf](https://protobuf.dev/programming-guides/proto3/) and [gRPC](https://grpc.io/docs/what-is-grpc/core-concepts/) can carry internal records; A2A serves a separate interoperability boundary. This small Protobuf definition is an **illustrative application envelope, not the A2A schema or a complete worker service**:
+
+```proto
+syntax = "proto3";
+package inquiry.v1;
+
+message Delegation {
+  string message_id = 1;
+  string run_id = 2;
+  string parent_inquiry_id = 3;
+  string recipient_inquiry_id = 4;
+  uint64 task_revision = 5;
+  string question = 6;
+  repeated string evidence_refs = 7;
+  string budget_reservation_id = 8;
+  int64 deadline_unix_ms = 9;
+}
+```
+
+The runtime validates required application fields, sender identity, authorization, reservation, deadline, and message size. Proto3's ability to parse a message does not mean those application requirements were met. Preserve field-number compatibility when evolving the schema. Delivery retries still need deduplication and cancellation rules.
+
+Binary encoding can reduce some serialization or transport overhead, but the receiving agent must still assemble model-readable context. Measure wire bytes and serialization costs separately from prompt tokens and answer quality. Arbitrary hidden-state exchange is not provided by choosing a binary format.
+
+## Cognitive task processing and shared knowledge
+
+In a proposed adaptive design, “cognitive prompt processing” means preserving intent, identifying uncertainties, selecting evidence, and revising a graph of inquiries. It is an operational description, not a biological claim. A pathway may contribute a source, objection, assumption, or decision to stop rather than a complete final answer.
+
+[CoALA](https://arxiv.org/abs/2309.02427) provides a language-agent memory/action/decision framework; [Tree of Thoughts](https://arxiv.org/abs/2305.10601) and [Graph of Thoughts](https://arxiv.org/abs/2308.09687) provide structured-search precedents. Their reasoning states are not automatically separately executing agents. An adaptive MAS adds explicit lifecycle, delegation, context isolation, and authority boundaries.
+
+Preserve independent initial exploration. Share selected findings when they address a dependency or contradiction, and admit new inquiries under a bounded scheduler. Temporary reservations can discourage duplicate retrieval, but must expire and allow independent replication. The first confident answer must not suppress its critics. Operational ownership of resources does not establish epistemic authority.
+
+A shared [knowledge graph](../knowledge/knowledge-graphs/knowledge-graph-definition.md) should distinguish domain relations, inquiry dependencies, claim provenance, and communication links. A delivery edge is not a support edge. Ingest versioned source artifacts, extract candidate claims with passages and provenance, validate identities and permitted transitions, then update derived indexes. Retrieve under the current task and access scope, expand relevant relationships within a budget, and inspect supporting passages before synthesis.
+
+Source correction should invalidate dependent claims and summaries. Ten copied restatements of one source are not ten independent sources. [PROV-O](https://www.w3.org/TR/prov-o/) provides provenance vocabulary, not truth validation. Graph databases are optional, and graph retrieval is not the same mechanism as a graph of executing agents.
+
+The [sky-blue example](frameworks/macnet.md#replacement-example-why-is-the-sky-blue) uses a simple explanation task to expose these boundaries. A scattering inquiry can request a colour-perception check after a counterexample appears; the renderer combines supported findings without inventing the missing qualification. This is an illustrative adaptive workflow, not a measured advantage over a competent single agent. Separate easy-task correctness, thousand-pathway runtime capacity, and binary-transport efficiency in evaluation.
 
 ## Biological analogies and implementation boundaries
 

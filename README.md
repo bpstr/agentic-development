@@ -141,3 +141,6 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
       - [WebMCP](infrastructure/protocols/webmcp/webmcp-definition.md)
   - **Orchestration**
     - [Multi-agent systems (MAS)](infrastructure/orchestration/multi-agent-systems.md)
+    - [Agent state management](infrastructure/orchestration/state-management.md)
+    - **Frameworks**
+      - [MacNet: artifact-passing collaboration graphs](infrastructure/orchestration/frameworks/macnet.md)
