@@ -12,7 +12,7 @@ An **agent** uses a model to choose steps toward a goal; application code suppli
 
 | Concept | What it is about |
 | --- | --- |
-| [Models and selection](infrastructure/models/model-selection.md) | Compare capabilities, reasoning, multimodality, benchmarks, cost, and task performance. Open weights raise separate licensing and hardware questions. |
+| [Models and selection](infrastructure/models/model-selection.md) | Compare generation, [typed decisions](infrastructure/models/model-capabilities.md#typed-decision-inference), reasoning, multimodality, benchmarks, cost, and task performance. Open weights raise separate licensing and hardware questions. |
 | [Voice](infrastructure/models/voice/voice-models.md) and [media models](infrastructure/models/media/media-models.md) | Transcribe, synthesize speech, converse speech-to-speech, or generate/edit images and video. Generating media differs from understanding sources. |
 | [Model adaptation](infrastructure/model-adaptation/model-adaptation.md) | Fine-tuning changes weights; distillation transfers behavior; quantization reduces precision and resource requirements. |
 | [Prompt optimization](infrastructure/optimization/prompt-optimization.md) | Evaluate instructions and demonstrations before reusing them. This is not automatically model training. |

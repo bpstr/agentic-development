@@ -36,3 +36,9 @@ The [GPT-Live delegation guide](https://developers.openai.com/api/docs/guides/li
 For example, [LiveKit's video adapter](https://docs.livekit.io/agents/multimodality/vision/video/) bridges a video track to OpenAI Realtime by adding image messages, whereas its Gemini path sends frames through the provider's realtime video input. Check the actual model and adapter combination, not just the presence of a video track in the UI.
 
 For either architecture, correlate each visual observation with its capture time and delegated work. A delayed description of an old frame must not be presented as the current scene. Track visual-inference cost and lifecycle separately from speech playback, and revalidate adapters when migrating between GPT-Realtime and GPT-Live.
+
+## Decision-backed voice control
+
+OpenAI's [Decisions guide](https://developers.openai.com/api/docs/guides/decisions#add-voice-control) explicitly connects Decisions with Live **client delegation**. A backend can evaluate textual intent and current application state, select from allowed actions, execute an authorized handler, and return its recorded outcome to the spoken conversation. This is an alternative backend judgment step, not a new Live model or automatic tool-execution mode.
+
+The [Decisions input contract](../../../inference/apis/openai-responses-api.md#decisions-api-for-bounded-judgments) accepts text and inline images, not raw audio or video. Obtain the text through the voice/delegation layer; camera applications must prepare supported images separately. Keep capture times and state versions so a delayed decision does not act on a stale scene. Send refusals, uncertainty, and failures to clarification or review; confirm consequential actions independently of the classifier's confidence.
