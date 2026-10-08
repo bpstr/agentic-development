@@ -30,4 +30,6 @@ Run this as a normal Python script. In an async service, use the corresponding a
 
 Schema validation establishes shape and types; it does not establish that the reported status is true or authorized. Preserve source evidence and validate domain invariants in application code. Set usage and retry limits so validation retries cannot expand indefinitely.
 
+The [PydanticAI 2.54.0 release](https://github.com/pydantic/pydantic-ai/releases/tag/v2.54.0) tightens production behavior: an agent refuses binding a second durable-execution engine before the first binds, and an unexpected exception in a `BackgroundTools` tool terminates the run instead of silently continuing. Its JSON Schema transformer also handles draft-7 list-form `items`. Treat these as compatibility and failure-handling boundaries when upgrading; test resumed workflows and downstream side effects explicitly.
+
 PydanticAI's durable-execution integrations are separate choices. A typed `Agent` object alone does not persist a run across worker restarts. Keep model output, execution checkpoints, and business state distinct.

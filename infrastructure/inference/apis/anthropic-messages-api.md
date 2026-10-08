@@ -34,4 +34,6 @@ When a client tool is requested, an assistant content block identifies its `id`,
 
 Inspect `stop_reason`: reaching an output limit differs from finishing a turn or requesting a tool. Preserve provider-required thinking and signature blocks without alteration during continuation.
 
+The October 2026 [Haiku 5.5 migration guide](https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide) illustrates why model upgrades need integration tests, not just an ID swap: Haiku 5.5 defaults to adaptive thinking, requires selecting response blocks by `type`, rejects non-default `temperature`, `top_p`, and `top_k`, and no longer accepts assistant-message prefills. Recount tokens against its newer tokenizer; preserve thinking blocks only in append-only conversation histories, and replay them through the original or linked account. Handle `stop_reason: "refusal"` explicitly rather than interpreting it as ordinary completion.
+
 Server tools execute through Anthropic's service, while client tools require application execution. Use the selected tool's own reference for versioned definitions, compatible models, and result handling. A model-generated description of success is not an operation receipt.

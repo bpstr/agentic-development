@@ -6,6 +6,8 @@ RAG Engine is Google Cloud's managed retrieval-augmented generation data framewo
 
 RAG Engine is not GraphRAG by itself. Its standard retrieval path is document/chunk retrieval. For relationship-aware retrieval, use a graph implementation such as [Spanner Graph](../../graphrag/platforms/google-spanner-graph.md) or another graph-aware system.
 
+Google's [serverless deployment mode](https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/rag-engine/serverless-mode) is **Preview** and currently available only in `us-central1`. It defaults to `RagManagedVertexVectorSearch` (Vector Search 2.0) rather than `RagManagedDb` and does not support customer-managed encryption keys (CMEK). [Vector Search 2.0-backed corpora](https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/rag-engine/use-rag-managed-vertex-ai-vector-search) are also Preview and confined to `us-central1`; check security controls and deployment mode before assuming parity with a Spanner-backed corpus.
+
 A RAG corpus can use different retrieval/storage backends. Google currently documents managed storage, Agent Search, and Vector Search options. The backend choice changes management, scale, search behavior, visibility, and security capabilities without changing the basic RAG concept.
 
 Use RAG Engine when an application needs Google-managed ingestion and retrieval around enterprise documents and wants to call Gemini with corpus-backed context rather than implement every indexing stage itself.
