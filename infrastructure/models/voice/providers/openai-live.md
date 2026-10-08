@@ -26,3 +26,13 @@ A backend completion does not mean its result was spoken or heard. Persist the b
 The current OpenAI model catalog separately lists GPT-Realtime models for speech-to-speech workflows, including reasoning-capable variants, plus dedicated transcription and speech-generation models. Model names and lifecycle status are time-sensitive; keep exact identifiers in application configuration and verify them against the catalog before deployment.
 
 See [voice models](../voice-models.md), [speech-to-text](../speech-to-text.md), and [text-to-speech](../text-to-speech.md) for the capability split.
+
+## Images, camera frames, and video are different surfaces
+
+The [GPT-Live delegation guide](https://developers.openai.com/api/docs/guides/live-delegation) states that the Live conversational model does not accept image input directly. Send images to a vision-capable backend and return its findings to the voice conversation. Responses delegation supports backend image items through `response.item.create`, followed by `response.create` when the backend turn is ready; client delegation lets an application own that vision workflow instead. Do not put image content in `session.input` and assume the audio frontend can see it.
+
+[GPT-Realtime-2](https://developers.openai.com/api/docs/models/gpt-realtime-2) is different: its catalog lists text, audio, and image input, but explicitly lists video as unsupported. The [Realtime conversation guide](https://developers.openai.com/api/docs/guides/realtime-conversations) documents image input. Applications can sample a camera into image conversation items while handling audio; that does not turn the endpoint into a native video-stream API or establish that every camera frame was analyzed.
+
+For example, [LiveKit's video adapter](https://docs.livekit.io/agents/multimodality/vision/video/) bridges a video track to OpenAI Realtime by adding image messages, whereas its Gemini path sends frames through the provider's realtime video input. Check the actual model and adapter combination, not just the presence of a video track in the UI.
+
+For either architecture, correlate each visual observation with its capture time and delegated work. A delayed description of an old frame must not be presented as the current scene. Track visual-inference cost and lifecycle separately from speech playback, and revalidate adapters when migrating between GPT-Realtime and GPT-Live.

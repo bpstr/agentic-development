@@ -23,3 +23,22 @@ Choose latency targets by interaction. A microphone indicator must respond quick
 Use bounded queues and explicit backpressure. Old partial input can become less useful than newer state, but completed action receipts must not be dropped as though they were disposable audio frames. Define which events can be coalesced, replayed, or superseded, and deduplicate events before applying them to application state.
 
 A realtime transport supplies connectivity. Durability, authorization, and conflict handling remain application responsibilities.
+
+## Audiovisual capture and adapters
+
+A camera-enabled voice interface has several independent stages: permission and capture, timestamping and frame selection, media transport, model-input conversion, inference, and presentation. [Provider video/voice capabilities](../../infrastructure/models/voice/voice-models.md#live-video-with-spoken-interaction) determine whether visual data enters the conversational model, becomes an image message, or goes to a separate vision backend.
+
+Two open-source integration approaches illustrate this separation:
+
+| Framework | Responsibility | Boundary to verify |
+| --- | --- | --- |
+| [LiveKit Agents](https://docs.livekit.io/agents/) | Realtime participants, media transport, and model/provider integrations | Video input support depends on the SDK language, model plugin, and selected model, not only the room configuration. |
+| [Pipecat](https://docs.pipecat.ai/overview/introduction) | Python pipelines of media frames and processors, with client SDKs and transport/provider integrations | Decide between a native realtime model and a composed speech-to-text → reasoning/vision → speech pipeline. The framework is not itself a model. |
+
+LiveKit's [video-input guide](https://docs.livekit.io/agents/multimodality/vision/video/) currently documents Python support enabled by `RoomOptions(video_input=True)`. Its default sampler uses up to one frame per second while the user speaks and one every three seconds otherwise. Gemini receives realtime video frames; OpenAI Realtime receives image conversation items. An audio-only model can silently ignore frames, so a successful connection is not an audiovisual integration test.
+
+Pipecat's [transport guide](https://docs.pipecat.ai/client/concepts/choosing-a-transport) distinguishes server-mediated pipelines from direct provider transports that bypass a Pipecat server. Put private tool authorization and credentials on a trusted backend regardless of transport. Open-source SDKs and optional hosted infrastructure are separate deployment choices.
+
+As an application policy, retain capture time and frame identity across queues and backend delegation. Drop superseded visual frames under load, but preserve committed action receipts. Test that a newly changed scene actually affects the response; also test microphone interruption, screen-source changes, stale frames, reconnects, and slow vision results. Sampling can miss a brief event, so do not interpret fluent narration as proof of continuous visual coverage.
+
+Live camera understanding is also distinct from rendering an avatar or generating video output. Choose and test each direction independently.

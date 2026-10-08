@@ -26,6 +26,23 @@ Official catalogs: [OpenAI models](https://developers.openai.com/api/docs/models
 
 For xAI, the `grok-voice-latest` alias can move between concrete speech-to-speech versions. Pin a version when reproducibility matters. The speech-to-text API currently defaults to `grok-voice-transcribe-2.0`; batch and streaming transcription have different operational limits and pricing, so treat them as separate deployment configurations.
 
+## Live video with spoken interaction
+
+A video-capable product, a video-file inference API, a realtime image-input session, and a camera-enabled voice client are not interchangeable. Verify the public API and the path that actually reaches the model; do not infer developer access from a consumer-app demonstration.
+
+| Surface | Verified audiovisual boundary | Integration consequence |
+| --- | --- | --- |
+| [Gemini Live](providers/gemini-live.md#camera-and-voice-in-the-same-session) | Audio and sampled image frames enter one bidirectional live session. | Implement capture, sampling, interruption, and session recovery; this is not video generation. |
+| [OpenAI GPT-Realtime-2 and GPT-Live](providers/openai-live.md#images-camera-frames-and-video-are-different-surfaces) | Realtime accepts images alongside audio, while GPT-Live delegates vision to a backend. | Frame-to-image adapters and backend vision have different state and cost boundaries. |
+| [Qwen Omni Realtime / Qwen-Live-Harness](https://github.com/QwenLM/Qwen-Live-Harness) | The official open-source harness supports microphone/camera interaction with the hosted Qwen3.8 Omni Flash Realtime API. | Distinguish open-source harness code from the hosted model's weight availability and service terms. |
+| [MiniCPM-o 4.5](https://github.com/OpenBMB/MiniCPM-V) | Open-weight audiovisual model with full-duplex streaming support and an [official self-hosted demo](https://github.com/OpenBMB/MiniCPM-o-Demo). | Validate the exact checkpoint license, serving code, hardware requirements, and achievable latency. MiniCPM-V and MiniCPM-o are not the same model surface. |
+
+The [Qwen3-Omni repository](https://github.com/QwenLM/Qwen3-Omni) also provides open checkpoints for multimodal understanding and speech. A published checkpoint does not imply that a similarly named newer hosted realtime model is open-weight, or that an arbitrary inference host exposes its realtime behavior.
+
+For other providers, the currently inspected [Amazon Nova documentation](https://docs.aws.amazon.com/nova/latest/nova2-userguide/) assigns speech/text interaction to Nova 2 Sonic and video understanding to Nova 2 Lite; those are separate model surfaces. [xAI's speech-to-speech API](https://docs.x.ai/developers/model-capabilities/audio/speech-to-speech) documents audio/text WebSocket interaction, not an equivalent camera-input contract. [Claude's model overview](https://platform.claude.com/docs/en/models/overview) describes text/image input and text output, not a native audiovisual voice session. These are limits of the documented surfaces, not claims that applications cannot combine them with other components.
+
+[Realtime application frameworks](../../../interfaces/realtime/realtime-agents.md#audiovisual-capture-and-adapters) can connect cameras, transports, speech services, and vision models. Their support for a video track is not evidence that the selected backend consumes it. Measure visual freshness and temporal coverage in addition to voice latency.
+
 ## Selection criteria
 
 Measure the complete interaction rather than a single advertised model latency. Useful dimensions include:
