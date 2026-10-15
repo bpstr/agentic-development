@@ -2,7 +2,7 @@
 
 [Official model specification](https://developers.openai.com/api/docs/models/gpt-5.6-sol) · [Current model catalog](https://developers.openai.com/api/docs/models) · [Pricing](https://developers.openai.com/api/docs/pricing)
 
-GPT-5.6 Sol was the flagship tier of OpenAI's GPT-5.6 family for complex professional work. Its explicit identifier is `gpt-5.6-sol`; the specification also documented `gpt-5.6` as an alias routing to Sol. OpenAI released **GPT-6 Sol** on September 22, 2026, and the current catalog positions `gpt-6-sol` for complex coding and agentic workflows. Treat this page as a predecessor profile rather than a current model-selection recommendation.
+GPT-5.6 Sol was the flagship tier of OpenAI's GPT-5.6 family for complex professional work. Its explicit identifier is `gpt-5.6-sol`; the specification also documented `gpt-5.6` as an alias routing to Sol. OpenAI released **GPT-6 Sol** on September 22, 2026 and the newer **GPT-6.1 Sol** (`gpt-6.1-sol`) on September 29, 2026; the [current model catalog](https://developers.openai.com/api/docs/models) positions 6.1 Sol for complex work at lower cost than Astra. Treat this page as a predecessor profile rather than a current model-selection recommendation.
 
 GPT-5.6 Sol accepts text and image input and produces text output. Image synthesis or speech therefore requires the appropriate separate capability or tool. Its documented reasoning-effort range includes `none`, `low`, `medium`, `high`, `xhigh`, and `max`.
 
