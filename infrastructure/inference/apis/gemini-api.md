@@ -41,3 +41,8 @@ For `client.models.generate_content` and `generate_content_stream`, Google's Pyt
 Use `thinking_level` (`low`, `medium`, `high`) rather than `thinking_budget`. Remove explicit cached-content references—only implicit caching is supported—and remove unsupported sampling controls (`temperature`, `top_p`, `top_k`, `candidate_count`). Preserve thought signatures in multi-turn/tool histories; set appropriate long-call timeouts and evaluate the full cost of repeated continuations. These are endpoint- and model-specific migration steps, not universal Gemini defaults.
 
 For longer recorded videos, [agentic video processing](../../knowledge/multimodal/multimodal-source-understanding.md#adaptive-agentic-video-analysis) is an opt-in `Interactions API` video-input mode distinct from both `generateContent` long decode and the realtime Live API.
+
+
+## Deep Research preview retirement
+
+The [October 8, 2026 Gemini API release notes](https://ai.google.dev/gemini-api/docs/changelog) schedule **`deep-research-pro-preview-12-2025` to shut down on October 23, 2026**. Interactions clients still selecting that agent should migrate immediately: set the **`agent`** parameter of `interactions.create` to `deep-research-preview-04-2026` (lower latency) or `deep-research-max-preview-04-2026` (more comprehensive). This is an **agent identifier**, not a `model` field or a Google Managed Agents API setting. Retest streaming, completion behavior, quotas, citations, cost, and interruption recovery when changing agents.
