@@ -2,7 +2,7 @@
 
 [Official model specification](https://developers.openai.com/api/docs/models/gpt-5.6-terra) · [Current model catalog](https://developers.openai.com/api/docs/models) · [Pricing](https://developers.openai.com/api/docs/pricing)
 
-GPT-5.6 Terra was OpenAI's GPT-5.6 tier balancing capability and cost. Its API identifier is `gpt-5.6-terra`. The GPT-6 catalog released in September 2026 currently exposes Astra, Sol, and Luna rather than a Terra-named tier, so treat this page as documentation of the preceding family rather than evidence that Terra is a current GPT-6 option.
+GPT-5.6 Terra was OpenAI's GPT-5.6 tier balancing capability and cost. Its API identifier is `gpt-5.6-terra`. The GPT-6 catalog initially launched in September 2026 without a Terra-named tier, but OpenAI released [GPT-6.1 Terra](https://developers.openai.com/api/docs/models/gpt-6.1-terra) on October 26. Treat this page as documentation of the **preceding** GPT-5.6 family, not a specification for `gpt-6.1-terra`.
 
 Terra remains a useful example of evaluating a middle model tier for bounded application work: extracting actions from a conversation, choosing among well-described tools, or answering questions from a compact set of retrieved documents. Those are workload hypotheses, not guarantees about relative accuracy or latency.
 

@@ -31,3 +31,39 @@ The Interactions guide demonstrates `previous_interaction_id` for server-side co
 Gemini also distinguishes custom functions from built-in tools such as Google Search. A function declaration describes an operation for a dispatcher; declaring it does not grant access to the application's data. Return results using the correlation fields and input types of the API in use.
 
 Google AI Studio/Gemini API credentials and Vertex AI deployment configuration are different integration choices. Check the selected endpoint's model availability, authentication, and supported features instead of assuming that an SDK method makes every backend interchangeable.
+
+## Gemini 4 Argon and long decode
+
+The [Gemini 4 Argon model contract](https://ai.google.dev/gemini-api/docs/models/gemini-4-argon) and [migration guide](https://ai.google.dev/gemini-api/docs/generate-content/latest-model) identify `gemini-4-argon` as a stable, multimodal-input, text-output reasoning model. This is **not** the Gemini Live session API. The 1,048,576-token context limit is shared among input, thinking, and output: it is not a promise of one uninterrupted 1M-token HTTP response.
+
+For `client.models.generate_content` and `generate_content_stream`, Google's Python `google-genai>=2.30.1` and JavaScript `@google/genai>=2.29.1` can automatically continue long decodes. A single non-streaming request is limited to 32,768 generated tokens; a streaming request is limited to 65,536. For larger outputs, configure a higher `max_output_tokens`, allow continuation, and persist or verify the combined result. Raw REST integrations must explicitly handle continuation tokens, including responses dominated by thinking tokens. Never claim the Interactions API uses the same continuation contract without checking its own documentation.
+
+Use `thinking_level` (`low`, `medium`, `high`) rather than `thinking_budget`. Remove explicit cached-content references—only implicit caching is supported—and remove unsupported sampling controls (`temperature`, `top_p`, `top_k`, `candidate_count`). Preserve thought signatures in multi-turn/tool histories; set appropriate long-call timeouts and evaluate the full cost of repeated continuations. These are endpoint- and model-specific migration steps, not universal Gemini defaults.
+
+For longer recorded videos, [agentic video processing](../../knowledge/multimodal/multimodal-source-understanding.md#adaptive-agentic-video-analysis) is an opt-in `Interactions API` video-input mode distinct from both `generateContent` long decode and the realtime Live API.
+
+
+## Deep Research preview retirement
+
+The [Gemini API release notes](https://ai.google.dev/gemini-api/docs/changelog) identify **`deep-research-pro-preview-12-2025` as shut down on October 23, 2026**. Interactions clients still selecting that agent should migrate immediately: set the **`agent`** parameter of `interactions.create` to `deep-research-preview-04-2026` (lower latency) or `deep-research-max-preview-04-2026` (more comprehensive). This is an **agent identifier**, not a `model` field or a Google Managed Agents API setting. Retest streaming, completion behavior, quotas, citations, cost, and interruption recovery when changing agents.
+
+## Paid-project request storage defaults
+
+On **October 26, 2026**, new paid Gemini API projects changed the `generateContent`, `streamGenerateContent`, and `batchGenerateContent` default to **`store=true`**. Older projects retain their prior Generate Content default, usually `store=false` unless logging was enabled. The Interactions API already defaults to `store=true`. [Logs and datasets](https://ai.google.dev/gemini-api/docs/logs-datasets) explains the per-project setting and override; these behaviors are **not** interchangeable with model context caching.
+
+Set the request-level storage policy explicitly when prompts contain sensitive application data:
+
+```python
+# google-genai >= 2.33.0 is required for Generate Content's store option.
+response = client.models.generate_content(
+    model="gemini-3.8-flash",
+    contents="Summarize this non-sensitive example.",
+    config={"store": False},
+)
+```
+
+For JavaScript Generate Content, use `@google/genai>=2.31.0` for the same control. A request-level `store` value overrides the project default. Interactions `store=False` prevents server-side continuation via `previous_interaction_id` and background execution; do not promise those features if you disable interaction storage. Paid-tier log retention is configurable up to 55 days, and optional dataset saves have a different lifecycle. [Zero data retention requirements](https://ai.google.dev/gemini-api/docs/zdr) also cover abuse logs, grounding, file storage and Live session resumption: `store=False` alone does not guarantee zero retention.
+
+## Stateless Gemini API shell client
+
+The [Gemini API CLI](https://ai.google.dev/gemini-api/docs/cli), launched in beta on October 27, 2026, is a separate `gemini-api` executable built on the Interactions API, suitable for scripts or for *other* coding agents to call through a shell. It is not the interactive [Gemini CLI coding agent](../../../development/coding-agents/tools/gemini-cli.md#gemini-api-cli-is-not-gemini-cli). It can return media output as file paths, inspect local files, launch and poll managed agents, and emit machine-readable errors. Pin its release because the beta CLI may change between minor versions.
