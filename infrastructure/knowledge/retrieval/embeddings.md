@@ -19,3 +19,9 @@ This metadata example identifies an embedding generation; it does not contain th
 Similarity metrics include cosine similarity, inner product, and Euclidean distance. Choose the metric expected by the model and index. Normalization can change how those metrics relate. The [Sentence Transformers documentation](https://www.sbert.net/docs/sentence_transformer/usage/semantic_textual_similarity.html) describes supported similarity functions.
 
 Plan model changes as index migrations: build compatible new representations, compare retrieval quality, and switch queries coherently. Do not silently mix old and new vectors. Evaluate multilingual text, domain terminology, and long documents separately. Embeddings compress information; similarity alone cannot establish exact equivalence, current truth, or permission to expose a source.
+
+## Provider-defined compatible spaces
+
+[Cohere Embed 5](https://docs.cohere.com/v2/changelog), released September 30, 2026, is a documented **exception to the default assumption that different model variants use incompatible spaces**: `embed-v5.0-pro` and `embed-v5.0-fast` share a vector space. Cohere recommends indexing with Pro for quality and querying with Fast for latency. Both handle multilingual text and multimodal text/image representations; the supported Matryoshka dimensions are 256, 512, 768, 1024, 1536 and 2048.
+
+This compatibility applies specifically to the two documented Embed 5 variants with matching output dimensions, embedding format, task semantics and preprocessing. Do not mix unrelated model families, dimensions, or data types in one index. Verify model availability and licensing for the hosting surface, and benchmark retrieval before migrating an existing corpus.

@@ -45,4 +45,25 @@ For longer recorded videos, [agentic video processing](../../knowledge/multimoda
 
 ## Deep Research preview retirement
 
-The [October 8, 2026 Gemini API release notes](https://ai.google.dev/gemini-api/docs/changelog) schedule **`deep-research-pro-preview-12-2025` to shut down on October 23, 2026**. Interactions clients still selecting that agent should migrate immediately: set the **`agent`** parameter of `interactions.create` to `deep-research-preview-04-2026` (lower latency) or `deep-research-max-preview-04-2026` (more comprehensive). This is an **agent identifier**, not a `model` field or a Google Managed Agents API setting. Retest streaming, completion behavior, quotas, citations, cost, and interruption recovery when changing agents.
+The [Gemini API release notes](https://ai.google.dev/gemini-api/docs/changelog) identify **`deep-research-pro-preview-12-2025` as shut down on October 23, 2026**. Interactions clients still selecting that agent should migrate immediately: set the **`agent`** parameter of `interactions.create` to `deep-research-preview-04-2026` (lower latency) or `deep-research-max-preview-04-2026` (more comprehensive). This is an **agent identifier**, not a `model` field or a Google Managed Agents API setting. Retest streaming, completion behavior, quotas, citations, cost, and interruption recovery when changing agents.
+
+## Paid-project request storage defaults
+
+On **October 26, 2026**, new paid Gemini API projects changed the `generateContent`, `streamGenerateContent`, and `batchGenerateContent` default to **`store=true`**. Older projects retain their prior Generate Content default, usually `store=false` unless logging was enabled. The Interactions API already defaults to `store=true`. [Logs and datasets](https://ai.google.dev/gemini-api/docs/logs-datasets) explains the per-project setting and override; these behaviors are **not** interchangeable with model context caching.
+
+Set the request-level storage policy explicitly when prompts contain sensitive application data:
+
+```python
+# google-genai >= 2.33.0 is required for Generate Content's store option.
+response = client.models.generate_content(
+    model="gemini-3.8-flash",
+    contents="Summarize this non-sensitive example.",
+    config={"store": False},
+)
+```
+
+For JavaScript Generate Content, use `@google/genai>=2.31.0` for the same control. A request-level `store` value overrides the project default. Interactions `store=False` prevents server-side continuation via `previous_interaction_id` and background execution; do not promise those features if you disable interaction storage. Paid-tier log retention is configurable up to 55 days, and optional dataset saves have a different lifecycle. [Zero data retention requirements](https://ai.google.dev/gemini-api/docs/zdr) also cover abuse logs, grounding, file storage and Live session resumption: `store=False` alone does not guarantee zero retention.
+
+## Stateless Gemini API shell client
+
+The [Gemini API CLI](https://ai.google.dev/gemini-api/docs/cli), launched in beta on October 27, 2026, is a separate `gemini-api` executable built on the Interactions API, suitable for scripts or for *other* coding agents to call through a shell. It is not the interactive [Gemini CLI coding agent](../../../development/coding-agents/tools/gemini-cli.md#gemini-api-cli-is-not-gemini-cli). It can return media output as file paths, inspect local files, launch and poll managed agents, and emit machine-readable errors. Pin its release because the beta CLI may change between minor versions.

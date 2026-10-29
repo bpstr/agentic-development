@@ -43,7 +43,7 @@ The [Decisions voice guide](https://developers.openai.com/api/docs/guides/decisi
 
 Configure `session.delegation` with `type: "decisions"` and supported named questions; grant `api.decisions.write`. `session.triggers` can evaluate input or output transcript deltas during conversation, and `session.update` can revise questions after the matching `session.updated` acknowledgement. Choose the delegation type at session creation. Correlate decision identifiers, transcript timing, and authoritative application state. The backend must validate selected actions, enforce permissions and approvals, execute them, persist receipts, and only then tell Live what actually happened.
 
-The [Decisions endpoint](../../../inference/apis/openai-responses-api.md#decisions-api-for-bounded-judgments) accepts **text and inline images, not raw audio or video**. Live manages the spoken interaction; an authorized backend must prepare any additional visual evidence and reject stale scene observations.
+The [Decisions endpoint](../../../inference/apis/openai-responses-api.md#decisions-api-for-bounded-judgments) accepts **text, JSON data, and images supplied as inline data URLs or public HTTP(S) URLs, but not raw audio or video**. Live manages the spoken interaction; an authorized backend must prepare any additional visual evidence and reject stale scene observations.
 
 ## Custom GPT-Live voices
 
