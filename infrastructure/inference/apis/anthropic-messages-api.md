@@ -49,3 +49,35 @@ Anthropic released [API version `2026-10-21`](https://platform.claude.com/docs/e
 For `/v1/messages`, token counting, and Message Batches, the new version rejects `temperature`, `top_p`, and `top_k` **even when set to their former defaults**; remove them or retain the old API version. Direct `document` blocks in assistant messages and nonempty `citations` arrays on user text blocks also yield 400 errors. Document input belongs in user messages; assistant citations returned by Claude remain valid to replay. The SDK major updates separately change types, authentication and tool-runner behavior; consult the [official SDK migration checklist](https://platform.claude.com/docs/en/api/migration-2026-10-21#sdk-and-cli-changes), rather than upgrading dependencies blind.
 
 On Amazon Bedrock, the new version is available only for Claude 4.7 or newer. Older Bedrock model calls must keep the previous API/SDK version unless the model is migrated first. Preserve the effective API version, model, SDK, and gateway in diagnostics when investigating a new 400 or changed output.
+
+## Message threads for long agent loops (beta)
+
+[Anthropic message threads](https://platform.claude.com/docs/en/build-with-claude/message-threads) allow a Messages client to upload the complete history once and subsequently send only new turns. The beta requires `message-threads-2026-08-12` on every threaded request. The feature is available on the Claude API and the documented Anthropic-managed cloud deployments; check the host's coverage before assuming all Bedrock or Vertex calls support it.
+
+Create with `thread: {"type": "create"}` and full `messages`, `system`, and `tools`; continue with `thread: {"type": "continue", "previous_message_id": response.id}` and only the new messages. Do not resend `system` or `tools` on continuation. Fixed request configuration is fingerprinted: incompatible changes fail instead of silently changing thread context.
+
+The official Python SDK supports a helper, `client.beta.messages.thread(...)`, which manages continuation and in-memory replay. A lower-level example illustrates the wire contract; calls are billable if executed:
+
+```python
+import anthropic
+
+client = anthropic.Anthropic()
+first = client.beta.messages.create(
+    model="claude-opus-5-5",
+    max_tokens=1024,
+    messages=[{"role": "user", "content": "Which test should run first?"}],
+    thread={"type": "create"},
+    betas=["message-threads-2026-08-12"],
+)
+second = client.beta.messages.create(
+    model="claude-opus-5-5",
+    max_tokens=1024,
+    messages=[{"role": "user", "content": "Why that test?"}],
+    thread={"type": "continue", "previous_message_id": first.id},
+    betas=["message-threads-2026-08-12"],
+)
+```
+
+**A thread is an optimization, not durable conversation storage.** It expires five minutes after its last stored request; data is deleted no more than one hour after last use. A `404 thread_not_found` requires recreating from the application's full saved history. The thread API offers no list, read, or delete operation; it is append-only, so compaction or changed setup requires creating a fresh thread. Streaming continuation should wait for the completed prior response. The SDK helper retains history only in process memory; persisting the source conversation is still your responsibility.
+
+Threads do **not** change inference prices, rate limits, or automatically enable prompt caching. Combine with explicit [prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) where appropriate. **Threads are not eligible for zero data retention (ZDR) or HIPAA**. Check data policy before enabling a beta that stores prompt and tool context on provider infrastructure.
