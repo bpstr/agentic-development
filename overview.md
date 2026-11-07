@@ -34,7 +34,7 @@ An **agent** uses a model to choose steps toward a goal; application code suppli
 | [Indexing](infrastructure/knowledge/indexing/indexing.md) | Build searchable representations. Incremental updates, freshness, and deletion align derived data with originals. |
 | [Multimodal understanding](infrastructure/knowledge/multimodal/multimodal-source-understanding.md) | Interpret media while preserving coordinates, timestamps, speakers, and source evidence. File acceptance is not understanding. |
 | [Document intelligence](infrastructure/knowledge/document-intelligence/document-understanding.md) | Extract text, layout, and tables; OCR reads text from images. Extraction differs from generated interpretation. |
-| [Web research](infrastructure/knowledge/web-research/web-research.md) | Discover, inspect, and compare sources. Provenance and source quality constrain responsible synthesis. |
+| [Web research](infrastructure/knowledge/web-research/web-research.md) | Discover, inspect, extract structured data from, and compare sources. Provenance and source quality constrain synthesis. |
 
 ## Infrastructure: application boundaries
 

@@ -269,6 +269,8 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
     - **Web research**
       - [Research source selection](infrastructure/knowledge/web-research/source-selection.md)
       - [Web research](infrastructure/knowledge/web-research/web-research.md)
+      - **Libraries**
+        - [ScrapeGraphAI](infrastructure/knowledge/web-research/libraries/scrapegraphai.md)
   - **Hosting**
     - [Agent hosting](infrastructure/hosting/agent-hosting.md)
     - [Deployment architecture for agentic applications](infrastructure/hosting/deployment-architecture.md)

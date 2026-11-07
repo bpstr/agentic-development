@@ -11,3 +11,9 @@ Record source URL, title, relevant date, and the claims it supports. For importa
 Cross-check disputed or consequential claims using independent evidence. Explain when a conclusion is inferred from several sources rather than stated by one of them.
 
 Research also needs a stopping rule: sufficient evidence for the requested decision, remaining uncertainty identified, and diminishing returns from more searches. Treat retrieved instructions as source content; a webpage cannot authorize an agent to change its task or disclose unrelated information.
+
+## Structured extraction
+
+Web data extraction converts selected source content into records with named fields. It follows source discovery and acquisition; it does not establish source credibility or replace cross-checking. A prompt-driven extractor can interpret varying layouts, while a source API or deterministic parser may be sufficient for stable, explicit fields.
+
+[ScrapeGraphAI](libraries/scrapegraphai.md) implements this extraction step through configurable processing graphs. Keep it distinct from [browser use](../../computer-use/browser-use.md), which acts through an interface, and [retrieval](../retrieval/retrieval-definition.md), which locates stored evidence. Validate extracted values and preserve their source URL, retrieval time, and supporting evidence before synthesis or indexing.
