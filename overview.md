@@ -20,15 +20,15 @@ An **agent** uses a model to choose steps toward a goal; application code suppli
 | [Context](infrastructure/context/context-engineering.md) | Select instructions, evidence, tool descriptions, and history within a finite window. Compaction and working memory preserve what decisions need. |
 | [Tools](infrastructure/tools/tool-definition.md) | Operations connect decisions to reads and effects. Discovery, calling, execution, permissions, approvals, and hosted tools are distinct responsibilities. |
 | [Protocols](infrastructure/protocols/protocols.md) | MCP exposes tools/resources; A2A supports agent exchanges; AG-UI carries interaction events; WebMCP exposes browser tools. Binary transport does not supply reasoning. |
-| [Orchestration](infrastructure/orchestration/orchestration-definition.md) and [MAS](infrastructure/orchestration/multi-agent-systems.md) | Loops, graphs, delegation, and evolving inquiries organize work. Logical agents differ from model replicas and concurrent requests. |
+| [Orchestration](infrastructure/orchestration/orchestration-definition.md) and [MAS](infrastructure/orchestration/multi-agent-systems.md) | Loops, graphs, delegation, and [visual workflows](infrastructure/orchestration/workflow-orchestration.md#visual-workflow-platforms) organize work. Logical agents differ from model replicas and concurrent requests. |
 | [State](infrastructure/orchestration/state-management.md), [durability](infrastructure/orchestration/durable-execution.md), and [harnesses](infrastructure/orchestration/agent-harness.md) | Separate private context, shared evidence, and authoritative execution. Checkpoints, leases, receipts, and handovers support recovery across failures and sessions. |
 
 ## Infrastructure: knowledge and evidence
 
 | Concept | What it is about |
 | --- | --- |
-| [Retrieval](infrastructure/knowledge/retrieval/retrieval-definition.md) | Find evidence through keyword, semantic, hybrid, or multimodal search. Embeddings, rerankers, and vector databases serve different stages. |
-| [RAG](infrastructure/knowledge/rag/rag-definition.md) | Supply retrieved evidence to generation. Chunking, citations, grounding, and query strategy connect indexing to answers. |
+| [Retrieval](infrastructure/knowledge/retrieval/retrieval-definition.md) | Find evidence through keyword, semantic, hybrid, multimodal, or [document-structure navigation](infrastructure/knowledge/retrieval/retrieval-definition.md#document-structure-as-a-retrieval-index). Embeddings, rerankers, and vector databases serve different stages. |
+| [RAG](infrastructure/knowledge/rag/rag-definition.md) | Supply retrieved evidence to generation. [Pipelines](infrastructure/knowledge/rag/rag-pipeline.md) separate indexing, retrieval, generation, and product responsibilities; chunking and citations preserve supporting evidence. |
 | [Knowledge graphs](infrastructure/knowledge/knowledge-graphs/knowledge-graph-definition.md) and [GraphRAG](infrastructure/knowledge/graphrag/graphrag-definition.md) | [Ontologies](infrastructure/knowledge/knowledge-graphs/ontology-design.md) define entities and relationships. Domain, inquiry, evidence, and communication edges mean different things; graph storage alone is not GraphRAG or verification. |
 | [Memory](infrastructure/knowledge/memory/memory-definition.md) | Retain information with correction, expiry, and deletion. [Temporal graphs](infrastructure/knowledge/knowledge-graphs/temporal-knowledge-graphs.md) separate fact validity from recording time. |
 | [Indexing](infrastructure/knowledge/indexing/indexing.md) | Build searchable representations. Incremental updates, freshness, and deletion align derived data with originals. |
@@ -57,7 +57,7 @@ The [agentic web](agentic-web/agentic-web-definition.md) treats agents as first-
 
 ## Interfaces
 
-[Chat](interfaces/chat/chat-interfaces.md) presents messages, tool activity, and approvals. Desktop [interfaces](interfaces/agent-interfaces.md) connect local applications through permissions; the client need not host inference. [Generative UI](interfaces/generative-ui/generative-ui-definition.md) selects components. [Realtime](interfaces/realtime/realtime-agents.md) and [voice](interfaces/voice/voice-agents.md) add sessions, turn-taking, interruption, and delegation. The [implementation manual](interfaces/implementation-manual.md) and [testing guide](interfaces/testing-guide.md) connect these to lifecycle and failure handling.
+[Chat](interfaces/chat/chat-interfaces.md) presents messages, tool activity, and approvals. Deployable applications bundle services; UI libraries supply application components. Desktop [interfaces](interfaces/agent-interfaces.md) connect local applications through permissions; the client need not host inference. [Generative UI](interfaces/generative-ui/generative-ui-definition.md) selects components. [Realtime](interfaces/realtime/realtime-agents.md) and [voice](interfaces/voice/voice-agents.md) add sessions, turn-taking, interruption, and delegation. The [implementation manual](interfaces/implementation-manual.md) and [testing guide](interfaces/testing-guide.md) connect these to lifecycle and failure handling.
 
 ## Operations
 

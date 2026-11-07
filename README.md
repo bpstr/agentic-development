@@ -162,6 +162,9 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
       - [OpenAI Agents SDK](infrastructure/orchestration/frameworks/openai-agents-sdk.md)
       - [PydanticAI](infrastructure/orchestration/frameworks/pydantic-ai.md)
       - [Vercel AI SDK](infrastructure/orchestration/frameworks/vercel-ai-sdk.md)
+    - **Platforms**
+      - [Dify](infrastructure/orchestration/platforms/dify.md)
+      - [Flowise (archived)](infrastructure/orchestration/platforms/flowise.md)
     - **Managed runtimes**
       - [Claude Managed Agents](infrastructure/orchestration/managed-runtimes/claude-managed-agents.md)
       - [Managed agent runtimes](infrastructure/orchestration/managed-runtimes/managed-agents.md)
@@ -179,9 +182,12 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
       - [Reranking](infrastructure/knowledge/retrieval/reranking.md)
       - [Semantic search](infrastructure/knowledge/retrieval/semantic-search.md)
       - [Multimodal retrieval](infrastructure/knowledge/retrieval/multimodal-retrieval.md)
+      - **Frameworks**
+        - [PageIndex](infrastructure/knowledge/retrieval/frameworks/pageindex.md)
       - **Platforms**
         - [Azure AI Search](infrastructure/knowledge/retrieval/platforms/azure-ai-search.md)
         - [Google Agent Search](infrastructure/knowledge/retrieval/platforms/google-agent-search.md)
+        - [Onyx enterprise knowledge retrieval](infrastructure/knowledge/retrieval/platforms/onyx.md)
     - **RAG**
       - [Retrieval-augmented generation](infrastructure/knowledge/rag/rag-definition.md)
       - [Chunking](infrastructure/knowledge/rag/chunking.md)
@@ -190,10 +196,13 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
       - [The RAG pipeline](infrastructure/knowledge/rag/rag-pipeline.md)
       - [Retrieval strategies](infrastructure/knowledge/rag/retrieval-strategies.md)
       - **Frameworks**
+        - [Haystack](infrastructure/knowledge/rag/frameworks/haystack.md)
         - [LangChain retrieval components](infrastructure/knowledge/rag/frameworks/langchain-retrieval.md)
         - [LlamaIndex for RAG](infrastructure/knowledge/rag/frameworks/llamaindex.md)
       - **Platforms**
         - [Google Agent Platform RAG Engine](infrastructure/knowledge/rag/platforms/google-rag-engine.md)
+        - [R2R](infrastructure/knowledge/rag/platforms/r2r.md)
+        - [RAGFlow](infrastructure/knowledge/rag/platforms/ragflow.md)
     - **Vector databases**
       - [Vector databases](infrastructure/knowledge/vector-databases/vector-databases.md)
       - [pgvector](infrastructure/knowledge/vector-databases/pgvector.md)
@@ -386,6 +395,11 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
     - [Streaming messages](interfaces/chat/streaming-messages.md)
     - [Tool rendering](interfaces/chat/tool-rendering.md)
     - [Approval controls in chat](interfaces/chat/chat-approvals.md)
+    - **Applications**
+      - [AnythingLLM](interfaces/chat/applications/anythingllm.md)
+      - [LibreChat](interfaces/chat/applications/librechat.md)
+      - [Open WebUI](interfaces/chat/applications/open-webui.md)
+      - [Verba (archived)](interfaces/chat/applications/verba.md)
     - **Libraries**
       - [assistant-ui](interfaces/chat/libraries/assistant-ui.md)
       - [Vercel AI Elements](interfaces/chat/libraries/vercel-ai-elements.md)

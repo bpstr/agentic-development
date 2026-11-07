@@ -16,3 +16,11 @@ Keep conversational controls distinct:
 Support reconnection by loading authoritative messages, pending approvals, and active runs. Replaying a conversation for display must not execute its historical tools again.
 
 For rendering, choose a library with a state adapter that fits the backend and a component system that fits the product. [assistant-ui](libraries/assistant-ui.md) provides runtime-aware primitives and styled elements; [AI SDK UI](libraries/vercel-ai-sdk-ui.md) supplies conversational state and transport integration. Neither choice decides the application's authorization or persistence model.
+
+## Deployable applications and UI libraries
+
+A deployable chat application supplies more of the surrounding product: model connections, accounts, conversation storage, document ingestion, sharing controls, and operational configuration. A UI library supplies components and interaction state for an application whose backend still needs those services.
+
+[Open WebUI](applications/open-webui.md), [LibreChat](applications/librechat.md), and [AnythingLLM](applications/anythingllm.md) illustrate deployable applications with knowledge workflows. [Verba](applications/verba.md) is an archived Weaviate-based reference application. Choose between a complete application and a UI library by the product behavior and ownership boundary required.
+
+When connecting an external retrieval or MCP service, define who owns source ingestion, access filtering, citations, and deletion. Uploading a file, indexing it, retrieving evidence, and rendering an answer are separate completion states. Preserve them in the interface so a successful upload cannot be mistaken for a searchable document.
