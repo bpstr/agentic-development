@@ -242,6 +242,8 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
         - [Mem0](infrastructure/knowledge/memory/frameworks/mem0.md)
       - **Platforms**
         - [Google Agent Platform Memory Bank](infrastructure/knowledge/memory/platforms/google-memory-bank.md)
+      - **Tools**
+        - [Engram memory engine](infrastructure/knowledge/memory/tools/engram.md)
     - **Indexing**
       - [Knowledge indexing](infrastructure/knowledge/indexing/indexing.md)
       - [Incremental indexing](infrastructure/knowledge/indexing/incremental-indexing.md)
