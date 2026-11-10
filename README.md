@@ -399,6 +399,7 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
       - [AnythingLLM](interfaces/chat/applications/anythingllm.md)
       - [LibreChat](interfaces/chat/applications/librechat.md)
       - [Open WebUI](interfaces/chat/applications/open-webui.md)
+      - [OpenBot](interfaces/chat/applications/openbot.md)
       - [Verba (archived)](interfaces/chat/applications/verba.md)
     - **Libraries**
       - [assistant-ui](interfaces/chat/libraries/assistant-ui.md)

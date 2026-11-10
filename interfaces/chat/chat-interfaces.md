@@ -23,4 +23,6 @@ A deployable chat application supplies more of the surrounding product: model co
 
 [Open WebUI](applications/open-webui.md), [LibreChat](applications/librechat.md), and [AnythingLLM](applications/anythingllm.md) illustrate deployable applications with knowledge workflows. [Verba](applications/verba.md) is an archived Weaviate-based reference application. Choose between a complete application and a UI library by the product behavior and ownership boundary required.
 
+[OpenBot](applications/openbot.md) illustrates a coworker workspace with durable Bot profiles, external AG-UI agents, computer tools, and an audited action gateway. Its application license, required runtime services, and the authority of an external agent's own tools are separate adoption decisions.
+
 When connecting an external retrieval or MCP service, define who owns source ingestion, access filtering, citations, and deletion. Uploading a file, indexing it, retrieving evidence, and rendering an answer are separate completion states. Preserve them in the interface so a successful upload cannot be mistaken for a searchable document.
