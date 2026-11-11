@@ -45,3 +45,59 @@ When implementation reveals a missing assumption, update the specification and r
 The completion report should map each requirement to its test result, tested commit, environment, and any unresolved limitations. A green unit test does not establish concurrent database behavior, and a generated test command is not evidence that it ran. Preserve failing output when a requirement is not yet met.
 
 For a small typo fix, the issue text and one check may be enough. More artifacts are justified by ambiguity, risk, coordination, or long-lived decisions—not by the presence of an agent. Specifications constrain scope and make review possible; they do not replace human judgment about product intent or deployment risk.
+
+## Iterating on blueprints and architecture specifications
+
+An architecture review must ask whether a proposal satisfies its drivers, not whether the next draft is longer or contains more familiar patterns. The [Architecture Tradeoff Analysis Method](https://sei.cmu.edu/library/the-architecture-tradeoff-analysis-method/) evaluates interacting quality attributes through scenarios and risks. A [2025 study of LLM-assisted Attribute-Driven Design](https://arxiv.org/abs/2506.22688) explores structured architect-led iteration, while reporting only partial satisfaction of design drivers in its cases. Neither source establishes that repeated unconstrained rewriting improves a blueprint.
+
+Use the following workflow as an engineering synthesis, not a claim that one rubric can mechanically prove an architecture correct.
+
+### Preserve the original decision context
+
+Keep a compact authoritative brief outside the chat transcript: goals, non-goals, expected workloads, team and operating constraints, data boundaries, quality attributes, existing systems, and unresolved assumptions. Give important requirements stable identifiers. Treat load estimates and provider capabilities as assumptions or sourced facts, not convenient inventions.
+
+Maintain explicit decision states: proposed, accepted, rejected, and superseded. An architecture decision record should capture context, considered alternatives, the choice, consequences, and what evidence would reopen it. An accepted decision is not eternally correct, but a new model pass is not itself evidence for reversing it.
+
+Separate requirements from implementation choices. “Recover accepted work after a worker crash” is a requirement; “use a particular queue product” may only be one proposed mechanism. Freezing every initial design choice would prevent legitimate discovery just as surely as rewriting everything would destroy continuity.
+
+### Review scenarios rather than adjectives
+
+A useful quality-attribute scenario states the stimulus, operating context, affected system part, expected response, and a measurable response criterion. Where a numeric target is not yet known, mark it unresolved instead of inventing a precise requirement.
+
+For the webhook example:
+
+| Review question | Evidence needed | Unsupported substitute |
+| --- | --- | --- |
+| What happens after acceptance but before dispatch when a process crashes? | Persistence/dispatch boundary and a recovery sequence | “The queue makes it reliable” |
+| Can two tenants submit the same provider event ID safely? | Identity and uniqueness scope traced through storage and workers | “The API uses authentication” |
+| Can a deployment be rolled back while pending events exist? | Schema/protocol compatibility and replay rules | “Git can revert the code” |
+| Who operates each additional component? | Ownership, monitoring, recovery, and capacity assumptions | “Microservices improve scalability” |
+
+Review performance, security, operability, maintainability, and cost separately. A weighted average must not hide a hard isolation or data-loss violation. Some architectures are incomparable without an explicit stakeholder tradeoff; do not force an automatic winner.
+
+### Require a reason for added complexity
+
+An illustrative brief might constrain a product to a small team, one region, and an existing SQL database. A later draft proposing independent services and a streaming platform must name the unsatisfied driver it addresses, why simpler options fail, the operational cost, and the new failure modes. The change may be justified; its popularity is not the justification.
+
+Use a complexity ledger for consequential additions: deployment units, state stores, synchronization paths, external dependencies, and recovery responsibilities. This is a review aid, not a universal ban on distributed architecture or a rule that fewer components always win.
+
+### Revise in bounded passes
+
+Start with a coherent candidate. Run a read-only review for a specific concern, such as requirement coverage, consistency, failure recovery, or implementation feasibility. Require a finding to reference a requirement and a concrete section or sequence. Permit “no necessary change.” Patch affected sections and re-check cross-references, names, contracts, and decisions elsewhere.
+
+Explore genuinely different architectures as separate candidates from the same brief before synthesizing them. Do not accumulate mutually incompatible alternatives into one master design. A fresh critic should receive the authoritative evidence and accepted decisions, not merely the latest persuasive explanation.
+
+Use schemas, contract examples, small feasibility spikes, load experiments, or executable state models where they can resolve a specific uncertainty. These checks validate particular claims, not the entire architecture. Record which conclusions remain judgment-based or unverified.
+
+Stop when agreed drivers are sufficiently addressed for the next authorized stage, no new supported blocker appears, or further progress requires missing evidence or a stakeholder decision. Keep an unresolved-risk register rather than polishing uncertainty into certainty. Apply the [evaluator–optimizer acceptance policy](../../patterns/evaluator-optimizer-pattern.md) to retain the best supported draft, not automatically the most recent one.
+
+
+### Treat the specification as durable state, not the chat transcript
+
+Architecture follow-ups are often aspect reviews rather than replacements: inspect scalability, then security, then failure recovery, developer experience, implementation feasibility, and finally cross-cutting consistency. Keep the original drivers and current architecture authoritative across those passes. A previous reviewer's suggestion becomes durable only when it is accepted as a requirement, decision, assumption, or unresolved risk.
+
+For long design work, externalize the state needed to restart cleanly: goals and non-goals, stable requirement IDs, accepted/superseded decisions, current architecture, evidence, assumptions, and unresolved risks. Then a fresh session can review the current design without inheriting the narrative that produced it. This is **artifact-mediated iteration**: the design and decision artifacts carry progress; the conversation is working memory.
+
+Do not reset blindly. If a session discovered a non-obvious legacy constraint or feasibility result, first record the validated discovery in the authoritative state. Otherwise the next reviewer may repeatedly propose an option already rejected for a good reason. Conversely, carrying the entire transcript can anchor later reviewers to earlier generated explanations and turn speculative suggestions into apparent requirements.
+
+A useful final review can therefore start from a reconstructed authoritative packet rather than the whole conversation and ask whether aspect-specific changes conflict with one another or with the original drivers. This fresh-context pass changes the information presented to the model; it does not make the reviewer independent ground truth.
