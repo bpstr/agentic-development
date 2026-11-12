@@ -67,3 +67,37 @@ For JavaScript Generate Content, use `@google/genai>=2.31.0` for the same contro
 ## Stateless Gemini API shell client
 
 The [Gemini API CLI](https://ai.google.dev/gemini-api/docs/cli), launched in beta on October 27, 2026, is a separate `gemini-api` executable built on the Interactions API, suitable for scripts or for *other* coding agents to call through a shell. It is not the interactive [Gemini CLI coding agent](../../../development/coding-agents/tools/gemini-cli.md#gemini-api-cli-is-not-gemini-cli). It can return media output as file paths, inspect local files, launch and poll managed agents, and emit machine-readable errors. Pin its release because the beta CLI may change between minor versions.
+
+## Gemini Decision 1 API
+
+On **November 11, 2026**, Google introduced a [separate Decisions API](https://aistudio.google.com/docs/decisions-api) and the `gemini-decision-1` model. Use it for a fixed question set that software can act upon, not for free-form generation. Its input can include supported text, images, audio, video and PDFs; output contains typed probabilities, with **zero generated output text tokens**. Each question is evaluated independently against shared input, so dependent judgments require separate calls.
+
+A minimal **REST request body** for `POST https://generativelanguage.googleapis.com/v1beta/decisions` (authenticate server-side using `x-goog-api-key`) is:
+
+```json
+{
+  "model": "gemini-decision-1",
+  "input": "A customer says their account was charged twice.",
+  "questions": {
+    "billing_issue": {
+      "type": "noul",
+      "instructions": "Does the message report a billing problem?"
+    },
+    "route": {
+      "type": "choice",
+      "instructions": "Which team should review it?",
+      "criteria": {
+        "billing": "Invoices, payments or refunds.",
+        "technical": "Technical product behavior.",
+        "other": "None of these."
+      }
+    }
+  }
+}
+```
+
+For SDK calls, the official guide requires **`google-genai>=3.2`** or a compatible current `@google/genai` release and `v1beta`; the method is `client.decisions.create(model=..., input=..., questions=...)`. `noul` returns a probability in the 0.01–0.99 range; `choice` returns a chosen key, a distribution and confidence; `score` returns a probability-weighted rubric score. Choice keys are sorted alphabetically by the API before inference. Choose an explicit out-of-scope option and threshold uncertainty rather than assuming every input matches a category. This schema is **not** OpenAI Decisions (`questions` array, `predicate`), nor TypeSafe Jev even though the labels are similar. See [typed decision inference](../../models/model-capabilities.md#typed-decision-inference).
+
+## Gemini 4 Carbon long decode
+
+[Gemini 4 Carbon](https://aistudio.google.com/docs/whats-new-gemini-4-carbon) uses `gemini-4-carbon` and defaults to `thinking_level: medium`. Like Argon it has a unified 1M-token context rather than a separate unlimited output allowance. On the **Interactions API**, synchronous output stops at 65,536 tokens; for longer output, set `background=True` and a higher `max_output_tokens`, poll the interaction until terminal, and join text across the returned `model_output` steps. Carbon may consume more internal thinking tokens and take longer than Argon. Treat continuation, storage and retry costs separately and test both interruption and large-result assembly; do not apply Argon's Generate Content continuation procedure to Interactions without checking its contract.

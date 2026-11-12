@@ -43,3 +43,9 @@ Voice creation and speech synthesis are separate contracts. OpenAI [prompt-to-vo
 Google's [September 22, 2026 Gemini release notes](https://ai.google.dev/gemini-api/docs/changelog) document GA Gemini 3.8 Flash TTS/Flash-Lite TTS, a `/v1beta/voices` endpoint, text-based voice design, and consent-verified voice replication. Those voice IDs, permissions, and synthesis models are not interchangeable with OpenAI. Record source permissions and inform listeners about synthetic speech as required.
 
 For conversational systems, test the complete response path with interruptions and network jitter. A high-quality offline sample does not establish a good live-agent experience.
+
+## Gemini TTS preview shutdown and voice remixing
+
+Google's [deprecation calendar](https://aistudio.google.com/docs/deprecations) schedules **`gemini-3.1-flash-tts-preview` to shut down November 17, 2026**. Move pinned text-to-speech integrations to GA `gemini-3.8-flash-tts` or `gemini-3.8-flash-lite-tts` and compare voice IDs, language support, latency, output shape and pricing before the deadline.
+
+Google also introduced [voice remixing](https://aistudio.google.com/docs/voice-remixing) on November 4, 2026: a supported voice can be modified using text instructions into a new, independently stored `voice_...` identifier via `POST /v1beta/voices`. Voice design, remixing, cloning/consent checks, storage and actual TTS inference have distinct API and lifecycle requirements; a successful create response is not evidence that a low-latency spoken session works.

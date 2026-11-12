@@ -25,3 +25,7 @@ Plan model changes as index migrations: build compatible new representations, co
 [Cohere Embed 5](https://docs.cohere.com/v2/changelog), released September 30, 2026, is a documented **exception to the default assumption that different model variants use incompatible spaces**: `embed-v5.0-pro` and `embed-v5.0-fast` share a vector space. Cohere recommends indexing with Pro for quality and querying with Fast for latency. Both handle multilingual text and multimodal text/image representations; the supported Matryoshka dimensions are 256, 512, 768, 1024, 1536 and 2048.
 
 This compatibility applies specifically to the two documented Embed 5 variants with matching output dimensions, embedding format, task semantics and preprocessing. Do not mix unrelated model families, dimensions, or data types in one index. Verify model availability and licensing for the hosting surface, and benchmark retrieval before migrating an existing corpus.
+
+## Gemini Embedding 2 alias deprecation
+
+Google's [November 6, 2026 changelog](https://aistudio.google.com/docs/changelog) deprecates `gemini-embedding-2-preview` and redirects its API requests to **`gemini-embedding-2`**. Google states both IDs use the **same API schema and embedding space** and that this alias switch **does not require re-indexing existing vectors**. Update configured model identifiers and pricing assumptions, log the resolved model, and run retrieval regression tests. This is a narrowly documented compatibility exception, not a reason to mix arbitrary embedding families or versions without migration.
