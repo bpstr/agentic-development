@@ -28,3 +28,10 @@ The object `{"category":"billing","needs_review":false}` can satisfy the schema 
 Design a representation for missing evidence, such as a nullable value or explicit uncertainty field. Requiring every field without an “unknown” representation encourages unsupported guesses.
 
 Use structured output for an answer that software consumes. Use tool calling when the model requests an operation. A schema that contains `"send_email": true` does not authorize or execute an email; the application must still decide whether that operation is permitted.
+
+
+## Amazon Bedrock Claude structured output
+
+Since October 19–20, 2026, [Amazon Bedrock](https://aws.amazon.com/blogs/machine-learning/structured-outputs-for-anthropic-claude-models-on-amazon-bedrock/) supports JSON Schema-constrained output and strict tool-use schemas for available Claude models through both `bedrock-runtime` and `bedrock-mantle`. This is a hosting-specific implementation, not a claim that every Claude endpoint accepts the same request wrapper. The supported JSON Schema Draft 2020-12 subset requires `additionalProperties: false` on **every object**.
+
+Bedrock compiles unfamiliar schemas before generation and caches compiled grammars **24 hours** per account. Reuse stable schemas where possible; cold schema compilation affects latency. **Some accepted constraints are not enforced**, including numeric bounds (`minimum`, `maximum`, `multipleOf`) and string length (`minLength`, `maxLength`). Refusals and output-token limits can also break the expected output contract. Validate semantic constraints, completion state, and authorization in application code even when constrained decoding succeeds. Model/endpoint and cross-Region availability vary.

@@ -23,3 +23,10 @@ A tool-capable model can request application functions, while configured hosted 
 Use project-scoped credentials in server infrastructure, record request IDs and usage, and handle rate limits with bounded retries. Select an explicit model or deliberate alias policy so evaluation results remain interpretable after model updates.
 
 Hosted inference avoids operating model hardware, but the application still owns its queue, domain authorization, and business state. Review endpoint-specific retention and storage controls, supported regions, and capacity requirements before deployment. A completion request's latency should be measured separately from queue time, tool execution, and user-interface delivery.
+
+
+## Service tiers and policy compatibility
+
+[Ultrafast mode](https://developers.openai.com/api/docs/guides/ultrafast-mode) supports a separate `service_tier: "ultrafast"` option in **Responses API** requests for compatible GPT-6.1 Sol and GPT-6 Astra models. It has distinct pricing and rate limits; GPT-6.1 Sol supports US, EU, and global processing, while Astra supports US/global, not EU. For managed Agents API execution, `agent.service_tier` is nested inside the agent configuration instead.
+
+Since October 21, 2026, [OpenAI project and organization tier restrictions](https://developers.openai.com/api/docs/changelog) can reject disallowed tiers. Even an omitted, automatic, or legacy `fast` setting (mapped to Priority) can return a `400` policy error. Validate tier eligibility during deployment, keep residency and tier settings aligned, and do not blindly retry policy denials. Scale Tier, Priority, and Ultrafast have different cost and throughput contracts.

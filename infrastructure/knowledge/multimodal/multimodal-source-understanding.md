@@ -55,6 +55,12 @@ Retain the original asset rather than replacing it with a summary. A useful evid
 
 For pages, store page number, bounding box, coordinate units, and the transform back to the original image. For clips, retain the source timebase and any trim offset. Omit unavailable coordinates, timing, and confidence rather than inventing them. Keep directly extracted text, model interpretation, and reviewer corrections distinguishable.
 
+## Adaptive agentic video analysis
+
+Google's [video understanding guide](https://ai.google.dev/gemini-api/docs/video-understanding) documents two different processing modes for recorded video. **Static** is the default and extracts frames at approximately 1 FPS into model context. **Agentic** is opt-in for Gemini 4 Argon and selected Flash models: the model navigates the source timeline, chooses additional frames/resolutions, and consults transcripts in response to the question. Use `"processing": "agentic"` on a video part in the **Interactions API**, rather than assuming every uploaded video or Live API session receives this processing. For lengthy clips, `background=True` is documented to avoid losing long-running progress if the client disconnects.
+
+Agentic processing can reduce tokens on long recordings but can add processing passes and latency; published provider efficiencies are not a guarantee for every clip. When reconstructing a conversation using stateless history, preserve the Interactions `processing_call` and `processing_result` steps needed to retain the analysis context. Results are interpretations, not a verified frame-by-frame transcript: retain original media IDs and time ranges, and replay the relevant original segment when evidence matters.
+
 ## Application boundaries
 
 Use a content hash plus processor/model/configuration revision for reproducible processing. A new parser can change results without the source file changing. Propagate access restrictions and deletion to transcripts, thumbnails, embeddings, and graph-derived claims; derived content is not automatically less sensitive.
