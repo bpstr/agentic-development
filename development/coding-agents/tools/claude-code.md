@@ -1,8 +1,10 @@
 # Claude Code
 
-Official documentation: [overview and installation](https://code.claude.com/docs/en/overview), [CLI reference](https://code.claude.com/docs/en/cli-reference), [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web), [routines](https://code.claude.com/docs/en/routines).
+Official documentation: [overview and installation](https://code.claude.com/docs/en/overview), [CLI reference](https://code.claude.com/docs/en/cli-reference), [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web), [cloud scheduled tasks](https://code.claude.com/docs/en/routines). Official public repository: [anthropics/claude-code](https://github.com/anthropics/claude-code); its [license](https://github.com/anthropics/claude-code/blob/main/LICENSE.md) reserves rights under Anthropic's commercial terms.
 
 Claude Code is Anthropic's coding-agent environment for repository work. It reads code, edits files, executes commands, and integrates with developer tools. Its terminal, editor, desktop, and cloud surfaces do not all execute on the same machine.
+
+The `claude` CLI is a proprietary coding-agent runtime. Its public repository is not an open-source license grant. Claude Desktop is a graphical host with a coding surface; selecting that interface does not by itself determine whether a session runs locally or in the cloud.
 
 ## Local execution and project context
 
@@ -35,15 +37,15 @@ claude --cloud \
   "Read repository instructions. Audit cloud-agent coverage with file references. Do not edit or publish."
 ```
 
-The current cloud interface is a research preview with plan and organization-policy requirements. It also supports bundle-upload workflows in some repository configurations. A bundle can include history and tracked local changes; inspect what is uploaded and never assume secret-name filtering removes committed secrets. The standard remote-clone example above is not a claim that every cloud start ignores local files. [Cloud handoff and bundle behavior](https://code.claude.com/docs/en/claude-code-on-the-web)
+Cloud access depends on the account and organization policy. The interface also supports bundle-upload workflows in some repository configurations. A bundle can include history and tracked local changes; inspect what is uploaded and never assume secret-name filtering removes committed secrets. The standard remote-clone example above is not a claim that every cloud start ignores local files. [Cloud handoff and bundle behavior](https://code.claude.com/docs/en/claude-code-on-the-web)
 
-Ordinary cloud environment variables are readable by commands. For supported Pro/Max environments, proxy-injected API credentials keep raw values outside the VM and attach them to configured hosts. They are not available on Team/Enterprise in the documented configuration and do not apply to setup-script requests. GitHub has its own authentication proxy. [Cloud environment credentials](https://code.claude.com/docs/en/cloud-environments)
+Ordinary cloud environment variables are readable by commands. In Anthropic-hosted environments, network secrets keep raw API credentials outside the VM and attach them to configured hosts through the agent proxy. Current documentation includes personal and Team/Enterprise plans, with role-dependent controls for shared environments. These secrets are unavailable in self-hosted environments and do not apply to setup-script requests; GitHub has its own authentication proxy. [Cloud environment credentials](https://code.claude.com/docs/en/cloud-environments)
 
-## Trigger a saved routine through HTTP
+## Trigger a saved cloud scheduled task through HTTP
 
-A routine saves a prompt, repositories, environment, and connectors. In the web UI, create the routine, add an API trigger, and copy its generated URL and one-time-displayed token. Remove unused connectors: included integrations can carry write authority during unattended runs. The saved prompt should interpret incoming payload data within a fixed task, not authorize arbitrary caller instructions. [Routine setup](https://code.claude.com/docs/en/routines)
+A cloud scheduled task, formerly called a routine, saves a prompt, repositories, environment, and connectors. This feature remains a research preview; the API path, payload tag, and some UI labels retain the older name. In the web UI, create the task, add an API trigger, and copy its generated URL and one-time-displayed token. Remove unused connectors: included integrations can carry write authority during unattended runs. The saved prompt should interpret incoming payload data within a fixed task, not authorize arbitrary caller instructions. [Scheduled-task setup and historical naming](https://code.claude.com/docs/en/routines)
 
-For example, save an audit routine restricted to the selected repository, with instructions to use `<routine-fire-payload>` only to choose an audit focus and never to change publication policy.
+For example, save an audit task restricted to the selected repository, with instructions to use `<routine-fire-payload>` only to choose an audit focus and never to change publication policy.
 
 ```bash
 set -euo pipefail
@@ -63,7 +65,7 @@ curl --fail-with-body --silent --show-error \
 
 The response contains `claude_code_session_id` and `claude_code_session_url`. The token authorizes triggering one routine, not reading its session or calling the general Claude Platform API. It is not an `ANTHROPIC_API_KEY`, and the fire endpoint has no general Platform SDK integration. Calls consume the Claude Code account's usage. Request shapes and limits are experimental. [Routine API reference](https://platform.claude.com/docs/en/api/claude-code/routines-fire)
 
-Persist the returned session identity and review the run through its authorized product interface. A green routine status can mean infrastructure execution succeeded while the requested task did not. Do not use it as test evidence. Protect the trigger token from logs, rotate it through the routine UI, and deduplicate external events in the calling service before firing another run. [Routine run interpretation](https://code.claude.com/docs/en/routines)
+Persist the returned session identity and review the run through its authorized product interface. A successful scheduled-task status can mean the session ended normally while the requested work remained incomplete. Do not use it as test evidence. Protect the trigger token from logs, rotate it through the task UI, and deduplicate external events in the calling service before firing another run. [Run-status interpretation](https://code.claude.com/docs/en/routines)
 
 ## Managed API and self-hosted alternatives
 

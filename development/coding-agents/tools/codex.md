@@ -1,24 +1,33 @@
 # Codex
 
-Official documentation: [CLI](https://learn.chatgpt.com/docs/codex/cli), [cloud environments](https://learn.chatgpt.com/docs/environments/cloud-environment), [developer commands](https://learn.chatgpt.com/docs/developer-commands), [non-interactive execution](https://learn.chatgpt.com/docs/non-interactive-mode). Source: [openai/codex](https://github.com/openai/codex).
+Official documentation: [desktop app](https://learn.chatgpt.com/docs/app), [CLI](https://learn.chatgpt.com/docs/codex/cli), [IDE extension](https://learn.chatgpt.com/docs/codex/ide), [cloud environments](https://learn.chatgpt.com/docs/environments/cloud-environments), [developer commands](https://learn.chatgpt.com/docs/developer-commands), [non-interactive execution](https://learn.chatgpt.com/docs/non-interactive-mode). Source: [openai/codex](https://github.com/openai/codex), [Apache-2.0 CLI license](https://github.com/openai/codex/blob/main/LICENSE).
 
 Codex is OpenAI's coding-agent environment. It inspects repositories, edits files, runs development tools, and iterates using their output. Calling a model API alone does not recreate its filesystem, tools, permissions, or repository workflow.
+
+The CLI is open source under Apache-2.0. This license applies to the published CLI source, not automatically to the desktop application, hosted model service, or cloud product. Those have separate account, usage, and service terms.
 
 ## Choose the execution surface
 
 | Surface | Where repository tools execute | Integration boundary |
 | --- | --- | --- |
+| Desktop app in Codex mode | The local or cloud environment selected for the task | Graphical project/session management and change review; inspect the active environment |
+| Codex IDE extension | The selected local or delegated cloud environment | Editor context and review UI around the agent |
 | CLI or SDK in a local checkout | The machine running the runtime | Local process, filesystem, and credentials |
 | Codex Cloud | The product's configured cloud environment | ChatGPT account, connected repository, cloud task |
 | OpenAI Agents API | An API-selected hosted or self-hosted environment | Platform project key, API session, events, and artifacts |
 
 The [Codex SDK](https://learn.chatgpt.com/docs/codex-sdk) runs the agent runtime where the SDK is deployed. Hosting it in your worker does not create a Codex Cloud task. The [OpenAI Agents API](../../../infrastructure/orchestration/managed-runtimes/openai-agents-api.md) is the managed API route; do not treat a product environment ID as an API environment or reuse undocumented browser endpoints.
 
+## Start from the desktop
+
+Install the [ChatGPT desktop app](https://learn.chatgpt.com/docs/app), sign in, select Codex, and open the intended project or folder. Choose the work environment before assigning a task, then inspect the resulting diff and verification output. The command `codex app` launches the desktop application on supported platforms; it is not the same as starting the terminal TUI. Ordinary ChatGPT chat, Work mode, and Codex are distinct workflows within the application.
+
 ## Start a repository session
 
-Install Codex using the official platform-specific instructions, open a project directory, and run:
+Install Codex using the official platform-specific instructions or the npm package below, then run it from a project directory:
 
 ```bash
+npm install -g @openai/codex
 codex
 ```
 
@@ -33,9 +42,17 @@ codex exec --sandbox read-only --json \
 
 This requires authentication and uses the configured service allowance. Parse the event stream and process exit status; arbitrary generated text is not a machine-readable success signal.
 
-## Configure a cloud repository
+## Configure a current cloud environment
 
-Connect GitHub in the Codex product, authorize the intended repository, and create an environment in Codex settings. Select the branch or commit, runtime versions, setup, and verification requirements. The cloud container does not inherit your laptop's uncommitted files, running database, or installed packages. Review organization restrictions before assuming a repository is available. [Cloud workflow](https://developers.openai.com/codex/cloud)
+Choose **Work in → Cloud** in the web or desktop product. A reusable environment defines repositories, dependencies, tools, and access for future tasks. Create the environment, complete setup, inspect the setup report and configuration, and publish it before starting tasks from that prepared state. Saving configuration, publishing a prepared filesystem, and sharing access are separate operations. A default environment can support repository-free work where available. [Current cloud environment guide](https://learn.chatgpt.com/docs/environments/cloud-environments)
+
+Each task receives its own workspace. A local checkout, its uncommitted files, and the credentials of a local CLI session are not automatically present. Check the current environment's service access and secrets configuration directly.
+
+## Legacy repository environments
+
+The following checkout/setup lifecycle applies to **Codex Cloud (Legacy)**, which the official documentation retains for Code Review and the Linear/GitHub integrations. It is not the configuration contract for every current cloud task. [Legacy environment guide](https://learn.chatgpt.com/docs/environments/cloud-environment)
+
+Connect GitHub in the Codex product, authorize the intended repository, and create a legacy environment in Codex settings. Select the branch or commit, runtime versions, setup, and verification requirements. The cloud container does not inherit your laptop's uncommitted files, running database, or installed packages. Review organization restrictions before assuming a repository is available.
 
 For a Markdown-only repository, begin with minimal setup and the actual documentation checks. For an application, use the dependency and service setup it really requires. For example, this Bash setup fragment assumes a trusted repository with a root Go module and/or root npm lockfile:
 
@@ -85,7 +102,7 @@ Run this only in the intended checkout after reviewing local changes. Applying a
 
 ## Account permissions and costs
 
-As of September 21, 2026, advertised individual subscriptions include Plus at $20/month and Pro from $100/month. Local and cloud usage share allowances; additional usage can consume credits. Current credits are token-based, not a universal fixed charge per task. Account limits, speed settings, and model availability matter; the product's cloud model availability need not match the SDK/API catalog. [Product pricing](https://learn.chatgpt.com/docs/pricing)
+Subscription eligibility, local/cloud allowances, credits, and organization controls vary by account and surface. Use the current [plan and access documentation](https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan) and [product pricing](https://learn.chatgpt.com/docs/pricing) rather than assuming a fixed number of tasks. Model availability in a product environment need not match an SDK/API catalog.
 
 API-key authentication supports CLI/SDK usage billed at API rates but does not itself grant the product's cloud integrations. The separate Agents API has its own model/tool/execution billing. Never assume a ChatGPT subscription covers developer API charges.
 

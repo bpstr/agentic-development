@@ -406,8 +406,11 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
       - [Vercel AI Elements](interfaces/chat/libraries/vercel-ai-elements.md)
       - [Vercel AI SDK UI](interfaces/chat/libraries/vercel-ai-sdk-ui.md)
   - **Desktop**
+    - [Desktop agent applications](interfaces/desktop/desktop-agent-apps.md)
     - **Apps**
+      - [Claude Desktop](interfaces/desktop/apps/claude-desktop.md)
       - [Muse desktop and the personal-agent interface](interfaces/desktop/apps/muse-desktop.md)
+      - [T3 Code](interfaces/desktop/apps/t3-code.md)
   - **Generative UI**
     - [Generative UI](interfaces/generative-ui/generative-ui-definition.md)
     - [Component generation](interfaces/generative-ui/component-generation.md)
@@ -480,6 +483,7 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
 - **Development**
   - **Coding agents**
     - [Coding agents](development/coding-agents/coding-agent-definition.md)
+    - [Coding-agent catalog: desktop, CLI, and open-source tools](development/coding-agents/coding-agent-catalog.md)
     - [Cloud coding agents](development/coding-agents/cloud-coding-agents.md)
     - [Coding-agent permissions](development/coding-agents/coding-agent-permissions.md)
     - [Coding-agent verification](development/coding-agents/coding-agent-verification.md)
@@ -487,13 +491,32 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
     - [Repository context](development/coding-agents/repository-context.md)
     - [Scheduled development](development/coding-agents/scheduled-development.md)
     - **Tools**
+      - [Aider](development/coding-agents/tools/aider.md)
+      - [Amp CLI](development/coding-agents/tools/amp.md)
+      - [Google Antigravity](development/coding-agents/tools/antigravity.md)
       - [Claude Code](development/coding-agents/tools/claude-code.md)
+      - [Cline](development/coding-agents/tools/cline.md)
       - [Codex](development/coding-agents/tools/codex.md)
+      - [Continue CLI (maintenance ended)](development/coding-agents/tools/continue-cli.md)
       - [Cursor Agent](development/coding-agents/tools/cursor.md)
+      - [DeepSeek Harness](development/coding-agents/tools/deepseek-harness.md)
+      - [Devin Desktop (formerly Windsurf)](development/coding-agents/tools/devin-desktop.md)
+      - [Factory Droid](development/coding-agents/tools/factory-droid.md)
       - [Gemini CLI](development/coding-agents/tools/gemini-cli.md)
+      - [GitHub Copilot: editor, CLI, and cloud](development/coding-agents/tools/github-copilot.md)
+      - [goose](development/coding-agents/tools/goose.md)
       - [Grok Bot](development/coding-agents/tools/grok-bot.md)
       - [Grok Build](development/coding-agents/tools/grok-build.md)
+      - [JetBrains Junie](development/coding-agents/tools/junie.md)
+      - [Kimi Code CLI](development/coding-agents/tools/kimi-code.md)
+      - [Kiro](development/coding-agents/tools/kiro.md)
+      - [Mistral Vibe](development/coding-agents/tools/mistral-vibe.md)
       - [Muse Code](development/coding-agents/tools/muse-code.md)
+      - [OpenCode](development/coding-agents/tools/opencode.md)
+      - [OpenHands Agent Canvas](development/coding-agents/tools/openhands.md)
+      - [Qwen Code](development/coding-agents/tools/qwen-code.md)
+      - [Roo Code (discontinued)](development/coding-agents/tools/roo-code.md)
+      - [Zed Agent](development/coding-agents/tools/zed-agent.md)
   - **Instructions**
     - [Agent instructions](development/instructions/agent-instructions.md)
     - [Project instructions](development/instructions/project-instructions.md)

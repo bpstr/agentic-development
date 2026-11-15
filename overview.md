@@ -57,7 +57,7 @@ The [agentic web](agentic-web/agentic-web-definition.md) treats agents as first-
 
 ## Interfaces
 
-[Chat](interfaces/chat/chat-interfaces.md) presents messages, tool activity, and approvals. Deployable applications bundle services; UI libraries supply application components. Desktop [interfaces](interfaces/agent-interfaces.md) connect local applications through permissions; the client need not host inference. [Generative UI](interfaces/generative-ui/generative-ui-definition.md) selects components. [Realtime](interfaces/realtime/realtime-agents.md) and [voice](interfaces/voice/voice-agents.md) add sessions, turn-taking, interruption, and delegation. The [implementation manual](interfaces/implementation-manual.md) and [testing guide](interfaces/testing-guide.md) connect these to lifecycle and failure handling.
+[Chat](interfaces/chat/chat-interfaces.md) presents messages, tool activity, and approvals. Deployable applications bundle services; UI libraries supply application components. [Desktop applications](interfaces/desktop/desktop-agent-apps.md) embed agents or control external runtimes; the client need not execute tools or host inference. [Generative UI](interfaces/generative-ui/generative-ui-definition.md) selects components. [Realtime](interfaces/realtime/realtime-agents.md) and [voice](interfaces/voice/voice-agents.md) add sessions, turn-taking, interruption, and delegation. The [implementation manual](interfaces/implementation-manual.md) and [testing guide](interfaces/testing-guide.md) connect these to lifecycle and failure handling.
 
 ## Operations
 
