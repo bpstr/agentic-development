@@ -304,6 +304,7 @@ Start with the [one-page conceptual overview](overview.md) for a high-level map 
       - [Local inference](infrastructure/hosting/local-inference/local-inference.md)
       - [llama.cpp](infrastructure/hosting/local-inference/llama-cpp.md)
       - [Ollama](infrastructure/hosting/local-inference/ollama.md)
+      - [Tiny 2.1: a transformer for DOS](infrastructure/hosting/local-inference/tiny-dos.md)
       - [vLLM](infrastructure/hosting/local-inference/vllm.md)
     - **Sandboxes**
       - [Execution sandboxes](infrastructure/hosting/sandboxes/sandbox-definition.md)

@@ -9,3 +9,5 @@ The serving engine must support the model architecture, tokenizer, chat template
 Keep inference endpoints private by default and authenticate shared access. Track model provenance and licensing. If extensions, remote tools, embeddings, or cloud fallbacks send data elsewhere, describe those paths separately from local generation.
 
 [Ollama](https://docs.ollama.com/api/introduction), [vLLM](https://github.com/vllm-project/vllm), and [llama.cpp](https://github.com/ggml-org/llama.cpp) represent different serving priorities. Select by hardware support, workload, concurrency, and operational requirements rather than assuming one local runner fits every model.
+
+[Tiny 2.1](tiny-dos.md) provides a constrained educational example: a character-level transformer and DOS runtime with byte-sized weights and attention caches. Its memory budget shows why model-file size, cache allocation, and complete runtime requirements are separate quantities. Its narrow knowledge scope and unreproduced accuracy claims also illustrate why a small footprint alone cannot establish fitness for agent tasks.
