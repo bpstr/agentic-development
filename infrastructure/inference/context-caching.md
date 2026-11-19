@@ -33,3 +33,11 @@ A cache miss should change performance, not correctness. Always provide or refer
 Use stable document versions and tool schemas when repeated content really is unchanged. Do not retain obsolete instructions merely to improve a hit rate. When permissions change, rebuild the authorized context instead of relying on a previously permitted copy.
 
 Measure cached input separately from total input and include cache creation or retention charges where applicable. Compare repeated requests and cold requests: a warm benchmark alone can conceal the latency new users experience.
+
+## Preserve reasoning as well as cache hits
+
+In the [GPT-6.2 migration guidance](https://developers.openai.com/api/docs/guides/latest-model) and [keep-prefix-unchanged guide](https://developers.openai.com/api/docs/guides/keep-prefix-unchanged), prefix stability affects **reasoning continuity**, not only cached-token price. Editing older user/developer messages, trimming an earlier tool result, changing `tools` or `text.format`, or moving context before an existing reasoning item can cause the API to drop later reasoning items. This can require re-reasoning and may reduce quality; an otherwise valid final answer does not demonstrate the original reasoning was reused.
+
+For GPT-6.2, keep stable instructions as the first `developer` item in `input`. Top-level `instructions` instead become turn-scoped appended context and are uncached. For supported controls, append `configuration_update` or `additional_tools` items rather than rewriting the prefix. Preserve item order across turns, including encrypted reasoning blocks when applicable. If summarization is necessary, use the documented compaction semantics and treat a custom summary as a history change.
+
+Use [Prompt Cache Diagnostics](https://developers.openai.com/api/docs/guides/prompt-cache-diagnostics) to compare a request against an earlier response, and inspect response `input_transformations` for removed reasoning items. Diagnostics find possible cache mismatches but cannot prove reasoning reuse. Correctness and current permissions outrank cache hit rate.

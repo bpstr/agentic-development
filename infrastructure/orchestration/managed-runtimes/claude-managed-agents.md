@@ -2,9 +2,9 @@
 
 Official documentation: [overview](https://platform.claude.com/docs/en/managed-agents/overview), [quickstart](https://platform.claude.com/docs/en/managed-agents/quickstart), [sessions](https://platform.claude.com/docs/en/managed-agents/sessions), [GitHub integration](https://platform.claude.com/docs/en/managed-agents/github).
 
-Claude Managed Agents is Anthropic's hosted harness for stateful, asynchronous work. An agent supplies behavior and tools, an environment supplies execution configuration, and a session records an instance of work. It is distinct from Messages inference, the [Claude Code cloud product and routines](../../../development/coding-agents/tools/claude-code.md), and an Agent SDK process that you host yourself.
+Claude Managed Agents is Anthropic's stateful asynchronous agent harness, offered both as a hosted service and in a separately distributed, access-gated self-hosted service configuration. An agent supplies behavior and tools, an environment supplies execution configuration, and a session records an instance of work. It is distinct from Messages inference, the [Claude Code cloud product and routines](../../../development/coding-agents/tools/claude-code.md), and an Agent SDK process that you host yourself.
 
-A self-hosted sandbox changes where commands execute while the harness remains managed. Neither that choice nor a consumer subscription automatically establishes the developer API's repository permissions, billing, or data-retention contract.
+A self-hosted sandbox changes where commands execute while the harness remains Anthropic-managed; self-hosting the **entire service** is a distinct deployment. Neither that choice nor a consumer subscription automatically establishes the developer API's repository permissions, billing, or data-retention contract.
 
 ## Create the agent and environment
 
@@ -206,3 +206,11 @@ Track every run by `workflow_run_id` and replay the session event history after 
 ## Web tool network boundary
 
 For cloud environments with `networking.type: limited`, the [Managed Agents web restrictions](https://platform.claude.com/docs/en/managed-agents/tools-web-restrictions) now apply environment `allowed_hosts` to Anthropic-hosted `web_search` and `web_fetch` as well as to sandbox networking. Configure per-tool `allowed_domains` or `blocked_domains` separately; the allowed tool domains must fit within the environment host allowlist. Search omits blocked-host results and fetch returns `url_not_allowed`; a narrow shell host allowlist alone does not prevent all requests to an allowed host. Recheck old sessions after tightening an environment, since already-running sessions can retain previous limits.
+
+## Self-hosted Managed Agents service
+
+Anthropic [introduced self-hosted Claude Managed Agents on November 12, 2026](https://platform.claude.com/docs/en/release-notes/overview). Unlike self-hosted **sandboxes** alone, this option runs both the agent-service API/loop and isolated execution sandboxes on your infrastructure. Your PostgreSQL database stores agents, sessions, and session history. Model inference still runs at Anthropic or a configured supported provider; it does not self-host Claude weights. This is an access-gated distribution: contact the Anthropic account team to obtain release artifacts.
+
+The [self-hosted overview](https://platform.claude.com/docs/en/managed-agents/self-hosted) separates operator responsibilities, supported inference paths, and service-specific feature differences. SDK and `ant` CLI calls can target the self-hosted service using its base URL, but do **not** assume every hosted-only feature is present. The [Docker Compose quickstart](https://platform.claude.com/docs/en/managed-agents/self-hosted/quickstart) is intended for **local development**, with server, PostgreSQL, workers, and per-session sandbox containers. It serves plain HTTP; never expose it unprotected. Anthropic documents Kubernetes Helm deployment for production; review access controls, secrets, database durability/backups, isolation, network egress, upgrades, session recovery and worker capacity.
+
+Choose the whole self-hosted service when session data and the control plane must remain on your infrastructure, not merely when shell execution requires a private network. A private service is not itself zero data retention at the inference provider: review model-hosting data policies independently.

@@ -32,3 +32,9 @@ Voice activity detection is not transcription. VAD detects speech activity; a tu
 Current official references include [OpenAI GPT-Transcribe](https://developers.openai.com/api/docs/models/gpt-transcribe), [OpenAI GPT-Live-Transcribe](https://developers.openai.com/api/docs/models/gpt-live-transcribe), [ElevenLabs Scribe models](https://elevenlabs.io/docs/overview/models), and [Deepgram Voice Agent STT models](https://developers.deepgram.com/docs/voice-agent-stt-models).
 
 Persist transcript provenance when it matters. A displayed transcript can be corrected after the user has already heard or seen an earlier version, and generated backend actions should retain the finalized text or audio reference they were based on.
+
+## Voice editing versus literal transcription
+
+Google's [November 17, 2026 Gemini update](https://aistudio.google.com/docs/changelog) adds voice-driven **editing, rewriting, and formatting** to `gemini-3.5-transcribe` and `gemini-3.5-transcribe-live`. The [Transcribe guide](https://aistudio.google.com/docs/transcribe#voice-editing) supports spoken edits to dictation or supplied `source_text`, while the [Live Transcribe guide](https://aistudio.google.com/docs/live-api/live-transcribe#voice-editing) documents the streaming counterpart.
+
+This is a different output contract from verbatim recognition: an edited result may omit disfluencies, correct wording, or deliberately rewrite existing text. Store raw recognized speech (when available), the requested edit operation, source revision, and resulting edited text separately. In workflows where exact spoken authorization or evidence matters, do not substitute the edited document for the underlying transcript. Treat uncertain partial live text as provisional and require confirmation before side-effecting commands.

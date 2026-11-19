@@ -63,3 +63,9 @@ The video documentation distinguishes static frame sampling from model-dependent
 Image input can support visible-text extraction and visual questions; audio input can support transcription and acoustic questions. Neither a plausible visual answer nor a speaker label is ground truth. Validate important text, values, and timestamps against the original asset.
 
 For recurring search over many assets, persist authorized evidence records and use a retrieval index. Uploading a file for a single question is not equivalent to building a durable, permission-aware multimodal knowledge service.
+
+## File slices and inspected evidence
+
+Google's [November 18, 2026 Gemini API update](https://aistudio.google.com/docs/changelog) extends accepted files and selective processing. The Interactions API can ingest supported Microsoft Office/OpenDocument files and apply **static** `processing` selectors to document pages, spreadsheet cells or layers, and audio/video time segments. These selectors also work inside supported `function_result.result` content. See [document processing](https://aistudio.google.com/docs/document-processing#customize-document-processing), [video processing](https://aistudio.google.com/docs/video-understanding#customize-video-processing), and [audio clipping](https://aistudio.google.com/docs/audio#clipping-intervals).
+
+A slice can reduce billed model input and avoid presenting an entire asset, but a file-level upload/size limit still applies. Keep the original file identity, sheet/page number or media clock, selected range, and requested layer in evidence provenance. Model conclusions about a selected segment do not imply the rest of the file was inspected. For deterministic spreadsheet formula or page-geometry extraction, prefer a native parser; see [document understanding](../../document-intelligence/document-understanding.md#gemini-selective-office-and-pdf-processing).
