@@ -24,7 +24,7 @@ Model names and preview status change frequently. Verify the linked provider cat
 
 Official catalogs: [OpenAI models](https://developers.openai.com/api/docs/models), [Gemini models](https://ai.google.dev/gemini-api/docs/models), [xAI Voice](https://docs.x.ai/developers/model-capabilities/audio/voice), [xAI Speech to Text](https://docs.x.ai/developers/models/speech-to-text), [ElevenLabs models](https://elevenlabs.io/docs/overview/models), [Deepgram voice-agent STT models](https://developers.deepgram.com/docs/voice-agent-stt-models), [Deepgram voice-agent TTS models](https://developers.deepgram.com/docs/voice-agent-tts-models), and [Hume Voice](https://dev.hume.ai/docs/voice/overview).
 
-For xAI, the `grok-voice-latest` alias can move between concrete speech-to-speech versions. Pin a version when reproducibility matters. The speech-to-text API currently defaults to `grok-voice-transcribe-2.0`; batch and streaming transcription have different operational limits and pricing, so treat them as separate deployment configurations.
+For xAI, the `grok-voice-latest` alias moved to **`grok-voice-3.0` on October 14, 2026**, while `grok-voice-2.0` was deprecated; see the [official release notes](https://docs.x.ai/developers/release-notes). Pin a version when reproducibility matters. The speech-to-text API currently defaults to `grok-voice-transcribe-2.0`; batch and streaming transcription have different operational limits and pricing, so treat them as separate deployment configurations.
 
 ## Live video with spoken interaction
 

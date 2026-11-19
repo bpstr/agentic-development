@@ -61,3 +61,11 @@ This event shape is illustrative and not an AG-UI or provider schema. Translate 
 Give workers a lease or another mechanism for claiming work. A retry must check persisted progress and action receipts before repeating side effects. Bound attempts and end in an explicit failure state when recovery is exhausted. Tie approvals and later user input to the exact pending action so a stale browser tab cannot approve a changed operation.
 
 Use [execution-state guidance](../infrastructure/orchestration/agent-loop.md), [tracing](../operations/observability/tracing.md), and [interface lifecycle guidance](../interfaces/chat/chat-interfaces.md) to implement and inspect the boundaries.
+
+## OpenAI discounted completion windows
+
+OpenAI's [Responses background-mode guide](https://developers.openai.com/api/docs/guides/background) added public-beta `background_options.completion_window` values `"2h"` and `"8h"` on **November 17, 2026**. These target the completion of **each accepted response**, with model-token rates **30%** or **40%** below Standard respectively. The default `"soonest"` has no discount. Eligible models initially include GPT-6.2 Astra/Sol, GPT-6.1 Terra, and GPT-6 Luna; this is an alternative to Flex, which GPT-6.2 does not support.
+
+For discounted requests, use `background: true`, `service_tier: "default"`, `background_options: {"completion_window": "8h"}`, and **no streaming**. They share Batch/Background token limits. Preserve a run-specific `continuation_id` and the model/window/project across tool-result follow-ups to qualify for higher queue priority; each response has its own completion target. Use completed-response webhooks, dedupe their IDs, retrieve the original response, run authorized tools, and save a durable application result. The provider's response completion is not the workflow's completion.
+
+Background mode temporarily stores request/response data even with `store=false` or eligible Zero Data Retention, and cache entries for discounted windows are not interchangeable with ordinary Standard requests. Review retention/region requirements before using sensitive data, and benchmark the latency/cost trade-off against default background, Batch, and a genuinely durable application queue.

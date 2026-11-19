@@ -2,9 +2,9 @@
 
 Official documentation: [overview](https://platform.claude.com/docs/en/managed-agents/overview), [quickstart](https://platform.claude.com/docs/en/managed-agents/quickstart), [sessions](https://platform.claude.com/docs/en/managed-agents/sessions), [GitHub integration](https://platform.claude.com/docs/en/managed-agents/github).
 
-Claude Managed Agents is Anthropic's hosted harness for stateful, asynchronous work. An agent supplies behavior and tools, an environment supplies execution configuration, and a session records an instance of work. It is distinct from Messages inference, the [Claude Code cloud product and routines](../../../development/coding-agents/tools/claude-code.md), and an Agent SDK process that you host yourself.
+Claude Managed Agents is Anthropic's stateful asynchronous agent harness, offered both as a hosted service and in a separately distributed, access-gated self-hosted service configuration. An agent supplies behavior and tools, an environment supplies execution configuration, and a session records an instance of work. It is distinct from Messages inference, the [Claude Code cloud product and routines](../../../development/coding-agents/tools/claude-code.md), and an Agent SDK process that you host yourself.
 
-A self-hosted sandbox changes where commands execute while the harness remains managed. Neither that choice nor a consumer subscription automatically establishes the developer API's repository permissions, billing, or data-retention contract.
+A self-hosted sandbox changes where commands execute while the harness remains Anthropic-managed; self-hosting the **entire service** is a distinct deployment. Neither that choice nor a consumer subscription automatically establishes the developer API's repository permissions, billing, or data-retention contract.
 
 ## Create the agent and environment
 
@@ -22,7 +22,7 @@ Save `audit-agent.md` with this frontmatter and instruction body:
 ```markdown
 ---
 name: Repository audit
-model: claude-opus-5
+model: claude-opus-5-5
 tools:
   - type: agent_toolset_20260401
     default_config:
@@ -41,7 +41,7 @@ Do not edit repository files, perform web research, push, open PRs, or merge.
 Write the requested report outside the repository.
 ```
 
-Only the named tools are enabled. This is not an enforced read-only filesystem: Bash can write even without a dedicated write tool. Apply [permission policies](https://platform.claude.com/docs/en/managed-agents/permission-policies) and execution boundaries for stricter tasks. Hosted web search/fetch are not constrained by sandbox networking; disabling them here closes a different boundary from the network allowlist. [Tool configuration](https://platform.claude.com/docs/en/managed-agents/tools)
+Only the named tools are enabled. This is not an enforced read-only filesystem: Bash can write even without a dedicated write tool. Apply [permission policies](https://platform.claude.com/docs/en/managed-agents/permission-policies) and execution boundaries for stricter tasks. Hosted web search/fetch execute outside the sandbox but ARE now also constrained by the cloud environment network allowlist when networking is `limited`. Configure the tools' own `allowed_domains` as well; domains outside `allowed_hosts` cause validation errors, and allowed hosts may still receive data through shell tools. [Web tool restrictions](https://platform.claude.com/docs/en/managed-agents/tools-web-restrictions). [Tool configuration](https://platform.claude.com/docs/en/managed-agents/tools)
 
 Save `audit-environment.yaml`:
 
@@ -196,3 +196,21 @@ The creation example's `"500"` is a whole-number string in **US cents**, so the 
 On September 21, 2026, Managed Agents bills model tokens plus $0.08 per active session-hour, excluding idle time. This replaces rather than adds a separate code-execution container-hour charge. Standard `claude-opus-5` rates are $5 per million input tokens, $0.50 cached input, and $25 output, with separate cache-write and other modifiers. An illustrative 200,000 uncached input tokens, 20,000 output tokens, and 30 active minutes total $1.54 before additional tools/modifiers. These are accumulated run tokens, not just the original prompt, and this is not a measured task price. [Pricing](https://platform.claude.com/docs/en/about-claude/pricing)
 
 Repository mounting is not permission to publish. Use read-scoped checkout credentials and a separately controlled publisher for branches/PRs. Plan token renewal for long runs, keep API keys out of sandbox environment variables, preserve evidence outside transient sandboxes, and apply the [cloud lifecycle and failure tests](../../../development/coding-agents/cloud-coding-agents.md).
+
+## Dynamic workflows and independent run lifecycle (beta)
+
+[Dynamic workflows](https://platform.claude.com/docs/en/managed-agents/workflow-runs) let the primary managed agent write an execution program that fans out to other agents and aggregates their results across phases. Enable the documented `multiagent` workflow configuration under the existing `managed-agents-2026-04-01` beta contract. A workflow run is a background execution distinct from the visible conversation, ordinary subagent turn, and session idle status. Only the primary agent can start a run; run threads cannot nest new workflow runs.
+
+Track every run by `workflow_run_id` and replay the session event history after reconnecting. `workflow_run.created`, `status_running`, `status_idle`, phase events, and `status_ended` report its lifecycle, with a default 24-hour lifetime even while paused. A `completed` run result does **not** certify that every subthread succeeded. Verify the run's thread outcomes, artifacts, and any changes to external systems. Wait for all observed runs to end and a subsequent session `end_turn` before reporting the user request completed. Runs add thread, cost, budget, and duplicate side-effect concerns: use idempotent operations and explicit approvals.
+
+## Web tool network boundary
+
+For cloud environments with `networking.type: limited`, the [Managed Agents web restrictions](https://platform.claude.com/docs/en/managed-agents/tools-web-restrictions) now apply environment `allowed_hosts` to Anthropic-hosted `web_search` and `web_fetch` as well as to sandbox networking. Configure per-tool `allowed_domains` or `blocked_domains` separately; the allowed tool domains must fit within the environment host allowlist. Search omits blocked-host results and fetch returns `url_not_allowed`; a narrow shell host allowlist alone does not prevent all requests to an allowed host. Recheck old sessions after tightening an environment, since already-running sessions can retain previous limits.
+
+## Self-hosted Managed Agents service
+
+Anthropic [introduced self-hosted Claude Managed Agents on November 12, 2026](https://platform.claude.com/docs/en/release-notes/overview). Unlike self-hosted **sandboxes** alone, this option runs both the agent-service API/loop and isolated execution sandboxes on your infrastructure. Your PostgreSQL database stores agents, sessions, and session history. Model inference still runs at Anthropic or a configured supported provider; it does not self-host Claude weights. This is an access-gated distribution: contact the Anthropic account team to obtain release artifacts.
+
+The [self-hosted overview](https://platform.claude.com/docs/en/managed-agents/self-hosted) separates operator responsibilities, supported inference paths, and service-specific feature differences. SDK and `ant` CLI calls can target the self-hosted service using its base URL, but do **not** assume every hosted-only feature is present. The [Docker Compose quickstart](https://platform.claude.com/docs/en/managed-agents/self-hosted/quickstart) is intended for **local development**, with server, PostgreSQL, workers, and per-session sandbox containers. It serves plain HTTP; never expose it unprotected. Anthropic documents Kubernetes Helm deployment for production; review access controls, secrets, database durability/backups, isolation, network egress, upgrades, session recovery and worker capacity.
+
+Choose the whole self-hosted service when session data and the control plane must remain on your infrastructure, not merely when shell execution requires a private network. A private service is not itself zero data retention at the inference provider: review model-hosting data policies independently.

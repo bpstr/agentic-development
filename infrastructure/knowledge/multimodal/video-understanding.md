@@ -28,6 +28,12 @@ Store transcript intervals, OCR regions, frame descriptions, and inferred events
 
 [TwelveLabs indexes](https://beta.docs.twelvelabs.io/docs/concepts/indexes) illustrate a hosted video-retrieval approach. Check the selected model's supported indexing, embedding, and search endpoints; a newer embedding model is not automatically a compatible replacement for an existing search index.
 
+## Hosted video segmentation without pre-indexing
+
+[TwelveLabs Pegasus 1.5 on Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-pegasus-1-5.html), available October 2026, analyzes video on demand and can output **structured timestamped segments** without prebuilding a search index. `analysis_mode: "general"` gives text, while `"time_based_metadata"` uses explicit `segment_definitions` and returns time ranges plus selected fields, and `definition_errors` for unsuccessful definitions. This is **video understanding/extraction**, not durable embedding retrieval; index segments separately if repeated cross-video search is needed.
+
+Bedrock accepts videos up to **two hours and less than 2 GB**. Inline Base64 input is limited to **25 MB**, with larger media supplied via S3. This model is available through **cross-Region inference profiles only**: use the supported `us.twelvelabs.pegasus-1-5-v1:0` or `global.twelvelabs.pegasus-1-5-v1:0` rather than the base ID. Verify deployment region and S3 authorization, and ground the generated segments against the original audiovisual timeline. `stopReason` and segmentation-specific error fields require interpretation before treating the output as complete evidence.
+
 ## Test temporal claims
 
 Include silent clips, missing audio tracks, slide-only evidence, rapid transient dialogs, variable frame rate, offset audio, repeated scenes, and incorrect subtitles. Measure event localization and source-reference accuracy, not only summary fluency. “Not observed in sampled frames” is different from “did not occur.” Preserve that distinction in answers and downstream graph relationships.

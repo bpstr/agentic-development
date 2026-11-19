@@ -4,13 +4,16 @@
 
 OpenAI develops general-purpose language models and specialized models for capabilities such as embeddings, images, realtime voice, transcription, and speech generation. As a model provider it supplies inference access, model identifiers, capability documentation, and usage-based pricing. These responsibilities are separate from its coding products and managed agent runtimes.
 
-The current GPT-6 general-purpose family is split by workload rather than one universal default:
+As of November 17, 2026, the GPT-6.2 family supersedes the earlier general-purpose recommendation, but model tier and API feature support remain workload-specific:
 
-- [GPT-6 Astra](openai-models/gpt-6-astra.md) is the highest-capability tier for demanding reasoning and complex work.
-- **GPT-6 Sol** (`gpt-6-sol`) is positioned for complex coding and agentic workflows with a lower cost than Astra.
-- **GPT-6 Luna** (`gpt-6-luna`) is the efficient tier for focused, high-volume tasks.
+- **GPT-6.2 Astra** (`gpt-6.2-astra`) is the current high-capability choice for demanding reasoning, coding, scientific work, and professional artifacts.
+- **GPT-6.2 Sol** (`gpt-6.2-sol`) targets efficient everyday coding and multistep agent workflows.
+- **GPT-6 Luna** (`gpt-6-luna`) remains a focused high-volume option.
+- **GPT-6.1 Terra** (`gpt-6.1-terra`) remains a fast visual-reasoning and computer-use option. Its [model contract](https://developers.openai.com/api/docs/models/gpt-6.1-terra) lists 1,050,000 context tokens and 128,000 output tokens; it does not accept native audio/video.
 
-OpenAI released Sol and Luna on September 22, 2026. The retained [GPT-5.6 Sol](openai-models/gpt-5.6-sol.md), [GPT-5.6 Terra](openai-models/gpt-5.6-terra.md), and [GPT-5.6 Luna](openai-models/gpt-5.6-luna.md) profiles document the preceding family and should not be used as a current catalog substitute. Verify exact model identifiers, endpoints, tool support, rate limits, and pricing against the model catalog before deployment.
+Both GPT-6.2 models support the Responses API and Chat Completions, but **tool calling requires Responses**. They do not support Flex processing; consult [the GPT-6.2 migration guide](https://developers.openai.com/api/docs/guides/latest-model) for incompatible sampling/logprob settings, reasoning effort, stable-prefix handling, caching, Zero Data Retention eligibility, and regional service tiers. Starting with GPT-6.2, the Responses API appends top-level `instructions` after `input` for turn-scoped guidance. Put reusable instructions in an initial `developer` input item instead, preserve the prior input/reasoning prefix, and use documented appended configuration updates when changing settings.
+
+The [GPT-6 Astra](openai-models/gpt-6-astra.md), [GPT-5.6 Sol](openai-models/gpt-5.6-sol.md), [GPT-5.6 Terra](openai-models/gpt-5.6-terra.md), and [GPT-5.6 Luna](openai-models/gpt-5.6-luna.md) pages retain earlier family behavior for migration/reference rather than representing the latest catalog. GPT-6 Sol and Luna were released September 22, 2026; GPT-6.1 Sol on September 29; GPT-6.1 Terra on October 26; GPT-6.2 Astra and Sol on November 17. Treat a model-ID change as a compatibility, cost, and evaluation change, not merely a quality upgrade.
 
 OpenAI's audio catalog includes dedicated Live/Realtime voice models, transcription models, and text-to-speech models. See [OpenAI GPT-Live and realtime voice](../voice/providers/openai-live.md) and the [voice model overview](../voice/voice-models.md).
 

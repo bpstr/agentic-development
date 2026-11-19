@@ -180,6 +180,14 @@ print(destination)
 
 Published artifacts survive sandbox expiration, but retain your own copy before deleting the session. Self-hosted environment files are retrieved through your infrastructure, not this artifact publication mechanism. A report is still a claim to review; a code-producing workflow additionally needs a patch, independent checks, and separately authorized publication. [Files and artifacts](https://developers.openai.com/api/docs/guides/agents-api/environments/files)
 
+## Prepared environments, document skills, and service tiers
+
+Since October 9, 2026, the [pre-warmed sandbox API](https://developers.openai.com/api/docs/guides/agents-api/environments/prewarmed) allows applications to create an OpenAI-hosted environment via `POST /v1/agents/environments`, perform setup, then attach its ID to a new agent session. Wait for `ready` (or consume the documented webhook). **Pre-warming is free before attachment**, but unused environments expire after **five minutes**; attachment begins normal container billing. Handle lost creation responses through `Idempotency-Key`, and verify project identity, expiry, and workspace sharing; a pre-warmed sandbox is not durable storage.
+
+The Agents API added **Ultrafast** support October 16, 2026. Set `agent.service_tier: "ultrafast"` for a supported model, **not** the top-level `service_tier` field used by the Responses API. Check [Ultrafast model support and residency](https://developers.openai.com/api/docs/guides/ultrafast-mode) along with separate rate limits and pricing. This accelerates model output, not external tools, network I/O, or sandbox setup.
+
+OpenAI-hosted Agents API sandboxes now include the Artifact SDK and skills for editing/creating spreadsheets, presentations, and Word documents. These are environment capabilities, not native model output types. Export finished artifacts, inspect their actual contents, and preserve approval/verification gates before publication.
+
 ## Costs and production boundaries
 
 Developer API billing is separate from ChatGPT subscriptions: model usage, tools, and applicable execution charges matter. On September 21, 2026, standard short-context `gpt-6-astra` pricing is $10 per million input tokens, $1 cached input, and $50 output; other context, cache-write, or speed tiers differ. A hypothetical run totaling 200,000 uncached input and 20,000 output tokens across all requests costs $3 for those tokens, before execution and tools. This is arithmetic, not a task benchmark. [API pricing](https://developers.openai.com/api/docs/pricing)
