@@ -35,7 +35,7 @@ Use [streaming](https://developers.openai.com/api/docs/guides/streaming-response
 
 ## Decisions API for bounded judgments
 
-The [Decisions guide](https://developers.openai.com/api/docs/guides/decisions) documents a separate `POST /v1/decisions` endpoint, not a Responses parameter or agent runtime. As of October 8, 2026 it is public beta and supports `gpt-6-luna`. Use it for classification, routing, or rubric evaluation; retain Responses for generated explanations, arbitrary structured extraction, and tool calls.
+The [Decisions guide](https://developers.openai.com/api/docs/guides/decisions) documents a separate `POST /v1/decisions` endpoint, not a Responses parameter or agent runtime. Since October 22, 2026 it is generally available (GA) with `gpt-6-luna` as the currently supported model. Use it for classification, routing, or rubric evaluation; retain Responses for generated explanations, arbitrary structured extraction, and tool calls.
 
 | Question type | Answer |
 | --- | --- |
@@ -71,6 +71,18 @@ This illustrative request body evaluates a fictional ticket. Send it as authenti
 
 The [API reference](https://developers.openai.com/api/reference/resources/decisions/methods/create) returns an `answers` array in question order, echoing question names. Check each answer's `type` before accessing its value: an individual question can return `refusal` while others succeed. A refusal, timeout, or malformed result is not a negative predicate or an approved default route.
 
-Inputs are strings or user messages with `input_text` and inline `input_image` parts. Images must be data URLs, with at most 128 images per request; external image URLs, file IDs, audio, tools, and item references are unsupported. Batch independent questions over shared evidence; issue another request when a question depends on an earlier answer.
+The [GA input contract](https://developers.openai.com/api/docs/guides/decisions) accepts a string or ordered conversation items, including user `input_text`, `input_image`, and `input_json` content, supported assistant messages, and matched tool calls/results as **evidence**. User `input_json` carries structured data in `data` without flattening it into prose. Images can be inline data URLs **or publicly accessible HTTP(S) URLs**, and question instructions can contain their own images. Files, audio, and item references are unsupported; tool-call history does **not** authorize tool execution. Requests support **1–400 independent questions** over shared evidence, increased from 200 in beta. Use a separate request when one question depends on an earlier answer.
 
 Do not reuse Jev's wire format: TypeSafe uses `state`, a question map, and `criteria`; OpenAI uses `input`, a question array, and `choices` or `levels`. Preserve both distributions and provider/model identity in any adapter. Validate thresholds on labeled data, and measure end-to-end latency rather than treating provider speed claims as an application guarantee. Client-delegated [voice workflows](../../models/voice/providers/openai-live.md#decision-backed-voice-control) can use this endpoint without making it a speech API.
+
+## GA operational considerations
+
+The October 22 release added [shared-input prompt caching](https://developers.openai.com/api/docs/guides/decisions), per-question image evidence, organization usage reporting, and direct [GPT-Live Decisions integration](../../models/voice/providers/openai-live.md#decision-backed-voice-control). Keep cache economics, image access controls, and decision identity separate from application action receipts. A refusal or confident score is never a substitute for authorization, and a model's reported confidence still requires task-specific calibration. Validate request sizes and the exact SDK/API schema when migrating from beta; do not reuse legacy assumptions about hosted image URLs, history items, or question limits.
+
+## GPT-6.2 continuation and prefix migration
+
+OpenAI's [November 17, 2026 GPT-6.2 guide](https://developers.openai.com/api/docs/guides/latest-model) introduces model IDs `gpt-6.2-astra` and `gpt-6.2-sol`. Both accept Chat Completions, but **tool calling requires Responses**. Remove unsupported sampling/logprob parameters and do not send `service_tier: "flex"` when moving to these models.
+
+For repeatable multi-turn work, treat the input prefix as immutable. Under GPT-6.2, top-level `instructions` are appended after `input`, useful for **turn-scoped** guidance but billed as uncached input. Put stable reusable instructions in a first `developer` message in `input`. Preserve previous assistant output items, tool results, and encrypted reasoning items in their original order when using client-managed state, especially under eligible Zero Data Retention configurations.
+
+The [keep-prefix-unchanged guide](https://developers.openai.com/api/docs/guides/keep-prefix-unchanged) explains why replacing earlier tool results, pruning old messages, or changing previously supplied tool/configuration definitions can cause later reasoning items to be dropped with `input_transformations` / `prefix_mismatch`. Append a supported `configuration_update` item for eligible changes or use `additional_tools` instead of silently rewriting historical request context. OpenAI-managed compaction has a special continuation contract; custom compaction may lose reasoning continuity. Measure cache diagnostics and end-to-end token usage before comparing models. See [context caching](../context-caching.md#preserve-reasoning-as-well-as-cache-hits).

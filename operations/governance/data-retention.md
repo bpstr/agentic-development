@@ -9,3 +9,7 @@ Deletion must account for secondary copies. Removing a document from the primary
 For externally managed services, establish the retention and deletion behavior of the configured product and account. Deleting a local reference does not prove that the provider removed its copy.
 
 Retention should preserve the evidence the application needs while avoiding indefinite accumulation by default. Test both ordinary expiry and explicit deletion, including whether removed information can still be retrieved or regenerated from a derived store.
+
+## Customer-owned safety storage
+
+[Anthropic Enterprise Frontier Safeguards](https://platform.claude.com/docs/en/manage-claude/enterprise-frontier-safeguards/overview), in beta from November 23, 2026, distinguishes provider ZDR from eliminating all copies. Eligible Claude workspaces use a customer-owned bucket for encrypted prompts, responses and reasoning in Anthropic's Sealed Safety Data format; customer personnel review safety cases but cannot directly read those encrypted records. Anthropic-managed safety storage is not EFS. Coverage applies to Messages API calls in the configured workspace, not independently stored Files API uploads, code execution containers, Batch results or Managed Agents sessions. Inventory retention separately for each service and workspace; verify bucket health, access and contractual eligibility before claiming ZDR. Cloud storage charges still apply.

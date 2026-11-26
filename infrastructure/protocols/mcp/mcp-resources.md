@@ -54,20 +54,18 @@ A server can support change notifications without delivering resource contents i
 
 An application should mark the corresponding cached representation stale, re-read or re-list with current authorization, then decide whether the refreshed material belongs in the next model context. Coalesce repeated invalidations and retain application-level revisions when ordering matters. A notification does not rewrite context already supplied to a model. After a disconnect, reconcile state instead of assuming every intervening update was delivered.
 
-## Proposed Events extension
+<a id="proposed-events-extension"></a>
 
-[SEP-3415](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3415) proposes `io.modelcontextprotocol/events` for upstream business events such as an email arriving or an incident opening. **As of October 8, 2026, it is an open, unmerged draft, not a released core capability; an official SDK reference implementation is still outstanding.** The [inspected proposal](https://github.com/pja-ant/modelcontextprotocol/blob/6859def4ba24ab41678d0e6799fe3f4c84228f9a/seps/0000-events-extension.md) targets protocol revision 2026-07-28 and later. Its method names and semantics can still change.
+## Events extension
 
-The draft extends discovery beyond resource URIs: `events/list` advertises event names, an `inputSchema` for subscription arguments, a `payloadSchema` for event data, and supported delivery modes. Proposed delivery operations are:
+The [official Events extension](https://modelcontextprotocol.io/extensions/events/overview) (`io.modelcontextprotocol/events`, SEP-3415) reached Beta in November 2026; the SEP is Final. It requires protocol revision 2026-07-28 or later and is not part of the released core notification contract. The [canonical extension repository](https://github.com/modelcontextprotocol/ext-events) contains the specification. Check both client and server support before using extension methods.
 
-| Draft operation | Delivery contract |
+The extension describes upstream business events, such as an email arriving or an incident opening. `events/list` advertises event names, subscription argument schemas, payload schemas and delivery modes. Each event type supports a subset of these operations:
+
+| Operation | Delivery contract |
 | --- | --- |
-| `events/poll` | Request events using arguments and an opaque cursor; no separate subscribe call. |
-| `events/stream` | Hold a request open for pushed occurrences; closing it ends that subscription. |
-| `events/subscribe` | Register an HTTPS callback for signed webhook delivery, renewing an expiring subscription before its granted lifetime ends. |
+| `events/poll` | Ask for events with arguments and an opaque cursor. |
+| `events/stream` | Receive occurrences while a request remains open. |
+| `events/subscribe` | Register an HTTPS callback for signed deliveries under a renewable TTL. |
 
-An event type advertises its supported modes; no particular mode is mandatory. Occurrences contain `eventId`, `name`, `timestamp`, `data`, and `cursor`. Replay is optional, and `truncated: true` signals missed events. This is not an exactly-once execution guarantee.
-
-The client owns its desired subscriptions and must discover advertised extension support before calling `events/*`. Event payloads remain untrusted input under the MCP principal's authorization, not permission to execute their embedded instructions. Application policy must still control deduplication, budgets, approvals, and consequential actions.
-
-The [Triggers & Events incubation repository](https://github.com/modelcontextprotocol/experimental-ext-triggers-events) tracks the evolving design. Keep this proposal distinct from released resource invalidation: “this document changed” is not the same contract as “a parameterized business event occurred.”
+Occurrences include `eventId`, `name`, `timestamp`, `data` and `cursor`. Persist cursors and deduplicate stable event identifiers within a subscription. Replay is optional; `cursor: null` means no addressable history and `truncated: true` indicates a gap. Poll and push are ordered within a subscription; webhook ordering is best effort. Receiving an event does not prove exactly-once execution or authorize follow-up work. Reconcile authoritative state after gaps, enforce current permissions and approvals, and treat payloads as untrusted input. Use Tasks instead for the completion of an operation the client itself started.

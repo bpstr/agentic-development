@@ -11,3 +11,15 @@ A practical use is investigating an assistant that reports a successful edit aft
 Set payload capture, retention, and project access deliberately. A traces dashboard is not an authorization boundary for the application, and SDK export overhead must be measured in the deployed environment. Avoid duplicating the same instrumentation through both framework integration and manual wrappers unless the extra span has a distinct purpose.
 
 Dataset experiments are a separate capability described in [LangSmith evaluation](../../evaluation/frameworks/langsmith-evaluation.md). Sharing a product does not make observability and evaluation interchangeable.
+
+## Gateway fallback and coding-agent cost attribution
+
+LangSmith's [November 2–9, 2026 Cloud changelog](https://docs.langchain.com/langsmith/changelog) documents one trace per **LLM Gateway request**, with separate runs for each attempted provider/model and its upstream status. When a fallback occurs, correlate attempts under the same logical request rather than counting each attempt as an independent user request. Record actual provider, model, attempt cost and outcome; a successful fallback need not erase the failed attempt.
+
+For coding agents, its Usage dashboard attributes **pull-request spend to commits and branches**, and reports outcomes and cost by conversation length. Use stable repository/commit identifiers when interpreting these metrics, and distinguish token spend from merged functional changes. LangSmith also added scoped tool policies for blocking or requiring approvals, but those platform checks do not replace application-side authorization, an immutable mutation receipt, or permission checks at the destination tool.
+
+## November 2026 organization and large-trace changes
+
+The [LangSmith November 9–16 Cloud changelog](https://docs.langchain.com/langsmith/changelog) renames **Teams** to **User Groups** across permissions, access policies, gateway and coding-agent views. New platform routes include `/api/v1/platform/orgs/current/user-groups` and new `user-groups` permission strings; older `/teams` routes continue to work **for now**. Inventory hardcoded organization-management routes before migrating permissions; these are access-control resources, not LangGraph execution state.
+
+Large traces now load in pages rather than one complete tree. Filtered traces, child-run links, and minimaps may initially cover **only loaded runs**, so absence from the currently rendered tree is not evidence that a call never occurred. Query the underlying trace/run IDs and paginate when investigating expensive tool loops, missing tool receipts, or incomplete telemetry. The new sandbox-function snapshot deployment facility belongs to execution hosting, not to tracing itself.

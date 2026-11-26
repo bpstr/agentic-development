@@ -11,3 +11,5 @@ For example, evaluating an assistant that summarizes recent developer announceme
 Compatibility with a familiar API format does not establish full feature equivalence. The catalog documents model-specific differences, including unsupported parameters and tool capabilities. Validate structured output, reasoning continuation, and streamed tool calls using the exact model and endpoint. Grok 4.7 Responses requests can return encrypted reasoning content for continuation; preserve provider-defined reasoning items unchanged when the integration relies on that flow.
 
 Grok Bot and Grok Build are agent products with surrounding execution behavior. Their ability to manage files or run tools should not be attributed to the inference model as an independent capability.
+
+The [November 19, 2026 release note](https://docs.x.ai/developers/release-notes) confirms that `grok-build-0.1` is no longer served through the API. Replace the retired ID in inference configurations with a supported model and re-evaluate coding workflows. This retirement concerns an API model identifier, not discontinuation of the Grok Build agent product.
