@@ -15,7 +15,7 @@ For “why did yesterday's deployment fail?”, a useful shortlist might contain
 
 Each searchable record should include a precise purpose, required identifiers, source server, and effect. Preserve the exact schema when a tool is selected: an abbreviated search description is not enough to execute it.
 
-OpenAI's [tool search](https://developers.openai.com/api/docs/guides/tools-tool-search) and Claude's [tool search tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool) provide concrete deferred-discovery approaches. MCP separates [server discovery](https://modelcontextprotocol.io/specification/2026-07-28/server/discover) from [tool listing](https://modelcontextprotocol.io/specification/2026-07-28/server/tools).
+OpenAI's [tool search](https://developers.openai.com/api/docs/guides/tools-tool-search), Claude's [tool search tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool), and Gemini's [Interactions tool retrieval](https://aistudio.google.com/docs/tool-retrieval) provide concrete deferred-discovery approaches. Distinguish provider search over predeclared schemas from application-owned search over a dynamic authorized registry. MCP separates [server discovery](https://modelcontextprotocol.io/specification/2026-07-28/server/discover) from [tool listing](https://modelcontextprotocol.io/specification/2026-07-28/server/tools).
 
 ## Measure missed capabilities
 

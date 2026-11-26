@@ -71,4 +71,4 @@ Reestablish subscriptions after reconnecting; do not assume they survive a trans
 
 Configure reverse proxies to avoid SSE buffering, use appropriate timeouts and heartbeat handling, and validate Origin as specified. Record the protocol revision explicitly when integrating older clients: transport names can remain the same while lifecycle behavior changes.
 
-The [proposed Events extension](mcp-resources.md#proposed-events-extension) adds a separate upstream-event delivery contract. Its draft cursor/replay design does not change the guarantees of these released core subscriptions.
+The [Events extension](mcp-resources.md#events-extension), in Beta, defines a separate upstream-event delivery contract. Its cursor and replay support do not change the guarantees of released core subscriptions.

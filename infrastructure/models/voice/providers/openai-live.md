@@ -2,7 +2,7 @@
 
 Official documentation: [OpenAI model catalog](https://developers.openai.com/api/docs/models), [GPT-Live 1](https://developers.openai.com/api/docs/models/gpt-live-1), [getting started with GPT-Live](https://developers.openai.com/api/docs/guides/live), [delegation and tools](https://developers.openai.com/api/docs/guides/live-delegation), and the [Realtime API guide](https://developers.openai.com/api/docs/guides/realtime).
 
-OpenAI exposes more than one voice architecture. **GPT-Live 1** is a full-duplex voice model that can keep a spoken conversation active while delegating reasoning and tool work to a backend. The **GPT-Realtime** family instead performs realtime audio interaction and tool selection within the realtime model/session architecture. Separate transcription and text-to-speech models are also listed in the model catalog.
+OpenAI exposes more than one voice architecture. **GPT-Live 1 and 1.1** are full-duplex voice models that can keep a spoken conversation active while delegating reasoning and tool work to a backend. The **GPT-Realtime** family instead performs realtime audio interaction and tool selection within the realtime model/session architecture. Separate transcription and text-to-speech models are also listed in the model catalog.
 
 Do not treat those surfaces as interchangeable merely because they all accept audio. Choose according to who should own reasoning, tool execution, turn-taking, and the spoken conversation.
 
@@ -17,7 +17,7 @@ Two delegation modes divide the integration differently:
 
 In both modes, permissions, confirmations, private function execution, and durable business records remain application responsibilities.
 
-The official guide uses `gpt-live-1` as the Live model identifier. For browser microphone and playback, OpenAI documents WebRTC and recommends keeping project API credentials on a trusted server.
+The current [Live quickstart](https://developers.openai.com/api/docs/guides/live) uses `gpt-live-1.1`, released November 19, 2026, for improved multilingual pronunciation, accent consistency, and transcription. For browser microphone and playback, OpenAI documents WebRTC and recommends keeping project API credentials on a trusted server.
 
 A backend completion does not mean its result was spoken or heard. Persist the backend outcome independently and keep enough identifiers to correlate the voice turn, delegation, tool execution, and final application record.
 
@@ -48,3 +48,7 @@ The [Decisions endpoint](../../../inference/apis/openai-responses-api.md#decisio
 ## Custom GPT-Live voices
 
 Since October 16, 2026, [prompt-to-voice](https://developers.openai.com/api/docs/guides/custom-voices) is generally available for API customers. Create an adult custom voice from a text description through `/v1/audio/voices`, then select its saved ID when creating a GPT-Live session. **Prompt-generated voices do not work with the standalone Text to Speech API, GPT-Realtime, or audio Chat Completions.** Voices generated from an approved recording follow a different, access-restricted consent/reference-sample workflow and support different APIs. Voice creation is not Zero Data Retention compatible. Review voice rights, consent and impersonation restrictions, limits, and project-level authorization before deployment.
+
+## WebRTC standby
+
+The [session lifecycle guide](https://developers.openai.com/api/docs/guides/live-conversations) documents standby for both Live 1 and 1.1. Set `session.wake_policy.type` to `speech` at creation and optionally set `session.idle_timeout_s` to an integer from 5 to 60. Without the timeout, inference stays active after the first wake. Keep the microphone track open; observe `session.paused` and `session.resumed` before updating inference state. Standby preserves the connection and session identity, bills at a reduced rate, and may increase first-response latency. Muting the microphone does not pause inference. For long gaps, close gracefully and restore application task state separately; backend work has its own lifecycle.

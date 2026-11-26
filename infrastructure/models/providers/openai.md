@@ -15,7 +15,9 @@ Both GPT-6.2 models support the Responses API and Chat Completions, but **tool c
 
 The [GPT-6 Astra](openai-models/gpt-6-astra.md), [GPT-5.6 Sol](openai-models/gpt-5.6-sol.md), [GPT-5.6 Terra](openai-models/gpt-5.6-terra.md), and [GPT-5.6 Luna](openai-models/gpt-5.6-luna.md) pages retain earlier family behavior for migration/reference rather than representing the latest catalog. GPT-6 Sol and Luna were released September 22, 2026; GPT-6.1 Sol on September 29; GPT-6.1 Terra on October 26; GPT-6.2 Astra and Sol on November 17. Treat a model-ID change as a compatibility, cost, and evaluation change, not merely a quality upgrade.
 
-OpenAI's audio catalog includes dedicated Live/Realtime voice models, transcription models, and text-to-speech models. See [OpenAI GPT-Live and realtime voice](../voice/providers/openai-live.md) and the [voice model overview](../voice/voice-models.md).
+OpenAI's audio catalog includes dedicated Live/Realtime voice models (including GPT-Live 1.1, released November 19), transcription models, and text-to-speech models. See [OpenAI GPT-Live and realtime voice](../voice/providers/openai-live.md) and the [voice model overview](../voice/voice-models.md).
+
+The [November 24, 2026 API changelog](https://developers.openai.com/api/docs/changelog) introduces healthcare configurations of GPT-6.2 Astra and Sol (`gpt-6.2-astra-healthcare`, `gpt-6.2-sol-healthcare`) and earlier GPT-6 variants through Responses. They pair a model with a clinical-question harness and use a dedicated medical-source index when web search runs. Clinical validation and deployment-specific compliance remain separate responsibilities. The mutable `chat-latest` alias was also refreshed; do not treat a changing chat snapshot as a reproducible production deployment.
 
 For an integration, first identify the task and required input/output modalities, then choose the exact model and supported endpoint. Keep the selected model in application configuration so an evaluation can compare alternatives without altering business logic.
 
